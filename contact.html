@@ -1,1 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moodboard Media — Contact</title>
+  <!-- Tailwind + fonts + base styles (consistent with index/about) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+    h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
+    .bg-orange-deep { background-color: #d05e00; }
+    .text-orange-deep { color: #d05e00; }
+    .border-orange-deep { border-color: #d05e00; }
+    .hover\:bg-orange-deep:hover { background-color: #d05e00; }
+    .hover\:text-orange-deep:hover { color: #d05e00; }
+    
+    /* micro‑interactions & cinematic reveal */
+    .hover-lift {
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15), 0 0 0 2px rgba(208,94,0,0.2);
+    }
+    
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* hero overlay (subtle) */
+    .hero-overlay-light {
+      background: linear-gradient(145deg, rgba(17,17,17,0.4) 0%, rgba(208,94,0,0.2) 100%);
+    }
+    
+    /* card styling */
+    .contact-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 25px 40px -15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(2px);
+      text-align: center;
+    }
+    .contact-card:hover {
+      border-color: #d05e00;
+    }
+    .email-link {
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: #111;
+      word-break: break-all;
+      background: #f7f7f7;
+      padding: 0.6rem 1.5rem;
+      border-radius: 60px;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+      border: 1px solid #eaeaea;
+    }
+    .email-link:hover {
+      background: #d05e00;
+      color: white;
+      border-color: #d05e00;
+    }
+  </style>
+</head>
+<body class="antialiased text-[#111]">
 
+  <!-- STICKY NAVBAR (identical to index & about) -->
+  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-semibold tracking-tight font-serif-display text-[#111] hover:text-orange-deep">Moodboard Media</a>
+      <div class="hidden md:flex space-x-8 text-[15px] font-medium">
+        <a href="index.html" class="hover:text-orange-deep transition">Home</a>
+        <a href="about.html" class="hover:text-orange-deep transition">About</a>
+        <a href="contact.html" class="hover:text-orange-deep transition text-orange-deep">Contact</a>
+      </div>
+      <div class="md:hidden text-2xl cursor-pointer">☰</div>
+    </div>
+  </nav>
+
+  <!-- CONTACT HERO – minimal, elegant -->
+  <section class="relative h-[45vh] min-h-[380px] flex items-center justify-center overflow-hidden">
+    <!-- very subtle background (cinematic abstract) -->
+    <div class="absolute inset-0 bg-[url('https://placehold.co/1600x900/1e1e1e/d05e00?text=film+texture+abstract')] bg-cover bg-center opacity-30"></div>
+    <div class="absolute inset-0 hero-overlay-light"></div>
+    
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
+      <h1 class="text-6xl md:text-7xl font-bold mb-6 font-serif-display tracking-tight drop-shadow-md">Contact Us</h1>
+      <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow">
+        Get in touch with the Moodboard team
+      </p>
+    </div>
+    <!-- subtle scroll/down hint -->
+    <div class="absolute bottom-6 left-0 right-0 text-center text-white/70 text-sm flex justify-center items-center gap-2">
+      <span>choose your path</span> <span class="text-orange-deep text-lg">↓</span>
+    </div>
+  </section>
+
+  <!-- INTRO LINE – breathing space before cards -->
+  <div class="pt-24 pb-8 text-center max-w-3xl mx-auto px-6">
+    <span class="text-orange-deep font-semibold tracking-widest text-sm">REACH THE RIGHT PILLAR</span>
+    <h2 class="text-3xl md:text-4xl font-bold mt-4 font-serif-display">Direct inquiries for each division</h2>
+    <p class="text-gray-600 text-lg mt-4">Select the email that matches your need — we'll respond within 48 hours.</p>
+  </div>
+
+  <!-- CONTACT CARDS SECTION (3 cards, each with email + description) -->
+  <section class="py-8 pb-32 fade-up">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
+        
+        <!-- CARD 1 – CREATIVE AGENCY -->
+        <div class="contact-card hover-lift flex flex-col items-center">
+          <div class="w-20 h-20 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl mb-6">
+            🎬
+          </div>
+          <h3 class="text-2xl font-bold mb-2 font-serif-display">Creative Agency</h3>
+          <p class="text-gray-600 text-sm mb-8 max-w-xs mx-auto">
+            Production, brand storytelling, events, and content strategy.
+          </p>
+          <a href="mailto:info@moodboardmedia.co.za" class="email-link">
+            info@moodboardmedia.co.za
+          </a>
+          <p class="text-xs text-gray-400 mt-6">main creative contact</p>
+        </div>
+
+        <!-- CARD 2 – FEMALE FILM TRAILBLAZERS -->
+        <div class="contact-card hover-lift flex flex-col items-center border-t-4 border-t-orange-deep/20">
+          <div class="w-20 h-20 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl mb-6">
+            🎞️
+          </div>
+          <h3 class="text-2xl font-bold mb-2 font-serif-display">Female Film Trailblazers</h3>
+          <p class="text-gray-600 text-sm mb-8 max-w-xs mx-auto">
+            Webinars, networking, seminars, and women in film initiatives.
+          </p>
+          <a href="mailto:femalefilmtrailblazer@moodboardmedia.co.za" class="email-link">
+            femalefilmtrailblazer@moodboardmedia.co.za
+          </a>
+          <p class="text-xs text-gray-400 mt-6">partnerships & events</p>
+        </div>
+
+        <!-- CARD 3 – LESEGO_SAYS -->
+        <div class="contact-card hover-lift flex flex-col items-center">
+          <div class="w-20 h-20 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl mb-6">
+            ✍️
+          </div>
+          <h3 class="text-2xl font-bold mb-2 font-serif-display">Lesego_Says</h3>
+          <p class="text-gray-600 text-sm mb-8 max-w-xs mx-auto">
+            Script consulting, story development, creative producing.
+          </p>
+          <a href="mailto:lesego@moodboardmedia.co.za" class="email-link">
+            lesego@moodboardmedia.co.za
+          </a>
+          <p class="text-xs text-gray-400 mt-6">direct story line</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL INFO / SMALL CONNECT SECTION (optional but elegant) -->
+  <section class="bg-white py-20 border-y border-gray-200/60 fade-up">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h3 class="text-2xl font-serif-display mb-6">We reply within 48 hours</h3>
+      <p class="text-gray-600 text-lg mb-8">
+        Whether you have a project in mind, want to collaborate, or simply want to say hello — we’re listening.
+      </p>
+      <div class="flex flex-wrap justify-center gap-6 text-sm">
+        <span class="bg-gray-100 px-5 py-2 rounded-full text-gray-700">📁 Creative briefs welcome</span>
+        <span class="bg-gray-100 px-5 py-2 rounded-full text-gray-700">🌍 Based in South Africa</span>
+        <span class="bg-gray-100 px-5 py-2 rounded-full text-gray-700">⚡ Global collaborations</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK ALTERNATIVE: maybe a tiny "call" or social (placeholders) -->
+  <section class="py-16 bg-[#f7f7f7] fade-up">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-gray-500 text-sm tracking-wider uppercase mb-3">Follow the journey</p>
+      <div class="flex justify-center space-x-6 text-2xl text-gray-500">
+        <span class="cursor-pointer hover:text-orange-deep transition">📷</span>
+        <span class="cursor-pointer hover:text-orange-deep transition">🎥</span>
+        <span class="cursor-pointer hover:text-orange-deep transition">🔗</span>
+        <span class="cursor-pointer hover:text-orange-deep transition">🐦</span>
+      </div>
+      <p class="text-gray-400 text-xs mt-6">(social links will be added when provided)</p>
+    </div>
+  </section>
+
+  <!-- FOOTER (identical to homepage & about) -->
+  <footer class="bg-[#111] text-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-center md:text-left">
+          <h3 class="text-2xl font-serif-display mb-2">Moodboard Media</h3>
+          <p class="text-gray-400 text-sm">© 2026 Moodboard Media. All rights reserved.</p>
+        </div>
+        <div class="flex space-x-8 text-sm">
+          <a href="index.html" class="hover:text-orange-deep transition">Home</a>
+          <a href="about.html" class="hover:text-orange-deep transition">About</a>
+          <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-xs">
+        cinematic storytelling · film ecosystem · creativity
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL REVEAL + NAVBAR SCROLL EFFECT (consistent) -->
+  <script>
+    (function() {
+      // fade-up observer
+      const faders = document.querySelectorAll('.fade-up');
+      const appearOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+      const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        });
+      }, appearOptions);
+      faders.forEach(fader => appearOnScroll.observe(fader));
+
+      // navbar transition
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('bg-white/95', 'shadow-md');
+          navbar.classList.remove('bg-white/90');
+        } else {
+          navbar.classList.remove('bg-white/95', 'shadow-md');
+          navbar.classList.add('bg-white/90');
+        }
+      });
+
+      // force hero content to be visible (already has .show)
+    })();
+  </script>
+
+  <!-- note: placeholder images (background) – replace if actual film stills desired.
+       email addresses as provided: info@moodboardmedia.co.za, femalefilmtrailblazer@moodboardmedia.co.za, lesego@moodboardmedia.co.za
+  -->
+</body>
+</html>
