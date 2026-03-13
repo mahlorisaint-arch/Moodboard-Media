@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moodboard Media – cinematic storytelling</title>
+  <!-- Tailwind (lightweight) + custom font + base styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Playfair Display (headings) / Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- tiny extra style for smooth scroll & font assignments -->
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+    h1, h2, h3, h4, .font-serif-display { font-family: 'Playfair Display', serif; }
+    /* custom orange to match #d05e00 exactly */
+    .bg-orange-deep { background-color: #d05e00; }
+    .text-orange-deep { color: #d05e00; }
+    .border-orange-deep { border-color: #d05e00; }
+    .hover\:bg-orange-deep:hover { background-color: #d05e00; }
+    .hover\:text-orange-deep:hover { color: #d05e00; }
+    /* subtle lift & glow for cards/buttons – premium micro‑interaction */
+    .hover-lift {
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15), 0 0 0 2px rgba(208,94,0,0.2);
+    }
+    /* slide-in fade for sections (will be triggered on scroll – basic version via JS) */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* dummy slideshow simulation (static bg for now – real assets later) */
+    .pillar-image {
+      background-size: cover;
+      background-position: center;
+      background-color: #2a2a2a; /* fallback dark */
+      transition: transform 0.4s ease;
+    }
+    .pillar-card:hover .pillar-image { transform: scale(1.02); }
+    /* soundwave simulation hero – black with animated pulse (later replace with actual video) */
+    .soundwave-sim {
+      background: #111;
+      position: relative;
+    }
+    .soundwave-sim::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(208,94,0,0.15) 0%, transparent 60%);
+      animation: pulseGlow 3s infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.3; }
+      100% { opacity: 0.8; }
+    }
+    .wave-lines span {
+      display: inline-block;
+      width: 4px;
+      height: 30px;
+      margin: 0 3px;
+      background: #d05e00;
+      animation: wave 1.2s infinite ease-in-out;
+    }
+    .wave-lines span:nth-child(2) { animation-delay: 0.1s; height: 45px; }
+    .wave-lines span:nth-child(3) { animation-delay: 0.2s; height: 25px; }
+    .wave-lines span:nth-child(4) { animation-delay: 0.3s; height: 55px; }
+    .wave-lines span:nth-child(5) { animation-delay: 0.4s; height: 35px; }
+    .wave-lines span:nth-child(6) { animation-delay: 0.5s; height: 50px; }
+    .wave-lines span:nth-child(7) { animation-delay: 0.6s; height: 20px; }
+    @keyframes wave {
+      0%, 100% { transform: scaleY(0.6); opacity: 0.5; }
+      50% { transform: scaleY(1.2); opacity: 1; }
+    }
+    /* scroll down bounce */
+    .bounce-slow { animation: bounceSoft 2s infinite; }
+    @keyframes bounceSoft {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+  </style>
+</head>
+<body class="antialiased text-[#111]">
+
+  <!-- STICKY NAVBAR – transparent to white transition (micro‑interaction) -->
+  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- logo / name -->
+      <a href="index.html" class="text-xl font-semibold tracking-tight font-serif-display text-[#111] hover:text-orange-deep">Moodboard Media</a>
+      <!-- desktop menu -->
+      <div class="hidden md:flex space-x-8 text-[15px] font-medium">
+        <a href="index.html" class="hover:text-orange-deep transition">Home</a>
+        <a href="about.html" class="hover:text-orange-deep transition">About</a>
+        <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
+      </div>
+      <!-- mobile hamburger (simplified) -->
+      <div class="md:hidden text-2xl cursor-pointer">☰</div>
+    </div>
+  </nav>
+
+  <!-- HERO – cinematic intro with soundwave simulation (will be replaced by real video) -->
+  <section class="soundwave-sim h-screen flex items-center justify-center text-white relative overflow-hidden">
+    <div class="absolute inset-0 flex items-center justify-center opacity-20">
+      <div class="wave-lines flex">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto text-center px-6">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 font-serif-display leading-tight">Welcome to <br>Moodboard Media</h1>
+      <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto">An ecosystem designed to move with your creativity… and adapt to your mood.</p>
+      <div class="flex flex-col items-center">
+        <p class="text-sm uppercase tracking-widest mb-2 opacity-70">scroll to explore</p>
+        <div class="bounce-slow text-orange-deep text-2xl">↓</div>
+      </div>
+    </div>
+    <!-- voice narration hint (in final version will be actual audio) -->
+    <div class="absolute bottom-8 left-0 right-0 text-center text-white/40 text-sm">🎙️ "Hello … and welcome to Moodboard Media"</div>
+  </section>
+
+  <!-- MAIN LANDING CONTENT – three pillar sections with cinematic reveal (fade-up) -->
+
+  <!-- 1️⃣ CREATIVE AGENCY (Image | Text) -->
+  <section class="py-32 bg-white fade-up" id="agency">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
+      <!-- left: slideshow area (simulated with static image + overlay) -->
+      <div class="pillar-card group relative overflow-hidden rounded-2xl shadow-xl hover-lift">
+        <div class="pillar-image h-80 md:h-96 w-full" style="background-image: url('https://placehold.co/800x600/2a2a2a/d05e00?text=cinematic+production');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+        <span class="absolute bottom-4 left-4 text-white/90 text-sm flex items-center gap-1">🎬 slideshow ◆</span>
+      </div>
+      <!-- right: text -->
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Creative Agency</h2>
+        <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+          Moodboard Media is a creative agency specializing in cinematic storytelling and digital content production. From event coverage and brand storytelling to animation and film production, we transform ideas into compelling visual experiences that connect with audiences.
+        </p>
+        <button class="bg-orange-deep text-white px-8 py-4 rounded-lg text-lg font-medium shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2">
+          Explore Work <span>→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2️⃣ FEMALE FILM TRAILBLAZERS (Text | Image) - alternate layout -->
+  <section class="py-32 bg-[#f0f0f0] fade-up" id="trailblazers">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
+      <!-- left: text -->
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Female Film Trailblazers</h2>
+        <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+          Empowering women in the film industry through quarterly webinars, annual seminars, and curated networking opportunities. We connect emerging and established filmmakers to share knowledge, inspire growth, and build lasting industry connections.
+        </p>
+        <button class="bg-orange-deep text-white px-8 py-4 rounded-lg text-lg font-medium shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2">
+          Discover Initiative <span>→</span>
+        </button>
+      </div>
+      <!-- right: slideshow area -->
+      <div class="pillar-card group relative overflow-hidden rounded-2xl shadow-xl hover-lift">
+        <div class="pillar-image h-80 md:h-96 w-full" style="background-image: url('https://placehold.co/800x600/2a2a2a/d05e00?text=women+in+film');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+        <span class="absolute bottom-4 left-4 text-white/90 text-sm flex items-center gap-1">🎞️ webinars & panels ◆</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3️⃣ LESEGO_SAYS (Image | Text) -->
+  <section class="py-32 bg-white fade-up" id="lesego">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
+      <!-- left: slideshow area -->
+      <div class="pillar-card group relative overflow-hidden rounded-2xl shadow-xl hover-lift">
+        <div class="pillar-image h-80 md:h-96 w-full" style="background-image: url('https://placehold.co/800x600/2a2a2a/d05e00?text=script+development');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+        <span class="absolute bottom-4 left-4 text-white/90 text-sm flex items-center gap-1">✍️ story sessions ◆</span>
+      </div>
+      <!-- right: text -->
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Lesego_Says</h2>
+        <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+          Creative producing, story development, script editing, and writing consultancy. Lesego_Says helps filmmakers and storytellers refine their ideas into compelling narratives ready for the screen.
+        </p>
+        <button class="bg-orange-deep text-white px-8 py-4 rounded-lg text-lg font-medium shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2">
+          Learn More <span>→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- subtle explore prompt / divider before footer -->
+  <div class="text-center py-16 bg-[#f7f7f7]">
+    <p class="text-2xl text-gray-600 font-serif-display mb-4">Discover the world of Moodboard Media.</p>
+    <p class="text-lg text-gray-500">Scroll through our creative ecosystem.</p>
+    <a href="#agency" class="inline-block mt-6 text-orange-deep border border-orange-deep rounded-full px-8 py-3 hover:bg-orange-deep hover:text-white transition">Explore More ↓</a>
+  </div>
+
+  <!-- FOOTER (clean, minimal) -->
+  <footer class="bg-[#111] text-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-center md:text-left">
+          <h3 class="text-2xl font-serif-display mb-2">Moodboard Media</h3>
+          <p class="text-gray-400 text-sm">© 2026 Moodboard Media. All rights reserved.</p>
+        </div>
+        <div class="flex space-x-8 text-sm">
+          <a href="index.html" class="hover:text-orange-deep transition">Home</a>
+          <a href="about.html" class="hover:text-orange-deep transition">About</a>
+          <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
+        </div>
+      </div>
+      <!-- tiny social hint (optional) -->
+      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-xs">
+        cinematic storytelling · film ecosystem · creativity
+      </div>
+    </div>
+  </footer>
+
+  <!-- SIMPLE SCROLL REVEAL (fade-up trigger) – micro-interaction #5 -->
+  <script>
+    (function() {
+      const faders = document.querySelectorAll('.fade-up');
+      const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
+      const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target); // only once
+        });
+      }, appearOptions);
+      faders.forEach(fader => appearOnScroll.observe(fader));
+
+      // navbar background transition on scroll (micro-interaction #2)
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('bg-white/95', 'shadow-md');
+          navbar.classList.remove('bg-white/90');
+        } else {
+          navbar.classList.remove('bg-white/95', 'shadow-md');
+          navbar.classList.add('bg-white/90');
+        }
+      });
+    })();
+  </script>
+
+  <!-- tiny additional micro‑interactions: button glow, smooth scroll (already in html) -->
+  <!-- all hover effects, lift, and transitions are in CSS/classes -->
+
+  <!-- NOTE: placeholder images (placehold.co) – replace with actual we transfer assets later.
+       slideshow auto‑motion would be added with js carousel, but static images preserve the premium layout.
+       soundwave hero is simulated – final version will include actual video.
+  -->
+</body>
+</html>
