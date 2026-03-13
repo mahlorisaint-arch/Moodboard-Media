@@ -1,1 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moodboard Media — About</title>
+  <!-- Tailwind + fonts + base styles (same as index) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+    h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
+    .bg-orange-deep { background-color: #d05e00; }
+    .text-orange-deep { color: #d05e00; }
+    .border-orange-deep { border-color: #d05e00; }
+    .hover\:bg-orange-deep:hover { background-color: #d05e00; }
+    .hover\:text-orange-deep:hover { color: #d05e00; }
+    
+    /* micro‑interactions & cinematic reveal */
+    .hover-lift {
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15), 0 0 0 2px rgba(208,94,0,0.2);
+    }
+    
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* hero overlay & parallax hint */
+    .hero-overlay {
+      background: linear-gradient(135deg, rgba(17,17,17,0.7) 0%, rgba(208,94,0,0.3) 100%);
+    }
+    /* subtle film grain simulation (premium texture) */
+    .grain::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wNCIgLz48L3N2Zz4=');
+      pointer-events: none;
+      opacity: 0.15;
+      mix-blend-mode: multiply;
+    }
+  </style>
+</head>
+<body class="antialiased text-[#111]">
 
+  <!-- STICKY NAVBAR (identical to index) -->
+  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-semibold tracking-tight font-serif-display text-[#111] hover:text-orange-deep">Moodboard Media</a>
+      <div class="hidden md:flex space-x-8 text-[15px] font-medium">
+        <a href="index.html" class="hover:text-orange-deep transition">Home</a>
+        <a href="about.html" class="hover:text-orange-deep transition text-orange-deep">About</a>
+        <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
+      </div>
+      <div class="md:hidden text-2xl cursor-pointer">☰</div>
+    </div>
+  </nav>
+
+  <!-- ABOUT HERO – cinematic banner with orange overlay + film texture -->
+  <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <!-- background image (cinematic production still) – placeholder, replace with actual -->
+    <div class="absolute inset-0 bg-[url('https://placehold.co/1600x900/1a1a1a/d05e00?text=film+set+ambiance')] bg-cover bg-center scale-105 transition-transform duration-[10s] hover:scale-110"></div>
+    <div class="absolute inset-0 hero-overlay"></div>
+    <div class="grain absolute inset-0"></div> <!-- subtle grain -->
+    
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show"> <!-- show immediately -->
+      <h1 class="text-6xl md:text-7xl font-bold mb-6 font-serif-display tracking-tight">About Moodboard Media</h1>
+      <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+        A creative ecosystem for storytelling and visual experiences
+      </p>
+    </div>
+    <!-- scroll hint -->
+    <div class="absolute bottom-6 left-0 right-0 text-center text-white/60 text-sm flex justify-center items-center gap-2">
+      <span>our story</span> <span class="text-orange-deep text-lg">↓</span>
+    </div>
+  </section>
+
+  <!-- COMPANY STORY – two column layout with image & text (cinematic reveal) -->
+  <section class="py-32 bg-white fade-up" id="story">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
+      <!-- left: image/film still (with hover lift) -->
+      <div class="relative overflow-hidden rounded-2xl shadow-2xl hover-lift group">
+        <img src="https://placehold.co/900x700/2c2c2c/d05e00?text=collaborative+storytelling" alt="Moodboard Media team / film set" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+      </div>
+      <!-- right: story text -->
+      <div>
+        <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR NARRATIVE</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-8 font-serif-display leading-tight">Company Story</h2>
+        <div class="prose prose-lg text-gray-700 space-y-6">
+          <p>
+            Moodboard Media is a creative ecosystem built around storytelling, visual media, and industry empowerment. Founded with the belief that every brand and filmmaker has a unique story to tell, we bring together creative production, film education, and story development under one roof.
+          </p>
+          <p>
+            What started as a small collective of filmmakers has grown into a platform that supports both commercial brands and independent storytellers. We don’t just produce content — we cultivate ideas, nurture voices, and build bridges between emerging talent and the industry.
+          </p>
+          <p>
+            Today, Moodboard Media operates through three core pillars: a full-service creative agency, an initiative dedicated to women in film, and a personal consultancy for narrative development. Each arm shares the same DNA: cinematic quality, human connection, and the power of visual language.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION – side by side cards with premium spacing -->
+  <section class="py-32 bg-[#f0f0f0] fade-up">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- subtle heading -->
+      <div class="text-center mb-16">
+        <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR REASON</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 font-serif-display">Why we exist</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-10">
+        <!-- MISSION CARD -->
+        <div class="bg-white p-10 rounded-3xl shadow-xl hover-lift border border-white/50">
+          <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
+            <span class="text-3xl">🎯</span>
+          </div>
+          <h3 class="text-3xl font-bold mb-6 font-serif-display">Mission</h3>
+          <p class="text-lg text-gray-700 leading-relaxed">
+            To create meaningful visual stories while empowering emerging filmmakers and creative voices. We believe that great stories have the power to shift perspectives, and we’re committed to producing work that resonates, inspires, and endures.
+          </p>
+          <div class="mt-8 w-12 h-1 bg-orange-deep rounded-full"></div>
+        </div>
+
+        <!-- VISION CARD -->
+        <div class="bg-white p-10 rounded-3xl shadow-xl hover-lift border border-white/50">
+          <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
+            <span class="text-3xl">🌍</span>
+          </div>
+          <h3 class="text-3xl font-bold mb-6 font-serif-display">Vision</h3>
+          <p class="text-lg text-gray-700 leading-relaxed">
+            To build a global creative ecosystem where storytelling, innovation, and collaboration shape the future of film and media. A world where diverse voices have access to resources, mentorship, and platforms to share their unique perspectives.
+          </p>
+          <div class="mt-8 w-12 h-1 bg-orange-deep rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE VALUES / PILLAR REMINDER – optional elegant touch (connects to homepage) -->
+  <section class="py-24 bg-white fade-up">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif-display">Three pillars, one purpose</h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-16">Every part of our ecosystem works in harmony.</p>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">🎬</div>
+          <h3 class="text-2xl font-bold mb-3 font-serif-display">Creative Agency</h3>
+          <p class="text-gray-600">Production, strategy, and storytelling for brands and artists.</p>
+        </div>
+        <div class="p-6">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">🎞️</div>
+          <h3 class="text-2xl font-bold mb-3 font-serif-display">Female Film Trailblazers</h3>
+          <p class="text-gray-600">Empowering women through education, networking, and visibility.</p>
+        </div>
+        <div class="p-6">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">✍️</div>
+          <h3 class="text-2xl font-bold mb-3 font-serif-display">Lesego_Says</h3>
+          <p class="text-gray-600">Script development, creative consulting, and story editing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (identical to homepage) -->
+  <footer class="bg-[#111] text-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-center md:text-left">
+          <h3 class="text-2xl font-serif-display mb-2">Moodboard Media</h3>
+          <p class="text-gray-400 text-sm">© 2026 Moodboard Media. All rights reserved.</p>
+        </div>
+        <div class="flex space-x-8 text-sm">
+          <a href="index.html" class="hover:text-orange-deep transition">Home</a>
+          <a href="about.html" class="hover:text-orange-deep transition">About</a>
+          <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-xs">
+        cinematic storytelling · film ecosystem · creativity
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL REVEAL + NAVBAR SCROLL EFFECT (same as index) -->
+  <script>
+    (function() {
+      // fade-up observer
+      const faders = document.querySelectorAll('.fade-up');
+      const appearOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+      const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        });
+      }, appearOptions);
+      faders.forEach(fader => appearOnScroll.observe(fader));
+
+      // navbar transition
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('bg-white/95', 'shadow-md');
+          navbar.classList.remove('bg-white/90');
+        } else {
+          navbar.classList.remove('bg-white/95', 'shadow-md');
+          navbar.classList.add('bg-white/90');
+        }
+      });
+
+      // force hero content to be visible (already has .show)
+    })();
+  </script>
+
+  <!-- note: placeholder images – replace with actual film stills from WeTransfer -->
+</body>
+</html>
