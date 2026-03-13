@@ -8,7 +8,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Playfair Display (headings) / Inter (body) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <!-- tiny extra style for smooth scroll & font assignments -->
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
@@ -37,14 +36,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* dummy slideshow simulation (static bg for now – real assets later) */
-    .pillar-image {
-      background-size: cover;
-      background-position: center;
-      background-color: #2a2a2a; /* fallback dark */
-      transition: transform 0.4s ease;
-    }
-    .pillar-card:hover .pillar-image { transform: scale(1.02); }
     /* soundwave simulation hero – black with animated pulse (later replace with actual video) */
     .soundwave-sim {
       background: #111;
@@ -85,6 +76,60 @@
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(-8px); }
       60% { transform: translateY(-4px); }
+    }
+    /* slideshow styles for Trailblazers */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+    .slideshow-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .slideshow-image.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .slideshow-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      padding: 1rem;
+      z-index: 2;
+      color: white;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .slideshow-dots {
+      display: flex;
+      gap: 0.5rem;
+      z-index: 3;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dot.active {
+      background: #d05e00;
+      transform: scale(1.2);
     }
   </style>
 </head>
@@ -132,7 +177,7 @@
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
       <!-- left: slideshow area (simulated with static image + overlay) -->
       <div class="pillar-card group relative overflow-hidden rounded-2xl shadow-xl hover-lift">
-        <div class="pillar-image h-80 md:h-96 w-full" style="background-image: url('https://placehold.co/800x600/2a2a2a/d05e00?text=cinematic+production');"></div>
+        <div class="pillar-image h-80 md:h-96 w-full" style="background-image: url('https://placehold.co/800x600/2a2a2a/d05e00?text=cinematic+production'); background-size: cover; background-position: center;"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
         <span class="absolute bottom-4 left-4 text-white/90 text-sm flex items-center gap-1">🎬 slideshow ◆</span>
       </div>
@@ -149,7 +194,7 @@
     </div>
   </section>
 
-  <!-- 2️⃣ FEMALE FILM TRAILBLAZERS (Text | Image) - alternate layout -->
+  <!-- 2️⃣ FEMALE FILM TRAILBLAZERS (Text | Image) - alternate layout with LIVE SLIDESHOW -->
   <section class="py-32 bg-[#f0f0f0] fade-up" id="trailblazers">
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
       <!-- left: text -->
@@ -162,11 +207,28 @@
           Discover Initiative <span>→</span>
         </button>
       </div>
-      <!-- right: slideshow area -->
+      <!-- right: slideshow container with the 5 specified images -->
       <div class="pillar-card group relative overflow-hidden rounded-2xl shadow-xl hover-lift">
-        <div class="pillar-image h-80 md:h-96 w-full" style="background-image: url('https://placehold.co/800x600/2a2a2a/d05e00?text=women+in+film');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-        <span class="absolute bottom-4 left-4 text-white/90 text-sm flex items-center gap-1">🎞️ webinars & panels ◆</span>
+        <div class="slideshow-container" id="trailblazersSlideshow">
+          <!-- images with explicit paths -->
+          <img src="images-trailblazers/female-film-trailblazers-2025-edition-1.png" class="slideshow-image active" alt="Trailblazers 1">
+          <img src="images-trailblazers/female-film-trailblazers-2025-edition-2.png" class="slideshow-image" alt="Trailblazers 2">
+          <img src="images-trailblazers/female-film-trailblazers-2025-edition-3.png" class="slideshow-image" alt="Trailblazers 3">
+          <img src="images-trailblazers/female-film-trailblazers-2025-edition-4.png" class="slideshow-image" alt="Trailblazers 4">
+          <img src="images-trailblazers/female-film-trailblazers-2025-edition-5.png" class="slideshow-image" alt="Trailblazers 5">
+          
+          <!-- overlay with dots and counter -->
+          <div class="slideshow-overlay">
+            <span class="text-sm">Female Film Trailblazers</span>
+            <div class="slideshow-dots" id="slideshowDots">
+              <span class="dot active" data-index="0"></span>
+              <span class="dot" data-index="1"></span>
+              <span class="dot" data-index="2"></span>
+              <span class="dot" data-index="3"></span>
+              <span class="dot" data-index="4"></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -176,7 +238,7 @@
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
       <!-- left: slideshow area -->
       <div class="pillar-card group relative overflow-hidden rounded-2xl shadow-xl hover-lift">
-        <div class="pillar-image h-80 md:h-96 w-full" style="background-image: url('https://placehold.co/800x600/2a2a2a/d05e00?text=script+development');"></div>
+        <div class="pillar-image h-80 md:h-96 w-full" style="background-image: url('https://placehold.co/800x600/2a2a2a/d05e00?text=script+development'); background-size: cover; background-position: center;"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
         <span class="absolute bottom-4 left-4 text-white/90 text-sm flex items-center gap-1">✍️ story sessions ◆</span>
       </div>
@@ -221,16 +283,17 @@
     </div>
   </footer>
 
-  <!-- SIMPLE SCROLL REVEAL (fade-up trigger) – micro-interaction #5 -->
+  <!-- SIMPLE SCROLL REVEAL (fade-up trigger) + SLIDESHOW SCRIPT -->
   <script>
     (function() {
+      // ========== SCROLL REVEAL ==========
       const faders = document.querySelectorAll('.fade-up');
       const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
       const appearOnScroll = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           entry.target.classList.add('show');
-          observer.unobserve(entry.target); // only once
+          observer.unobserve(entry.target);
         });
       }, appearOptions);
       faders.forEach(fader => appearOnScroll.observe(fader));
@@ -246,15 +309,62 @@
           navbar.classList.add('bg-white/90');
         }
       });
+
+      // ========== TRAILBLAZERS SLIDESHOW ==========
+      const slideshowContainer = document.getElementById('trailblazersSlideshow');
+      if (slideshowContainer) {
+        const images = slideshowContainer.querySelectorAll('.slideshow-image');
+        const dots = slideshowContainer.querySelectorAll('.dot');
+        let currentIndex = 0;
+        let interval;
+
+        function showSlide(index) {
+          if (index < 0) index = images.length - 1;
+          if (index >= images.length) index = 0;
+          
+          // update images
+          images.forEach((img, i) => {
+            img.classList.toggle('active', i === index);
+          });
+          // update dots
+          dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+          });
+          currentIndex = index;
+        }
+
+        function nextSlide() {
+          showSlide(currentIndex + 1);
+        }
+
+        // start automatic slideshow (every 4 seconds)
+        interval = setInterval(nextSlide, 4000);
+
+        // dot click navigation
+        dots.forEach((dot, idx) => {
+          dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            clearInterval(interval);
+            showSlide(idx);
+            interval = setInterval(nextSlide, 4000); // restart interval
+          });
+        });
+
+        // optional: pause on hover
+        slideshowContainer.addEventListener('mouseenter', () => {
+          clearInterval(interval);
+        });
+        slideshowContainer.addEventListener('mouseleave', () => {
+          interval = setInterval(nextSlide, 4000);
+        });
+      }
     })();
   </script>
 
   <!-- tiny additional micro‑interactions: button glow, smooth scroll (already in html) -->
-  <!-- all hover effects, lift, and transitions are in CSS/classes -->
-
-  <!-- NOTE: placeholder images (placehold.co) – replace with actual we transfer assets later.
-       slideshow auto‑motion would be added with js carousel, but static images preserve the premium layout.
-       soundwave hero is simulated – final version will include actual video.
+  <!-- NOTE: For Creative Agency & Lesego_Says we still use placeholders – replace with real paths when ready.
+       Trailblazers images are loaded from: images-trailblazers/female-film-trailblazers-2025-edition-1.png ... 5.png
+       Ensure the folder "images-trailblazers" exists with those exact filenames.
   -->
 </body>
 </html>
