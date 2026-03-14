@@ -39,12 +39,12 @@
       transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, margin 0.4s;
     }
     .expand-panel.open {
-      max-height: 2000px; /* plenty for content */
+      max-height: 2000px;
       opacity: 1;
       margin-top: 3rem;
     }
     
-    /* slideshow — now taller: 420px for cinematic feel */
+    /* ===== CINEMATIC SLIDESHOW ===== */
     .slideshow-container {
       position: relative;
       width: 100%;
@@ -58,14 +58,33 @@
       width: 100%; height: 100%;
       object-fit: cover;
       opacity: 0;
-      transition: opacity 1.2s ease-in-out;
+      transform: scale(1);
+      transition: opacity 1.2s ease-in-out, transform 6s ease;
     }
-    .slideshow-image.active { opacity: 1; z-index: 1; }
+    .slideshow-image.active { 
+      opacity: 1; 
+      z-index: 1;
+      transform: scale(1.08); /* subtle Ken Burns zoom */
+    }
+    /* cinematic overlay with gradient */
     .slideshow-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-      padding: 1rem; z-index: 2; color: white;
-      display: flex; justify-content: space-between; align-items: center;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 100%);
+      color: white;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+    .slideshow-dots {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
     }
     .dot {
       width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5);
@@ -73,14 +92,76 @@
     }
     .dot.active { background: #d05e00; transform: scale(1.3); }
     
-    /* hero soundwave */
-    .soundwave-sim { background: #111; position: relative; }
-    .soundwave-sim::after {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(208,94,0,0.15) 0%, transparent 60%);
-      animation: pulseGlow 3s infinite alternate;
+    /* ===== CINEMATIC HERO ===== */
+    .hero {
+      position: relative;
+      background-image: url('https://placehold.co/1600x900/111111/d05e00?text=cinematic+film+set');
+      background-size: cover;
+      background-position: center;
+      animation: heroZoom 12s ease forwards;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      overflow: hidden;
     }
-    @keyframes pulseGlow { 0% { opacity: 0.3; } 100% { opacity: 0.8; } }
+    @keyframes heroZoom {
+      0% { transform: scale(1.08); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    /* film grain overlay */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('https://grainy-gradients.vercel.app/noise.svg');
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* soft vignette */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 900px;
+      padding: 0 1.5rem;
+    }
+    .hero-text {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: heroTextReveal 1.2s ease forwards;
+      animation-delay: 0.8s;
+    }
+    @keyframes heroTextReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      color: white;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounceSoft 2s infinite;
+      opacity: 0.8;
+    }
+    @keyframes bounceSoft { 0%,100%{transform:translateX(-50%) translateY(0);} 40%{transform:translateX(-50%) translateY(-8px);} 60%{transform:translateX(-50%) translateY(-4px);} }
+    
+    /* soundwave simulation (kept for texture but hero overrides it) */
     .wave-lines span {
       display: inline-block; width: 4px; height: 30px; margin: 0 3px; background: #d05e00;
       animation: wave 1.2s infinite ease-in-out;
@@ -95,8 +176,6 @@
       0%,100% { transform: scaleY(0.6); opacity: 0.5; }
       50% { transform: scaleY(1.2); opacity: 1; }
     }
-    .bounce-slow { animation: bounceSoft 2s infinite; }
-    @keyframes bounceSoft { 0%,100%{transform:translateY(0);} 40%{transform:translateY(-8px);} 60%{transform:translateY(-4px);} }
   </style>
 </head>
 <body class="antialiased text-[#111]">
@@ -114,22 +193,24 @@
     </div>
   </nav>
 
-  <!-- HERO INTRO – updated with richer welcome message -->
-  <section class="soundwave-sim h-screen flex items-center justify-center text-white relative overflow-hidden">
-    <div class="absolute inset-0 flex items-center justify-center opacity-20">
-      <div class="wave-lines flex"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="relative z-10 max-w-3xl mx-auto text-center px-6">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6 font-serif-display leading-tight">Welcome to <br>Moodboard Media</h1>
-      <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto">
-        Welcome to Moodboard Media — a creative ecosystem that adapts to your mood and invites you to explore stories, ideas, and experiences through film, media, and creative strategy.
-      </p>
-      <div class="flex flex-col items-center">
-        <p class="text-sm uppercase tracking-widest mb-2 opacity-70">scroll to explore</p>
-        <div class="bounce-slow text-orange-deep text-2xl">↓</div>
+  <!-- ===== CINEMATIC HERO with film grain, zoom, staggered text ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 font-serif-display leading-tight">Welcome to <br>Moodboard Media</h1>
+        <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto">
+          Welcome to Moodboard Media — a creative ecosystem that adapts to your mood and invites you to explore stories, ideas, and experiences through film, media, and creative strategy.
+        </p>
+        <div class="flex flex-col items-center">
+          <p class="text-sm uppercase tracking-widest mb-2 opacity-70">scroll to explore</p>
+          <div class="bounce-slow text-orange-deep text-2xl">↓</div>
+        </div>
       </div>
     </div>
-    <div class="absolute bottom-8 left-0 right-0 text-center text-white/40 text-sm">🎙️ "Hello … and welcome to Moodboard Media"</div>
+    <!-- subtle soundwave hint (still present for texture) -->
+    <div class="absolute bottom-20 left-0 right-0 text-center text-white/40 text-sm z-10">🎙️ "Hello … and welcome to Moodboard Media"</div>
+    <!-- scroll indicator (visible) -->
+    <div class="scroll-indicator">↓ Scroll</div>
   </section>
 
   <!-- ========== SECTION 1 – CREATIVE AGENCY ========== -->
@@ -137,7 +218,7 @@
     <div class="max-w-7xl mx-auto px-6">
       <!-- main card / intro -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- slideshow: event / production visuals -->
+        <!-- slideshow: now with cinematic overlays & project titles -->
         <div class="slideshow-container hover-lift" id="agencySlideshow">
           <img src="https://placehold.co/900x600/2a2a2a/d05e00?text=Event+Coverage" class="slideshow-image active" alt="Event">
           <img src="https://placehold.co/900x600/333333/d05e00?text=Animation+for+SMMEs" class="slideshow-image" alt="Animation">
@@ -145,7 +226,15 @@
           <img src="https://placehold.co/900x600/222222/d05e00?text=Film+Production" class="slideshow-image" alt="Film">
           <img src="https://placehold.co/900x600/3a3a3a/d05e00?text=Content+Strategy" class="slideshow-image" alt="Strategy">
           <img src="https://placehold.co/900x600/2f2f2f/d05e00?text=Film+BTS" class="slideshow-image" alt="BTS">
-          <div class="slideshow-overlay"><span>Creative Agency</span><div class="slideshow-dots" id="agencyDots"></div></div>
+          <!-- cinematic overlay with per‑slide content (managed by js) -->
+          <div class="slideshow-overlay" id="agencyOverlay">
+            <span class="text-xs uppercase tracking-widest text-white/60">Selected Work</span>
+            <h3 class="text-xl font-semibold" id="agencySlideTitle">Event Production</h3>
+            <p class="text-sm text-white/80 max-w-sm" id="agencySlideDesc">Capturing moments that bring brands and communities together.</p>
+            <div class="flex items-center justify-between w-full mt-2">
+              <div class="slideshow-dots" id="agencyDots"></div>
+            </div>
+          </div>
         </div>
         <!-- text + button -->
         <div>
@@ -180,11 +269,11 @@
     </div>
   </section>
 
-  <!-- ========== SECTION 2 – FEMALE FILM TRAILBLAZERS (updated mission text) ========== -->
+  <!-- ========== SECTION 2 – FEMALE FILM TRAILBLAZERS ========== -->
   <section class="py-24 bg-[#f0f0f0] fade-up" id="trailblazers">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: text (now includes exact mission wording) -->
+        <!-- left: text -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Female Film Trailblazers</h2>
           <p class="text-lg text-gray-700 mb-4 leading-relaxed">
@@ -197,17 +286,24 @@
             Explore Initiative <span>↓</span>
           </button>
         </div>
-        <!-- right: slideshow -->
+        <!-- right: slideshow with cinematic overlay -->
         <div class="slideshow-container hover-lift" id="trailblazersSlideshow">
           <img src="https://placehold.co/900x600/2a2a2a/d05e00?text=Event+Photos" class="slideshow-image active" alt="Event">
           <img src="https://placehold.co/900x600/333333/d05e00?text=Panel+Discussion" class="slideshow-image" alt="Panel">
           <img src="https://placehold.co/900x600/3d3d3d/d05e00?text=Podcast+Interviews" class="slideshow-image" alt="Podcast">
           <img src="https://placehold.co/900x600/222222/d05e00?text=Networking" class="slideshow-image" alt="Networking">
           <img src="https://placehold.co/900x600/3a3a3a/d05e00?text=Workshop" class="slideshow-image" alt="Workshop">
-          <div class="slideshow-overlay"><span>Female Film Trailblazers</span><div class="slideshow-dots" id="trailblazersDots"></div></div>
+          <div class="slideshow-overlay" id="trailblazersOverlay">
+            <span class="text-xs uppercase tracking-widest text-white/60">Impact in Action</span>
+            <h3 class="text-xl font-semibold" id="trailblazersSlideTitle">Trailblazers 2024</h3>
+            <p class="text-sm text-white/80 max-w-sm" id="trailblazersSlideDesc">Gatekeeping: opening conversations around access and opportunity.</p>
+            <div class="flex items-center justify-between w-full mt-2">
+              <div class="slideshow-dots" id="trailblazersDots"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- EXPANDABLE: detailed content (unchanged, still accurate) -->
+      <!-- EXPANDABLE: detailed content -->
       <div id="trailblazersExpand" class="expand-panel">
         <div class="bg-white p-10 rounded-3xl space-y-10">
           <div>
@@ -242,17 +338,24 @@
     </div>
   </section>
 
-  <!-- ========== SECTION 3 – LESEGO SAYS (with added Professional Highlights) ========== -->
+  <!-- ========== SECTION 3 – LESEGO SAYS ========== -->
   <section class="py-24 bg-white fade-up" id="lesego">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: slideshow -->
+        <!-- left: slideshow with cinematic overlay -->
         <div class="slideshow-container hover-lift" id="lesegoSlideshow">
           <img src="https://placehold.co/900x600/2a2a2a/d05e00?text=BTS+Directing" class="slideshow-image active" alt="Directing">
           <img src="https://placehold.co/900x600/333333/d05e00?text=Script+Sessions" class="slideshow-image" alt="Script">
           <img src="https://placehold.co/900x600/3d3d3d/d05e00?text=Producing" class="slideshow-image" alt="Producing">
           <img src="https://placehold.co/900x600/222222/d05e00?text=Speaking+Engagements" class="slideshow-image" alt="Speaking">
-          <div class="slideshow-overlay"><span>Lesego Says</span><div class="slideshow-dots" id="lesegoDots"></div></div>
+          <div class="slideshow-overlay" id="lesegoOverlay">
+            <span class="text-xs uppercase tracking-widest text-white/60">Creative Insight</span>
+            <h3 class="text-xl font-semibold" id="lesegoSlideTitle">Behind the Scenes</h3>
+            <p class="text-sm text-white/80 max-w-sm" id="lesegoSlideDesc">Directing with intention — crafting stories from the inside out.</p>
+            <div class="flex items-center justify-between w-full mt-2">
+              <div class="slideshow-dots" id="lesegoDots"></div>
+            </div>
+          </div>
         </div>
         <!-- right: text -->
         <div>
@@ -265,10 +368,10 @@
           </button>
         </div>
       </div>
-      <!-- EXPANDABLE: now includes Professional Highlights + Creative Services -->
+      <!-- EXPANDABLE: Professional Highlights + Creative Services -->
       <div id="lesegoExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl space-y-8">
-          <!-- Professional Highlights (new) -->
+          <!-- Professional Highlights -->
           <div>
             <h3 class="text-2xl font-bold font-serif-display mb-3">Professional Highlights</h3>
             <ul class="text-gray-700 space-y-1 list-disc list-inside">
@@ -302,7 +405,7 @@
     </div>
   </section>
 
-  <!-- ========== NEW CTA SECTION before footer ========== -->
+  <!-- CTA SECTION -->
   <section class="py-24 bg-[#f0f0f0] fade-up">
     <div class="max-w-4xl mx-auto text-center px-6">
       <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Let's Create Something Meaningful</h2>
@@ -335,7 +438,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS: navbar + slideshows + expandable panels (clean, imageCount removed) -->
+  <!-- SCRIPTS: slideshows + expand + navbar + dynamic overlay text -->
   <script>
     (function() {
       // navbar transition
@@ -362,12 +465,14 @@
       }, appearOptions);
       faders.forEach(fader => appearOnScroll.observe(fader));
 
-      // SLIDESHOW FACTORY (clean version, no unused imageCount)
-      function initSlideshow(containerId, dotsId) {
+      // ----- SLIDESHOW with dynamic overlay text -----
+      function initSlideshow(containerId, dotsId, overlayTitleId, overlayDescId, slideData) {
         const container = document.getElementById(containerId);
         if (!container) return;
         const images = container.querySelectorAll('.slideshow-image');
         const dotsContainer = document.getElementById(dotsId);
+        const titleEl = document.getElementById(overlayTitleId);
+        const descEl = document.getElementById(overlayDescId);
         let currentIndex = 0;
         let interval;
 
@@ -382,7 +487,7 @@
               const idx = parseInt(e.target.dataset.index);
               showSlide(idx);
               clearInterval(interval);
-              interval = setInterval(nextSlide, 4000);
+              interval = setInterval(nextSlide, 5000);
             });
             dotsContainer.appendChild(dot);
           }
@@ -395,17 +500,49 @@
           images.forEach((img, i) => img.classList.toggle('active', i === index));
           dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
           currentIndex = index;
+          // update overlay text if slideData provided
+          if (titleEl && slideData && slideData[index]) {
+            titleEl.innerText = slideData[index].title;
+            descEl.innerText = slideData[index].desc;
+          }
         }
         function nextSlide() { showSlide(currentIndex + 1); }
-        interval = setInterval(nextSlide, 4000);
+        // start with first
+        showSlide(0);
+        interval = setInterval(nextSlide, 5000);
         container.addEventListener('mouseenter', () => clearInterval(interval));
-        container.addEventListener('mouseleave', () => { interval = setInterval(nextSlide, 4000); });
+        container.addEventListener('mouseleave', () => { interval = setInterval(nextSlide, 5000); });
       }
 
-      // initialize slideshows
-      initSlideshow('agencySlideshow', 'agencyDots');
-      initSlideshow('trailblazersSlideshow', 'trailblazersDots');
-      initSlideshow('lesegoSlideshow', 'lesegoDots');
+      // Slide data for Creative Agency
+      const agencySlides = [
+        { title: 'Event Production', desc: 'Capturing moments that bring brands and communities together.' },
+        { title: 'Animation for SMMEs', desc: 'Simple visuals that help small businesses communicate big ideas.' },
+        { title: 'Social Media Campaigns', desc: 'Content designed for attention, engagement, and shareability.' },
+        { title: 'Film Production', desc: 'Cinematic storytelling crafted with creative precision.' },
+        { title: 'Content Strategy', desc: 'Shaping narratives that align creativity with business goals.' },
+        { title: 'Behind the Scenes', desc: 'The process behind the stories we bring to life.' }
+      ];
+      initSlideshow('agencySlideshow', 'agencyDots', 'agencySlideTitle', 'agencySlideDesc', agencySlides);
+
+      // Slide data for Trailblazers
+      const trailblazersSlides = [
+        { title: 'Trailblazers 2024', desc: 'Gatekeeping: opening conversations around access and opportunity.' },
+        { title: 'Panel Discussion', desc: 'Industry leaders share insights on representation and compliance.' },
+        { title: 'Podcast Interviews', desc: 'Conversations with emerging and established filmmakers.' },
+        { title: 'Networking Moments', desc: 'Building community and connections over brunch.' },
+        { title: 'Workshop Sessions', desc: 'Practical skills for creative entrepreneurship.' }
+      ];
+      initSlideshow('trailblazersSlideshow', 'trailblazersDots', 'trailblazersSlideTitle', 'trailblazersSlideDesc', trailblazersSlides);
+
+      // Slide data for Lesego Says
+      const lesegoSlides = [
+        { title: 'Behind the Scenes', desc: 'Directing with intention — crafting stories from the inside out.' },
+        { title: 'Script Sessions', desc: 'Collaborative development of narratives and characters.' },
+        { title: 'Producing', desc: 'Bringing creative visions to life through production leadership.' },
+        { title: 'Speaking Engagements', desc: 'Sharing insights on storytelling and creative producing.' }
+      ];
+      initSlideshow('lesegoSlideshow', 'lesegoDots', 'lesegoSlideTitle', 'lesegoSlideDesc', lesegoSlides);
 
       // EXPANDABLE PANELS
       document.querySelectorAll('.expand-btn').forEach(btn => {
