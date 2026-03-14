@@ -44,11 +44,11 @@
       margin-top: 3rem;
     }
     
-    /* slideshow */
+    /* slideshow — now taller: 420px for cinematic feel */
     .slideshow-container {
       position: relative;
       width: 100%;
-      height: 280px;
+      height: 420px;
       overflow: hidden;
       border-radius: 1rem;
     }
@@ -114,14 +114,16 @@
     </div>
   </nav>
 
-  <!-- HERO INTRO (cinematic soundwave) -->
+  <!-- HERO INTRO – updated with richer welcome message -->
   <section class="soundwave-sim h-screen flex items-center justify-center text-white relative overflow-hidden">
     <div class="absolute inset-0 flex items-center justify-center opacity-20">
       <div class="wave-lines flex"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </div>
     <div class="relative z-10 max-w-3xl mx-auto text-center px-6">
       <h1 class="text-5xl md:text-6xl font-bold mb-6 font-serif-display leading-tight">Welcome to <br>Moodboard Media</h1>
-      <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto">An ecosystem designed to move with your creativity… and adapt to your mood.</p>
+      <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto">
+        Welcome to Moodboard Media — a creative ecosystem that adapts to your mood and invites you to explore stories, ideas, and experiences through film, media, and creative strategy.
+      </p>
       <div class="flex flex-col items-center">
         <p class="text-sm uppercase tracking-widest mb-2 opacity-70">scroll to explore</p>
         <div class="bounce-slow text-orange-deep text-2xl">↓</div>
@@ -159,10 +161,10 @@
           </button>
         </div>
       </div>
-      <!-- EXPANDABLE GRID (portfolio categories) -->
+      <!-- EXPANDABLE GRID (Creative Services) -->
       <div id="agencyExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl">
-          <h3 class="text-2xl font-serif-display mb-8 text-center">Portfolio & capabilities</h3>
+          <h3 class="text-2xl font-serif-display mb-8 text-center">Creative Services</h3>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Event Video Production</div>
             <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Social Media Campaigns</div>
@@ -178,24 +180,24 @@
     </div>
   </section>
 
-  <!-- ========== SECTION 2 – FEMALE FILM TRAILBLAZERS ========== -->
+  <!-- ========== SECTION 2 – FEMALE FILM TRAILBLAZERS (updated mission text) ========== -->
   <section class="py-24 bg-[#f0f0f0] fade-up" id="trailblazers">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: text -->
+        <!-- left: text (now includes exact mission wording) -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Female Film Trailblazers</h2>
-          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-            Female Film Trailblazers is an initiative founded by filmmaker and creative producer Lesego Soke. The platform was created to bridge the gap in representation, access to industry knowledge, and professional networks for women working in the film and television industry.
+          <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Female Film Trailblazers is an initiative founded by filmmaker and creative producer Lesego Soke. The platform was created to bridge the gap in representation, industry knowledge, compliance and community within the film and television industry for women.
           </p>
-          <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
             Through curated conversations, workshops, and industry events, the initiative creates a space where experienced professionals can share knowledge with emerging filmmakers while building a supportive community of women shaping the future of African storytelling.
           </p>
           <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-lg text-lg font-medium shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2" data-target="trailblazersExpand">
             Explore Initiative <span>↓</span>
           </button>
         </div>
-        <!-- right: slideshow (event / panel / podcast) -->
+        <!-- right: slideshow -->
         <div class="slideshow-container hover-lift" id="trailblazersSlideshow">
           <img src="https://placehold.co/900x600/2a2a2a/d05e00?text=Event+Photos" class="slideshow-image active" alt="Event">
           <img src="https://placehold.co/900x600/333333/d05e00?text=Panel+Discussion" class="slideshow-image" alt="Panel">
@@ -205,20 +207,17 @@
           <div class="slideshow-overlay"><span>Female Film Trailblazers</span><div class="slideshow-dots" id="trailblazersDots"></div></div>
         </div>
       </div>
-      <!-- EXPANDABLE: 2024 / 2025 vision / topics / format -->
+      <!-- EXPANDABLE: detailed content (unchanged, still accurate) -->
       <div id="trailblazersExpand" class="expand-panel">
         <div class="bg-white p-10 rounded-3xl space-y-10">
-          <!-- 2024 Edition -->
           <div>
             <h3 class="text-2xl font-bold font-serif-display mb-3">Trailblazers 2024 – “Gatekeeping”</h3>
             <p class="text-gray-700">The 2024 edition focused on opening conversations around access to knowledge and opportunities within the film and television industry. The event brought together experienced professionals and emerging creatives for a day of meaningful conversation, networking, podcast interviews, photography sessions and a light brunch.</p>
           </div>
-          <!-- 2025 Vision -->
           <div>
             <h3 class="text-2xl font-bold font-serif-display mb-3">2025 Vision: empower 100 young women</h3>
             <p class="text-gray-700">The 2025 vision aims to empower 100 young women from township communities, helping them transform their creative talents into sustainable business opportunities within the film industry. The initiative will focus on improving creative literacy, industry knowledge, and understanding of the compliance and administrative structures required to build sustainable creative careers.</p>
           </div>
-          <!-- Topics for 2025 Summit -->
           <div>
             <h4 class="text-xl font-semibold mb-2">Topics for 2025 Summit</h4>
             <ul class="grid md:grid-cols-2 gap-2 list-disc list-inside text-gray-700">
@@ -229,7 +228,6 @@
               <li>Diversifying income streams in the film industry</li>
             </ul>
           </div>
-          <!-- 2025 Event Format -->
           <div>
             <h4 class="text-xl font-semibold mb-2">2025 Event Format</h4>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -244,11 +242,11 @@
     </div>
   </section>
 
-  <!-- ========== SECTION 3 – LESEGO SAYS ========== -->
+  <!-- ========== SECTION 3 – LESEGO SAYS (with added Professional Highlights) ========== -->
   <section class="py-24 bg-white fade-up" id="lesego">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: slideshow (directing, script sessions, producing) -->
+        <!-- left: slideshow -->
         <div class="slideshow-container hover-lift" id="lesegoSlideshow">
           <img src="https://placehold.co/900x600/2a2a2a/d05e00?text=BTS+Directing" class="slideshow-image active" alt="Directing">
           <img src="https://placehold.co/900x600/333333/d05e00?text=Script+Sessions" class="slideshow-image" alt="Script">
@@ -267,15 +265,23 @@
           </button>
         </div>
       </div>
-      <!-- EXPANDABLE: bio, credits, services -->
+      <!-- EXPANDABLE: now includes Professional Highlights + Creative Services -->
       <div id="lesegoExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl space-y-8">
-          <!-- Bio + highlights -->
+          <!-- Professional Highlights (new) -->
+          <div>
+            <h3 class="text-2xl font-bold font-serif-display mb-3">Professional Highlights</h3>
+            <ul class="text-gray-700 space-y-1 list-disc list-inside">
+              <li>Creative Producer — <strong>DiepCity</strong> (Mzansi Magic)</li>
+              <li>Producer — <strong>The Black Door</strong> (e.tv)</li>
+              <li>International production credit — <strong>Mabaso Family Reunion</strong> (Netflix)</li>
+            </ul>
+          </div>
+          <!-- Bio + additional -->
           <div class="grid md:grid-cols-2 gap-8">
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">About Lesego Soke</h3>
-              <p class="text-gray-700 mb-4">Creative Producer — <strong>DiepCity</strong><br>Producer — <strong>The Black Door</strong><br>International credit — <strong>Mabaso Family Reunion</strong></p>
-              <p class="text-gray-700">Independent story consulting and development for independent filmmakers, production companies, and industry partners such as Stained Glass Productions. Her first independent short film is currently in post-production after being self-funded through an innovative IP-sharing model with cast and crew.</p>
+              <p class="text-gray-700 mb-4">Independent story consulting and development for independent filmmakers, production companies, and industry partners such as Stained Glass Productions. Her first independent short film is currently in post-production after being self-funded through an innovative IP-sharing model with cast and crew.</p>
             </div>
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">Creative Services</h3>
@@ -290,10 +296,22 @@
               </div>
             </div>
           </div>
-          <!-- additional -->
           <p class="text-sm text-gray-500 border-t pt-4 italic">Consulting for filmmakers, brands, and production teams.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ========== NEW CTA SECTION before footer ========== -->
+  <section class="py-24 bg-[#f0f0f0] fade-up">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Let's Create Something Meaningful</h2>
+      <p class="text-xl text-gray-700 mb-10 leading-relaxed">
+        Moodboard Media collaborates with brands, organisations and filmmakers to bring creative visions to life through film, strategy and storytelling.
+      </p>
+      <a href="contact.html" class="inline-block bg-orange-deep text-white px-10 py-4 rounded-lg text-lg font-medium shadow-md hover:shadow-xl transition-all hover:scale-105">
+        Start a Conversation →
+      </a>
     </div>
   </section>
 
@@ -317,7 +335,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS: navbar + slideshows + expandable panels -->
+  <!-- SCRIPTS: navbar + slideshows + expandable panels (clean, imageCount removed) -->
   <script>
     (function() {
       // navbar transition
@@ -344,8 +362,8 @@
       }, appearOptions);
       faders.forEach(fader => appearOnScroll.observe(fader));
 
-      // SLIDESHOW FACTORY
-      function initSlideshow(containerId, dotsId, imageCount) {
+      // SLIDESHOW FACTORY (clean version, no unused imageCount)
+      function initSlideshow(containerId, dotsId) {
         const container = document.getElementById(containerId);
         if (!container) return;
         const images = container.querySelectorAll('.slideshow-image');
@@ -353,7 +371,6 @@
         let currentIndex = 0;
         let interval;
 
-        // create dots dynamically based on actual images
         if (dotsContainer) {
           dotsContainer.innerHTML = '';
           for (let i = 0; i < images.length; i++) {
@@ -383,11 +400,9 @@
         interval = setInterval(nextSlide, 4000);
         container.addEventListener('mouseenter', () => clearInterval(interval));
         container.addEventListener('mouseleave', () => { interval = setInterval(nextSlide, 4000); });
-        // expose for debugging
-        return { showSlide, nextSlide };
       }
 
-      // initialize all three slideshows
+      // initialize slideshows
       initSlideshow('agencySlideshow', 'agencyDots');
       initSlideshow('trailblazersSlideshow', 'trailblazersDots');
       initSlideshow('lesegoSlideshow', 'lesegoDots');
