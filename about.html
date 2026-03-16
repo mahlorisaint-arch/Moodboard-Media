@@ -102,6 +102,75 @@
       cursor: pointer;
       color: #666;
     }
+
+    /* CINEMATIC HERO BACKGROUND */
+    .hero-bg {
+      transform: scale(1.1);
+      animation: slowZoom 20s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    /* slow film zoom */
+    @keyframes slowZoom {
+      0% {
+        transform: scale(1.08);
+      }
+      100% {
+        transform: scale(1.18);
+      }
+    }
+
+    /* hero title animation */
+    .hero-title {
+      animation: heroFade 1.2s ease forwards;
+    }
+
+    @keyframes heroFade {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CINEMATIC SCROLL ANIMATIONS */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .reveal-visible {
+      opacity: 1;
+      transform: translate(0,0);
+    }
+
+    /* STAGGER CARD ANIMATION */
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.7s ease;
+    }
+
+    .stagger-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body class="antialiased text-[#111]">
@@ -127,15 +196,15 @@
     </div>
   </nav>
 
-  <!-- ABOUT HERO – cinematic banner with orange overlay + film texture -->
+  <!-- ABOUT HERO – cinematic banner with orange overlay + film texture + cinematic zoom -->
   <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <!-- background image – ready for real production still -->
-    <div class="absolute inset-0 bg-[url('images/about/film-set.jpg')] bg-cover bg-center scale-105 transition-transform duration-[10s] hover:scale-110"></div>
+    <!-- background image with cinematic zoom effect -->
+    <div class="hero-bg absolute inset-0 bg-[url('images/about/film-set.jpg')] bg-cover bg-center"></div>
     <div class="absolute inset-0 hero-overlay"></div>
     <div class="grain absolute inset-0"></div> <!-- subtle grain -->
     
     <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show"> <!-- show immediately -->
-      <h1 class="text-6xl md:text-7xl font-bold mb-6 font-serif-display tracking-tight">About Moodboard Media</h1>
+      <h1 class="hero-title text-6xl md:text-7xl font-bold mb-6 font-serif-display tracking-tight">About Moodboard Media</h1>
       <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
         A creative ecosystem for storytelling and visual experiences
       </p>
@@ -149,13 +218,13 @@
   <!-- COMPANY STORY – two column layout with image & text (cinematic reveal) -->
   <section class="py-32 bg-white fade-up" id="story">
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
-      <!-- left: image/film still (with hover lift) -->
-      <div class="relative overflow-hidden rounded-2xl shadow-2xl hover-lift group">
+      <!-- left: image/film still (with hover lift) - reveals from left -->
+      <div class="relative overflow-hidden rounded-2xl shadow-2xl hover-lift group reveal-left">
         <img src="images/about/collaborative-storytelling.jpg" alt="Moodboard Media team / film set" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105">
         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
       </div>
-      <!-- right: story text -->
-      <div>
+      <!-- right: story text - reveals from right -->
+      <div class="reveal-right">
         <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR NARRATIVE</span>
         <h2 class="text-4xl md:text-5xl font-bold mt-4 font-serif-display leading-tight">Company Story</h2>
         <div class="section-divider"></div>
@@ -174,17 +243,17 @@
     </div>
   </section>
 
-  <!-- FOUNDER SECTION – Lesego Soke (NEW) -->
+  <!-- FOUNDER SECTION – Lesego Soke with correct image -->
   <section class="py-32 bg-[#f7f7f7] fade-up">
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-      <!-- Founder Image -->
-      <div class="relative overflow-hidden rounded-2xl shadow-2xl hover-lift group">
-        <img src="images/about/lesego-soke.jpg" alt="Lesego Soke" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105">
+      <!-- Founder Image - reveals from left -->
+      <div class="relative overflow-hidden rounded-2xl shadow-2xl hover-lift group reveal-left">
+        <img src="lesego-says-images/lesego-says-slideshow1.JPG" alt="Lesego Soke" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105">
         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
       </div>
       
-      <!-- Founder Text -->
-      <div>
+      <!-- Founder Text - reveals from right -->
+      <div class="reveal-right">
         <span class="text-orange-deep font-semibold tracking-widest text-sm">FOUNDER & CREATIVE PRODUCER</span>
         <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-4 font-serif-display">Lesego Soke</h2>
         <div class="section-divider"></div>
@@ -219,8 +288,8 @@
       </div>
       
       <div class="grid md:grid-cols-2 gap-10">
-        <!-- MISSION CARD -->
-        <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50">
+        <!-- MISSION CARD - stagger animation -->
+        <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50 stagger-item">
           <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
             <span class="text-3xl">🎯</span>
           </div>
@@ -231,8 +300,8 @@
           <div class="mt-8 w-12 h-1 bg-orange-deep rounded-full"></div>
         </div>
 
-        <!-- VISION CARD -->
-        <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50">
+        <!-- VISION CARD - stagger animation -->
+        <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50 stagger-item">
           <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
             <span class="text-3xl">🌍</span>
           </div>
@@ -254,17 +323,17 @@
       <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-16">Every part of our ecosystem works in harmony.</p>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift">
+        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift stagger-item">
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">🎬</div>
           <h3 class="text-2xl font-bold mb-3 font-serif-display">Creative Agency</h3>
           <p class="text-gray-600">Production, strategy, and storytelling for brands and artists.</p>
         </div>
-        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift">
+        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift stagger-item">
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">🎞️</div>
           <h3 class="text-2xl font-bold mb-3 font-serif-display">Female Film Trailblazers</h3>
           <p class="text-gray-600">Empowering women through education, networking, and visibility.</p>
         </div>
-        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift">
+        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift stagger-item">
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">✍️</div>
           <h3 class="text-2xl font-bold mb-3 font-serif-display">Lesego_Says</h3>
           <p class="text-gray-600">Script development, creative consulting, and story editing.</p>
@@ -293,7 +362,7 @@
     </div>
   </footer>
 
-  <!-- SCROLL REVEAL + NAVBAR SCROLL EFFECT + MOBILE MENU -->
+  <!-- SCROLL REVEAL + NAVBAR SCROLL EFFECT + MOBILE MENU + PARALLAX -->
   <script>
     (function() {
       // ===== MOBILE MENU TOGGLE =====
@@ -355,6 +424,47 @@
         }
       });
 
+      // ===== HERO PARALLAX EFFECT =====
+      const heroBg = document.querySelector(".hero-bg");
+      
+      window.addEventListener("scroll", () => {
+        const scrollPosition = window.pageYOffset;
+        if (heroBg) {
+          heroBg.style.transform = `scale(1.1) translateY(${scrollPosition * 0.2}px)`;
+        }
+      });
+
+      // ===== CINEMATIC SCROLL REVEAL =====
+      const revealElements = document.querySelectorAll(".reveal-left, .reveal-right, .reveal-up");
+      
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-visible");
+          }
+        });
+      }, { threshold: 0.2 });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // ===== STAGGER EFFECT =====
+      const staggerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const items = entry.target.querySelectorAll(".stagger-item");
+            items.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.add("visible");
+              }, index * 150);
+            });
+          }
+        });
+      }, { threshold: 0.2 });
+
+      document.querySelectorAll("section").forEach(section => {
+        staggerObserver.observe(section);
+      });
+
       // Force hero content to be visible
       const heroContent = document.querySelector('.hero-content');
       if (heroContent) {
@@ -362,14 +472,14 @@
       }
 
       // ===== IMAGE PLACEHOLDER NOTICE (remove in production) =====
-      console.log('About page ready for real images: film-set.jpg, collaborative-storytelling.jpg, lesego-soke.jpg');
+      console.log('About page ready with cinematic upgrades: slow zoom, parallax, scroll reveals, stagger animations');
     })();
   </script>
 
   <!-- Note: Replace placeholder images with actual film stills from WeTransfer:
        - images/about/film-set.jpg
        - images/about/collaborative-storytelling.jpg  
-       - images/about/lesego-soke.jpg
+       - lesego-says-images/lesego-says-slideshow1.JPG (already correct)
   -->
 </body>
 </html>
