@@ -60,11 +60,23 @@
       opacity: 0;
       transform: scale(1);
       transition: opacity 1.2s ease-in-out, transform 6s ease;
+      z-index: 1;
+    }
+    .slideshow-image iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+      pointer-events: none; /* Prevents interaction when not active */
     }
     .slideshow-image.active { 
       opacity: 1; 
-      z-index: 1;
+      z-index: 10;
       transform: scale(1.08); /* subtle Ken Burns zoom */
+      pointer-events: auto;
+    }
+    .slideshow-image.active iframe {
+      pointer-events: auto; /* Allows interaction when active */
     }
     /* cinematic overlay with gradient */
     .slideshow-overlay {
@@ -75,16 +87,18 @@
       padding: 1.5rem;
       background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 100%);
       color: white;
-      z-index: 2;
+      z-index: 20;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.25rem;
+      pointer-events: none;
     }
     .slideshow-dots {
       display: flex;
       gap: 0.5rem;
       margin-top: 0.5rem;
+      pointer-events: auto;
     }
     .dot {
       width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5);
@@ -95,17 +109,35 @@
     /* ===== CINEMATIC HERO ===== */
     .hero {
       position: relative;
-      background-image: url('lesego-says-images/lesego-soke-profile-1.png');
-      background-size: cover;
-      background-position: center;
-      animation: heroZoom 12s ease forwards;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       overflow: hidden;
+      background: black;
     }
+
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,0.55);
+      z-index:1;
+    }
+    
     @keyframes heroZoom {
       0% { transform: scale(1.08); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
@@ -118,7 +150,7 @@
       background: url('https://grainy-gradients.vercel.app/noise.svg');
       opacity: 0.08;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
     /* soft vignette */
     .hero::before {
@@ -127,11 +159,11 @@
       top: 0; left: 0; width: 100%; height: 100%;
       background: radial-gradient(circle at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
     .hero-content {
       position: relative;
-      z-index: 3;
+      z-index: 10;
       text-align: center;
       max-width: 900px;
       padding: 0 1.5rem;
@@ -151,7 +183,7 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 5;
+      z-index: 10;
       color: white;
       font-size: 0.9rem;
       letter-spacing: 0.2em;
@@ -193,8 +225,15 @@
     </div>
   </nav>
 
-  <!-- ===== CINEMATIC HERO with film grain, zoom, staggered text ===== -->
+  <!-- ===== CINEMATIC HERO with video background ===== -->
   <section class="hero">
+    <!-- HERO VIDEO PLACEHOLDER - Replace hero-video.mp4 when Lesego sends the file -->
+    <video autoplay muted loop playsinline>
+      <source src="hero-video.mp4" type="video/mp4">
+    </video>
+    
+    <div class="hero-overlay"></div>
+    
     <div class="hero-content">
       <div class="hero-text">
         <h1 class="text-5xl md:text-6xl font-bold mb-6 font-serif-display leading-tight">Welcome to <br>Moodboard Media</h1>
@@ -222,10 +261,10 @@
         <div class="slideshow-container hover-lift" id="agencySlideshow">
           <img src="lesego-says-images/eventphotography.png" class="slideshow-image active" alt="Event Production">
           <img src="lesego-says-images/eventphotography2.png" class="slideshow-image" alt="Event Content">
-          <img src="lesego-says-images/eventphotography3.png" class="slideshow-image" alt="Social Media Content">
-          <img src="lesego-says-images/eventphotography4.png" class="slideshow-image" alt="Film Production">
+          <img src="lesego-says-images/bts-curating-visual-experiences.png" class="slideshow-image" alt="Social Media Campaigns">
+          <img src="lesego-says-images/behind-the-scenes.JPG" class="slideshow-image" alt="Film Production">
           <img src="lesego-says-images/lesego-says-photography.png" class="slideshow-image" alt="Content Strategy">
-          <img src="lesego-says-images/lesego-says-photography2.png" class="slideshow-image" alt="Behind the Scenes">
+          <img src="lesego-says-images/behind-the-scenes-2.JPG" class="slideshow-image" alt="Behind the Scenes">
           <!-- cinematic overlay with per‑slide content (managed by js) -->
           <div class="slideshow-overlay" id="agencyOverlay">
             <span class="text-xs uppercase tracking-widest text-white/60">Selected Work</span>
@@ -290,9 +329,23 @@
         <div class="slideshow-container hover-lift" id="trailblazersSlideshow">
           <img src="images-trailblazers/film-trailblazzers-slideshow-1.JPG" class="slideshow-image active" alt="Trailblazers Event">
           <img src="images-trailblazers/film-trailblazers-slideshow-2.png" class="slideshow-image" alt="Trailblazers Panel">
+          
+          <!-- VIDEO SLIDE - Podcast Interview -->
+          <div class="slideshow-image">
+            <iframe width="100%" height="100%"
+              src="https://www.youtube.com/embed/bps0YfMwSRU"
+              title="Podcast Interview"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              style="width:100%; height:100%; object-fit:cover;">
+            </iframe>
+          </div>
+          
           <img src="images-trailblazers/film-trailblazzers-slideshow-4.png" class="slideshow-image" alt="Trailblazers Podcast">
           <img src="images-trailblazers/film-trailblazzers-slideshow-5.jpg" class="slideshow-image" alt="Trailblazers Networking">
           <img src="lesego-says-images/female-film-trailblazers-2025-slideshow-1.png" class="slideshow-image" alt="Trailblazers Workshop">
+          
           <div class="slideshow-overlay" id="trailblazersOverlay">
             <span class="text-xs uppercase tracking-widest text-white/60">Impact in Action</span>
             <h3 class="text-xl font-semibold" id="trailblazersSlideTitle">Trailblazers 2024</h3>
@@ -346,8 +399,20 @@
         <div class="slideshow-container hover-lift" id="lesegoSlideshow">
           <img src="lesego-says-images/lesego-soke-behind-the-scenes.png" class="slideshow-image active" alt="Behind the Scenes">
           <img src="lesego-says-images/lesego-soke-story-development.png" class="slideshow-image" alt="Story Development">
-          <img src="lesego-says-images/curating-conversations.png" class="slideshow-image" alt="Producing">
-          <img src="lesego-says-images/eventphotography3.png" class="slideshow-image" alt="Speaking Engagement">
+          <img src="lesego-says-images/script-development-3.JPG" class="slideshow-image" alt="Script Development">
+          
+          <!-- SPEAKING ENGAGEMENT VIDEO -->
+          <div class="slideshow-image">
+            <iframe width="100%" height="100%"
+              src="https://www.youtube.com/embed/ROSVnq_TmCo"
+              title="Speaking Engagement"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              style="width:100%; height:100%; object-fit:cover;">
+            </iframe>
+          </div>
+          
           <div class="slideshow-overlay" id="lesegoOverlay">
             <span class="text-xs uppercase tracking-widest text-white/60">Creative Insight</span>
             <h3 class="text-xl font-semibold" id="lesegoSlideTitle">Behind the Scenes</h3>
@@ -469,7 +534,7 @@
       function initSlideshow(containerId, dotsId, overlayTitleId, overlayDescId, slideData) {
         const container = document.getElementById(containerId);
         if (!container) return;
-        const images = container.querySelectorAll('.slideshow-image');
+        const slides = container.querySelectorAll('.slideshow-image'); // Now captures both img and div slides
         const dotsContainer = document.getElementById(dotsId);
         const titleEl = document.getElementById(overlayTitleId);
         const descEl = document.getElementById(overlayDescId);
@@ -478,7 +543,7 @@
 
         if (dotsContainer) {
           dotsContainer.innerHTML = '';
-          for (let i = 0; i < images.length; i++) {
+          for (let i = 0; i < slides.length; i++) {
             const dot = document.createElement('span');
             dot.className = `dot ${i === 0 ? 'active' : ''}`;
             dot.dataset.index = i;
@@ -495,26 +560,47 @@
         const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
 
         function showSlide(index) {
-          if (index < 0) index = images.length - 1;
-          if (index >= images.length) index = 0;
-          images.forEach((img, i) => img.classList.toggle('active', i === index));
+          if (index < 0) index = slides.length - 1;
+          if (index >= slides.length) index = 0;
+          
+          // Pause any playing videos before switching
+          slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+            // If it's a video slide (div containing iframe), ensure video doesn't autoplay when inactive
+            if (slide.querySelector('iframe')) {
+              const iframe = slide.querySelector('iframe');
+              if (i !== index) {
+                // For non-active video slides, stop video playback by reloading iframe
+                // This is a workaround - in production you'd want a more elegant solution
+                const src = iframe.src;
+                iframe.src = src; // Reloads the iframe
+              }
+            }
+          });
+          
           dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
           currentIndex = index;
+          
           // update overlay text if slideData provided
           if (titleEl && slideData && slideData[index]) {
             titleEl.innerText = slideData[index].title;
             descEl.innerText = slideData[index].desc;
           }
         }
+        
         function nextSlide() { showSlide(currentIndex + 1); }
+        
         // start with first
         showSlide(0);
         interval = setInterval(nextSlide, 5000);
+        
         container.addEventListener('mouseenter', () => clearInterval(interval));
-        container.addEventListener('mouseleave', () => { interval = setInterval(nextSlide, 5000); });
+        container.addEventListener('mouseleave', () => { 
+          interval = setInterval(nextSlide, 5000); 
+        });
       }
 
-      // Slide data for Creative Agency
+      // Slide data for Creative Agency - Updated to match new images
       const agencySlides = [
         { title: 'Event Production', desc: 'Capturing moments that bring brands and communities together.' },
         { title: 'Event Content', desc: 'Dynamic coverage for conferences and brand activations.' },
@@ -525,21 +611,22 @@
       ];
       initSlideshow('agencySlideshow', 'agencyDots', 'agencySlideTitle', 'agencySlideDesc', agencySlides);
 
-      // Slide data for Trailblazers
+      // Slide data for Trailblazers - 6 slides including video
       const trailblazersSlides = [
         { title: 'Trailblazers 2024', desc: 'Gatekeeping: opening conversations around access and opportunity.' },
         { title: 'Panel Discussion', desc: 'Industry leaders share insights on representation and compliance.' },
-        { title: 'Podcast Interviews', desc: 'Conversations with emerging and established filmmakers.' },
+        { title: 'Podcast Interview', desc: 'In-depth conversations with emerging and established filmmakers.' },
+        { title: 'Podcast Sessions', desc: 'Recording intimate conversations about the film industry.' },
         { title: 'Networking Moments', desc: 'Building community and connections over brunch.' },
         { title: 'Workshop Sessions', desc: 'Practical skills for creative entrepreneurship.' }
       ];
       initSlideshow('trailblazersSlideshow', 'trailblazersDots', 'trailblazersSlideTitle', 'trailblazersSlideDesc', trailblazersSlides);
 
-      // Slide data for Lesego Says
+      // Slide data for Lesego Says - 4 slides including video
       const lesegoSlides = [
         { title: 'Behind the Scenes', desc: 'Directing with intention — crafting stories from the inside out.' },
         { title: 'Story Development', desc: 'Collaborative development of narratives and characters.' },
-        { title: 'Producing', desc: 'Bringing creative visions to life through production leadership.' },
+        { title: 'Script Development', desc: 'Working with writers to strengthen narrative structure.' },
         { title: 'Speaking Engagements', desc: 'Sharing insights on storytelling and creative producing.' }
       ];
       initSlideshow('lesegoSlideshow', 'lesegoDots', 'lesegoSlideTitle', 'lesegoSlideDesc', lesegoSlides);
@@ -551,12 +638,13 @@
           const panel = document.getElementById(targetId);
           if (panel) {
             panel.classList.toggle('open');
-            btn.querySelector('span').innerText = panel.classList.contains('open') ? '↑' : '↓';
+            const span = btn.querySelector('span');
+            if (span) span.innerText = panel.classList.contains('open') ? '↑' : '↓';
           }
         });
       });
     })();
   </script>
-  <!-- Real images integrated: hero, creative agency, trailblazers, lesego says -->
+  <!-- Fully updated with Lesego's notes: video hero, updated agency images, podcast video, speaking video -->
 </body>
 </html>
