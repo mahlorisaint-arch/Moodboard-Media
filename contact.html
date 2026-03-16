@@ -35,19 +35,6 @@ font-family:'Playfair Display',serif;
 backdrop-filter:blur(10px);
 }
 
-/* hero zoom */
-
-.hero-bg{
-background-size:cover;
-background-position:center;
-animation:heroZoom 30s ease-in-out infinite alternate;
-}
-
-@keyframes heroZoom{
-0%{transform:scale(1)}
-100%{transform:scale(1.08)}
-}
-
 /* hover lift */
 
 .hover-lift{
@@ -72,16 +59,19 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* contact cards */
+/* contact cards (refined for images) */
 
 .contact-card{
 background:white;
 border-radius:2rem;
-padding:2.5rem 2rem;
+padding:2rem 1.5rem 2.5rem 1.5rem;
 box-shadow:0 25px 40px -15px rgba(0,0,0,0.1);
 transition:all .3s ease;
 border:1px solid rgba(255,255,255,0.5);
 text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
 }
 
 .contact-card:hover{
@@ -89,7 +79,7 @@ border-color:#d05e00;
 }
 
 .email-link{
-font-size:1.3rem;
+font-size:1.2rem;
 font-weight:500;
 color:#111;
 background:#f7f7f7;
@@ -105,6 +95,11 @@ word-break:break-all;
 background:#d05e00;
 color:white;
 border-color:#d05e00;
+}
+
+/* cinematic divider spacing */
+.divider-breath {
+    padding: 5rem 0;
 }
 
 </style>
@@ -151,32 +146,46 @@ Moodboard Media
 </nav>
 
 
-<!-- HERO -->
+<!-- ============================================ -->
+<!-- 1️⃣ CINEMATIC VIDEO HERO (replaces static hero) -->
+<!-- ============================================ -->
+<section class="relative h-[55vh] min-h-[420px] flex items-center justify-center overflow-hidden">
 
-<section class="relative h-[45vh] min-h-[380px] flex items-center justify-center overflow-hidden">
+  <!-- background video with fallback poster -->
+  <video
+    class="absolute inset-0 w-full h-full object-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    poster="lesego-says-images/behind-the-scenes.JPG">
+    <source src="videos/contact-hero.mp4" type="video/mp4">
+    <!-- fallback: if video not available, browser shows poster + optional static message -->
+  </video>
 
-<div class="absolute inset-0 hero-bg opacity-40"
-style="background-image:url('https://placehold.co/1600x900/1e1e1e/d05e00?text=film+texture');">
-</div>
+  <!-- cinematic overlay (darker for text contrast) -->
+  <div class="absolute inset-0 bg-black/60"></div>
 
-<div class="absolute inset-0 bg-black/40"></div>
+  <!-- hero text -->
+  <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
+    <h1 class="text-6xl md:text-7xl font-bold mb-6 font-serif-display tracking-tight">
+      Contact Moodboard Media
+    </h1>
+    <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+      Let's create something meaningful together
+    </p>
+  </div>
 
-<div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
-
-<h1 class="text-6xl md:text-7xl font-serif-display font-bold mb-6">
-Contact Us
-</h1>
-
-<p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
-Get in touch with the Moodboard team
-</p>
-
-</div>
+  <!-- scroll indicator (subtle) -->
+  <div class="absolute bottom-6 left-0 right-0 text-center text-white/70 text-sm">
+    <span>scroll</span>
+    <div class="text-orange-deep text-xl mt-1">↓</div>
+  </div>
 
 </section>
 
 
-<!-- INTRO -->
+<!-- INTRO (unchanged but kept elegant) -->
 
 <section class="pt-28 pb-10 text-center max-w-3xl mx-auto px-6 fade-up">
 
@@ -195,94 +204,84 @@ Select the email that matches your need — we’ll respond within 48 hours.
 </section>
 
 
-<!-- CONTACT CARDS -->
-
-<section class="pb-32 fade-up">
+<!-- ============================================ -->
+<!-- 2️⃣ CONTACT CARDS with real background images -->
+<!-- ============================================ -->
+<section class="pb-20 fade-up"> <!-- reduced pb to make room for divider -->
 
 <div class="max-w-7xl mx-auto px-6">
 
 <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
 
 
-<!-- CARD 1 -->
-
-<div class="contact-card hover-lift flex flex-col items-center">
-
-<div class="w-20 h-20 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl mb-6">
-🎬
-</div>
-
-<h3 class="text-2xl font-serif-display font-bold mb-2">
-Creative Agency
-</h3>
-
-<p class="text-gray-600 text-sm mb-8 max-w-xs">
-Production, brand storytelling, events, and content strategy.
-</p>
-
-<a href="mailto:info@moodboardmedia.co.za" class="email-link">
-info@moodboardmedia.co.za
-</a>
-
-<p class="text-xs text-gray-400 mt-6">
-main creative contact
-</p>
-
-</div>
+  <!-- CARD 1 : CREATIVE AGENCY with image -->
+  <div class="contact-card hover-lift">
+    <!-- inserted card image -->
+    <img src="lesego-says-images/bts-curating-visual-experiences.png"
+         class="w-full h-40 object-cover rounded-xl mb-6"
+         alt="behind the scenes curating visuals">
+    <div class="w-20 h-20 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl mb-4">
+      🎬
+    </div>
+    <h3 class="text-2xl font-serif-display font-bold mb-2">
+      Creative Agency
+    </h3>
+    <p class="text-gray-600 text-sm mb-8 max-w-xs">
+      Production, brand storytelling, events, and content strategy.
+    </p>
+    <a href="mailto:info@moodboardmedia.co.za" class="email-link">
+      info@moodboardmedia.co.za
+    </a>
+    <p class="text-xs text-gray-400 mt-6">
+      main creative contact
+    </p>
+  </div>
 
 
-<!-- CARD 2 -->
-
-<div class="contact-card hover-lift flex flex-col items-center border-t-4 border-orange-deep/20">
-
-<div class="w-20 h-20 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl mb-6">
-🎞️
-</div>
-
-<h3 class="text-2xl font-serif-display font-bold mb-2">
-Female Film Trailblazers
-</h3>
-
-<p class="text-gray-600 text-sm mb-8 max-w-xs">
-Webinars, networking, seminars, and women in film initiatives.
-</p>
-
-<a href="mailto:femalefilmtrailblazer@moodboardmedia.co.za" class="email-link">
-femalefilmtrailblazer@moodboardmedia.co.za
-</a>
-
-<p class="text-xs text-gray-400 mt-6">
-partnerships & events
-</p>
-
-</div>
+  <!-- CARD 2 : FEMALE FILM TRAILBLAZERS with image -->
+  <div class="contact-card hover-lift">
+    <img src="images-trailblazers/film-trailblazzers-slideshow-4.png"
+         class="w-full h-40 object-cover rounded-xl mb-6"
+         alt="female film trailblazers event">
+    <div class="w-20 h-20 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl mb-4">
+      🎞️
+    </div>
+    <h3 class="text-2xl font-serif-display font-bold mb-2">
+      Female Film Trailblazers
+    </h3>
+    <p class="text-gray-600 text-sm mb-8 max-w-xs">
+      Webinars, networking, seminars, and women in film initiatives.
+    </p>
+    <a href="mailto:femalefilmtrailblazer@moodboardmedia.co.za" class="email-link">
+      femalefilmtrailblazer@moodboardmedia.co.za
+    </a>
+    <p class="text-xs text-gray-400 mt-6">
+      partnerships & events
+    </p>
+  </div>
 
 
-<!-- CARD 3 -->
-
-<div class="contact-card hover-lift flex flex-col items-center">
-
-<div class="w-20 h-20 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl mb-6">
-✍️
-</div>
-
-<h3 class="text-2xl font-serif-display font-bold mb-2">
-Lesego_Says
-</h3>
-
-<p class="text-gray-600 text-sm mb-8 max-w-xs">
-Script consulting, story development, creative producing.
-</p>
-
-<a href="mailto:lesego@moodboardmedia.co.za" class="email-link">
-lesego@moodboardmedia.co.za
-</a>
-
-<p class="text-xs text-gray-400 mt-6">
-direct story line
-</p>
-
-</div>
+  <!-- CARD 3 : LESEGO SAYS with image -->
+  <div class="contact-card hover-lift">
+    <img src="lesego-says-images/script-development-3.JPG"
+         class="w-full h-40 object-cover rounded-xl mb-6"
+         alt="lesego says script development">
+    <div class="w-20 h-20 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl mb-4">
+      ✍️
+    </div>
+    <h3 class="text-2xl font-serif-display font-bold mb-2">
+      Lesego_Says
+    </h3>
+    <p class="text-gray-600 text-sm mb-8 max-w-xs">
+      Script consulting, story development, creative producing.
+    </p>
+    <a href="mailto:lesego@moodboardmedia.co.za" class="email-link">
+      lesego@moodboardmedia.co.za
+    </a>
+    <p class="text-xs text-gray-400 mt-6">
+      direct story line
+    </p>
+  </div>
 
 </div>
 
@@ -291,8 +290,19 @@ direct story line
 </section>
 
 
-<!-- EXTRA INFO -->
+<!-- ============================================ -->
+<!-- 3️⃣ CINEMATIC DIVIDER (film-style breathing moment) -->
+<!-- ============================================ -->
+<section class="divider-breath fade-up">
+  <div class="max-w-6xl mx-auto px-6">
+    <img src="lesego-says-images/behind-the-scenes-2.JPG"
+         class="w-full rounded-3xl shadow-xl object-cover max-h-[500px]"
+         alt="behind the scenes cinematic">
+  </div>
+</section>
 
+
+<!-- EXTRA INFO / 48h response section (slightly adjusted margin) -->
 <section class="bg-white py-20 border-y fade-up">
 
 <div class="max-w-4xl mx-auto px-6 text-center">
@@ -320,8 +330,40 @@ Whether you have a project in mind, want to collaborate, or simply want to say h
 </section>
 
 
-<!-- SOCIAL -->
+<!-- ============================================ -->
+<!-- 4️⃣ FOUNDER SECTION (Lesego visual + personal touch) -->
+<!-- ============================================ -->
+<section class="py-24 bg-white fade-up">
 
+<div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+<img src="lesego-says-images/lesego-says-slideshow1.JPG"
+     class="rounded-3xl shadow-xl object-cover w-full h-full max-h-[400px]"
+     alt="Lesego Soke creative director">
+
+<div>
+
+<h2 class="text-4xl font-serif-display mb-6">
+Work directly with the creative mind behind Moodboard Media
+</h2>
+
+<p class="text-gray-600 text-lg mb-6">
+Lesego Soke leads the creative direction across Moodboard Media’s productions, initiatives, and storytelling projects.
+</p>
+
+<a href="mailto:lesego@moodboardmedia.co.za"
+   class="inline-block bg-orange-deep text-white px-8 py-4 rounded-full hover:opacity-90 transition">
+   Contact Lesego
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SOCIAL (unchanged) -->
 <section class="py-16 fade-up">
 
 <div class="max-w-7xl mx-auto px-6 text-center">
@@ -348,8 +390,7 @@ Follow the journey
 </section>
 
 
-<!-- FOOTER -->
-
+<!-- FOOTER (unchanged) -->
 <footer class="bg-[#111] text-white py-16">
 
 <div class="max-w-7xl mx-auto px-6">
@@ -429,6 +470,9 @@ mobileMenu.classList.toggle('hidden');
 });
 
 </script>
+
+<!-- note: video background relies on /videos/contact-hero.mp4 – if missing, poster shows -->
+<!-- all image paths reference your existing folders: lesego-says-images/ and images-trailblazers/ -->
 
 </body>
 </html>
