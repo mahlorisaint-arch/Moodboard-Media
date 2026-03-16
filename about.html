@@ -50,9 +50,69 @@
       opacity: 0.15;
       mix-blend-mode: multiply;
     }
+
+    /* section divider animation */
+    .section-divider {
+      width: 60px;
+      height: 4px;
+      background: #d05e00;
+      border-radius: 3px;
+      margin-top: 12px;
+      margin-bottom: 24px;
+    }
+
+    /* mobile menu styles */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: white;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu.hidden {
+      display: none;
+    }
+
+    .mobile-menu a {
+      font-size: 1.5rem;
+      color: #111;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover {
+      color: #d05e00;
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #666;
+    }
   </style>
 </head>
 <body class="antialiased text-[#111]">
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu hidden">
+    <div class="mobile-menu-close" id="closeMenu">✕</div>
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="about.html" onclick="closeMenu()">About</a>
+    <a href="contact.html" onclick="closeMenu()">Contact</a>
+  </div>
 
   <!-- STICKY NAVBAR (identical to index) -->
   <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
@@ -63,14 +123,14 @@
         <a href="about.html" class="hover:text-orange-deep transition text-orange-deep">About</a>
         <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
       </div>
-      <div class="md:hidden text-2xl cursor-pointer">☰</div>
+      <div id="menuButton" class="md:hidden text-2xl cursor-pointer">☰</div>
     </div>
   </nav>
 
   <!-- ABOUT HERO – cinematic banner with orange overlay + film texture -->
   <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <!-- background image (cinematic production still) – placeholder, replace with actual -->
-    <div class="absolute inset-0 bg-[url('https://placehold.co/1600x900/1a1a1a/d05e00?text=film+set+ambiance')] bg-cover bg-center scale-105 transition-transform duration-[10s] hover:scale-110"></div>
+    <!-- background image – ready for real production still -->
+    <div class="absolute inset-0 bg-[url('images/about/film-set.jpg')] bg-cover bg-center scale-105 transition-transform duration-[10s] hover:scale-110"></div>
     <div class="absolute inset-0 hero-overlay"></div>
     <div class="grain absolute inset-0"></div> <!-- subtle grain -->
     
@@ -91,19 +151,20 @@
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
       <!-- left: image/film still (with hover lift) -->
       <div class="relative overflow-hidden rounded-2xl shadow-2xl hover-lift group">
-        <img src="https://placehold.co/900x700/2c2c2c/d05e00?text=collaborative+storytelling" alt="Moodboard Media team / film set" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105">
+        <img src="images/about/collaborative-storytelling.jpg" alt="Moodboard Media team / film set" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105">
         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
       </div>
       <!-- right: story text -->
       <div>
         <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR NARRATIVE</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-8 font-serif-display leading-tight">Company Story</h2>
+        <h2 class="text-4xl md:text-5xl font-bold mt-4 font-serif-display leading-tight">Company Story</h2>
+        <div class="section-divider"></div>
         <div class="prose prose-lg text-gray-700 space-y-6">
           <p>
             Moodboard Media is a creative ecosystem built around storytelling, visual media, and industry empowerment. Founded with the belief that every brand and filmmaker has a unique story to tell, we bring together creative production, film education, and story development under one roof.
           </p>
           <p>
-            What started as a small collective of filmmakers has grown into a platform that supports both commercial brands and independent storytellers. We don’t just produce content — we cultivate ideas, nurture voices, and build bridges between emerging talent and the industry.
+            What started as a small collective of filmmakers has grown into a platform that supports both commercial brands and independent storytellers. We don't just produce content — we cultivate ideas, nurture voices, and build bridges between emerging talent and the industry.
           </p>
           <p>
             Today, Moodboard Media operates through three core pillars: a full-service creative agency, an initiative dedicated to women in film, and a personal consultancy for narrative development. Each arm shares the same DNA: cinematic quality, human connection, and the power of visual language.
@@ -113,30 +174,65 @@
     </div>
   </section>
 
+  <!-- FOUNDER SECTION – Lesego Soke (NEW) -->
+  <section class="py-32 bg-[#f7f7f7] fade-up">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <!-- Founder Image -->
+      <div class="relative overflow-hidden rounded-2xl shadow-2xl hover-lift group">
+        <img src="images/about/lesego-soke.jpg" alt="Lesego Soke" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+      </div>
+      
+      <!-- Founder Text -->
+      <div>
+        <span class="text-orange-deep font-semibold tracking-widest text-sm">FOUNDER & CREATIVE PRODUCER</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-4 font-serif-display">Lesego Soke</h2>
+        <div class="section-divider"></div>
+        
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          Lesego Soke is a South African filmmaker, creative producer, and story strategist with over a decade of experience across theatre, television, and film.
+        </p>
+        
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          Her journey began in theatre, with her debut production staged at Johannesburg's Joburg Theatre Fringe Festival before traveling to the National Arts Festival in Grahamstown.
+        </p>
+        
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          She later trained in documentary filmmaking and went on to work in advertising and corporate television before spending seven years in long-form television as a script supervisor.
+        </p>
+        
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Today she works as a creative producer and consultant, developing projects that sit at the intersection of storytelling, culture, and strategy.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- MISSION & VISION – side by side cards with premium spacing -->
-  <section class="py-32 bg-[#f0f0f0] fade-up">
+  <section class="py-32 bg-white fade-up">
     <div class="max-w-7xl mx-auto px-6">
       <!-- subtle heading -->
       <div class="text-center mb-16">
         <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR REASON</span>
         <h2 class="text-4xl md:text-5xl font-bold mt-2 font-serif-display">Why we exist</h2>
+        <div class="section-divider mx-auto"></div>
       </div>
       
       <div class="grid md:grid-cols-2 gap-10">
         <!-- MISSION CARD -->
-        <div class="bg-white p-10 rounded-3xl shadow-xl hover-lift border border-white/50">
+        <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50">
           <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
             <span class="text-3xl">🎯</span>
           </div>
           <h3 class="text-3xl font-bold mb-6 font-serif-display">Mission</h3>
           <p class="text-lg text-gray-700 leading-relaxed">
-            To create meaningful visual stories while empowering emerging filmmakers and creative voices. We believe that great stories have the power to shift perspectives, and we’re committed to producing work that resonates, inspires, and endures.
+            To create meaningful visual stories while empowering emerging filmmakers and creative voices. We believe that great stories have the power to shift perspectives, and we're committed to producing work that resonates, inspires, and endures.
           </p>
           <div class="mt-8 w-12 h-1 bg-orange-deep rounded-full"></div>
         </div>
 
         <!-- VISION CARD -->
-        <div class="bg-white p-10 rounded-3xl shadow-xl hover-lift border border-white/50">
+        <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50">
           <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
             <span class="text-3xl">🌍</span>
           </div>
@@ -150,24 +246,25 @@
     </div>
   </section>
 
-  <!-- CORE VALUES / PILLAR REMINDER – optional elegant touch (connects to homepage) -->
-  <section class="py-24 bg-white fade-up">
+  <!-- CORE VALUES / PILLAR REMINDER – connects to homepage -->
+  <section class="py-24 bg-[#f0f0f0] fade-up">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif-display">Three pillars, one purpose</h2>
+      <div class="section-divider mx-auto"></div>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-16">Every part of our ecosystem works in harmony.</p>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6">
+        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift">
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">🎬</div>
           <h3 class="text-2xl font-bold mb-3 font-serif-display">Creative Agency</h3>
           <p class="text-gray-600">Production, strategy, and storytelling for brands and artists.</p>
         </div>
-        <div class="p-6">
+        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift">
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">🎞️</div>
           <h3 class="text-2xl font-bold mb-3 font-serif-display">Female Film Trailblazers</h3>
           <p class="text-gray-600">Empowering women through education, networking, and visibility.</p>
         </div>
-        <div class="p-6">
+        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift">
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">✍️</div>
           <h3 class="text-2xl font-bold mb-3 font-serif-display">Lesego_Says</h3>
           <p class="text-gray-600">Script development, creative consulting, and story editing.</p>
@@ -196,10 +293,45 @@
     </div>
   </footer>
 
-  <!-- SCROLL REVEAL + NAVBAR SCROLL EFFECT (same as index) -->
+  <!-- SCROLL REVEAL + NAVBAR SCROLL EFFECT + MOBILE MENU -->
   <script>
     (function() {
-      // fade-up observer
+      // ===== MOBILE MENU TOGGLE =====
+      const menuButton = document.getElementById("menuButton");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const closeMenu = document.getElementById("closeMenu");
+
+      function openMobileMenu() {
+        mobileMenu.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // prevent scrolling
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.add("hidden");
+        document.body.style.overflow = ""; // restore scrolling
+      }
+
+      if (menuButton) {
+        menuButton.addEventListener("click", openMobileMenu);
+      }
+
+      if (closeMenu) {
+        closeMenu.addEventListener("click", closeMobileMenu);
+      }
+
+      // Close menu when clicking a link
+      document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          closeMobileMenu();
+        }
+      });
+
+      // ===== FADE-UP OBSERVER =====
       const faders = document.querySelectorAll('.fade-up');
       const appearOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
       const appearOnScroll = new IntersectionObserver(function(entries, observer) {
@@ -211,7 +343,7 @@
       }, appearOptions);
       faders.forEach(fader => appearOnScroll.observe(fader));
 
-      // navbar transition
+      // ===== NAVBAR TRANSITION =====
       const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -223,10 +355,21 @@
         }
       });
 
-      // force hero content to be visible (already has .show)
+      // Force hero content to be visible
+      const heroContent = document.querySelector('.hero-content');
+      if (heroContent) {
+        heroContent.classList.add('show');
+      }
+
+      // ===== IMAGE PLACEHOLDER NOTICE (remove in production) =====
+      console.log('About page ready for real images: film-set.jpg, collaborative-storytelling.jpg, lesego-soke.jpg');
     })();
   </script>
 
-  <!-- note: placeholder images – replace with actual film stills from WeTransfer -->
+  <!-- Note: Replace placeholder images with actual film stills from WeTransfer:
+       - images/about/film-set.jpg
+       - images/about/collaborative-storytelling.jpg  
+       - images/about/lesego-soke.jpg
+  -->
 </body>
 </html>
