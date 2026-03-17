@@ -24,6 +24,12 @@
       box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15), 0 0 0 2px rgba(208,94,0,0.2);
     }
     
+    /* contact card hover with orange glow */
+    .contact-card:hover {
+      border-color: #d05e00;
+      box-shadow: 0 20px 40px -10px rgba(208,94,0,0.35);
+    }
+    
     .fade-up {
       opacity: 0;
       transform: translateY(30px);
@@ -71,14 +77,14 @@
       border: 0;
       border-radius: 1rem;
     }
-    /* cinematic overlay with gradient */
+    /* cinematic overlay with orange gradient */
     .slideshow-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       padding: 1.5rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(208,94,0,0.2) 100%);
       color: white;
       z-index: 20;
       display: flex;
@@ -99,7 +105,7 @@
     }
     .dot.active { background: #d05e00; transform: scale(1.3); }
     
-    /* ===== CINEMATIC HERO ===== */
+    /* ===== CINEMATIC HERO with orange gradient ===== */
     .hero {
       position: relative;
       height: 100vh;
@@ -127,7 +133,7 @@
       left:0;
       width:100%;
       height:100%;
-      background: rgba(0,0,0,0.55);
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.4), rgba(208,94,0,0.3));
       z-index:1;
     }
     
@@ -182,7 +188,7 @@
     }
     @keyframes bounceSoft { 0%,100%{transform:translateX(-50%) translateY(0);} 40%{transform:translateX(-50%) translateY(-8px);} 60%{transform:translateX(-50%) translateY(-4px);} }
     
-    /* soundwave simulation (kept for texture but hero overrides it) */
+    /* soundwave simulation */
     .wave-lines span {
       display: inline-block; width: 4px; height: 30px; margin: 0 3px; background: #d05e00;
       animation: wave 1.2s infinite ease-in-out;
@@ -265,6 +271,9 @@
 </head>
 <body class="antialiased text-[#111]">
 
+  <!-- Orange Top Border (Elite Touch) -->
+  <div class="w-full h-[2px] bg-orange-deep fixed top-0 z-[60]"></div>
+
   <!-- MOBILE SIDEBAR -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-close" id="sidebarClose">✕</div>
@@ -288,7 +297,7 @@
     </div>
   </nav>
 
-  <!-- ===== CINEMATIC HERO with video background ===== -->
+  <!-- ===== CINEMATIC HERO with video background and orange gradient ===== -->
   <section class="hero">
     <!-- HERO VIDEO PLACEHOLDER - Replace hero-video.mp4 when Lesego sends the file -->
     <video autoplay muted loop playsinline>
@@ -299,7 +308,10 @@
     
     <div class="hero-content">
       <div class="hero-text">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 font-serif-display leading-tight">Welcome to <br>Moodboard Media</h1>
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 font-serif-display leading-tight">
+          <span class="block w-16 h-[3px] bg-orange-deep mb-6 mx-auto"></span>
+          Welcome to <br>Moodboard Media
+        </h1>
         <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto">
           Welcome to Moodboard Media — a creative ecosystem that adapts to your mood and invites you to explore stories, ideas, and experiences through film, media, and creative strategy.
         </p>
@@ -309,18 +321,25 @@
         </div>
       </div>
     </div>
-    <!-- subtle soundwave hint (still present for texture) -->
+    <!-- subtle soundwave hint -->
     <div class="absolute bottom-20 left-0 right-0 text-center text-white/40 text-sm z-10">🎙️ "Hello … and welcome to Moodboard Media"</div>
-    <!-- scroll indicator (visible) -->
+    <!-- scroll indicator -->
     <div class="scroll-indicator">↓ Scroll</div>
   </section>
+
+  <!-- ORANGE CINEMATIC DIVIDER -->
+  <div class="flex items-center justify-center py-16 bg-white">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
 
   <!-- ========== SECTION 1 – CREATIVE AGENCY ========== -->
   <section class="py-24 bg-white fade-up" id="agency">
     <div class="max-w-7xl mx-auto px-6">
       <!-- main card / intro -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- slideshow: now with cinematic overlays & project titles -->
+        <!-- slideshow -->
         <div class="slideshow-container hover-lift" id="agencySlideshow">
           <img src="lesego-says-images/eventphotography.png" class="slideshow-image active" alt="Event Production">
           <img src="lesego-says-images/eventphotography2.png" class="slideshow-image" alt="Event Content">
@@ -328,7 +347,7 @@
           <img src="lesego-says-images/behind-the-scenes.JPG" class="slideshow-image" alt="Film Production">
           <img src="lesego-says-images/lesego-says-photography.png" class="slideshow-image" alt="Content Strategy">
           <img src="lesego-says-images/behind-the-scenes-2.JPG" class="slideshow-image" alt="Behind the Scenes">
-          <!-- cinematic overlay with per‑slide content (managed by js) -->
+          <!-- cinematic overlay -->
           <div class="slideshow-overlay" id="agencyOverlay">
             <span class="text-xs uppercase tracking-widest text-white/60">Selected Work</span>
             <h3 class="text-xl font-semibold" id="agencySlideTitle">Event Production</h3>
@@ -338,62 +357,75 @@
             </div>
           </div>
         </div>
-        <!-- text + button -->
+        <!-- text + button with orange accent heading -->
         <div>
-          <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Creative Agency</h2>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
+            <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
+            Creative Agency
+          </h2>
           <p class="text-lg text-gray-700 mb-6 leading-relaxed">
             Moodboard Media is a creative production company dedicated to helping brands, organisations, and entrepreneurs translate ideas into powerful visual storytelling. From event coverage and social media campaigns to film production and branded animation, we craft content that strengthens brand identity and connects with audiences in meaningful ways.
           </p>
           <p class="text-lg text-gray-700 mb-8 leading-relaxed">
             Our work blends strategic thinking with cinematic storytelling to deliver visuals that are both impactful and culturally relevant.
           </p>
-          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-lg text-lg font-medium shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2" data-target="agencyExpand">
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="agencyExpand">
             Explore Work <span>↓</span>
           </button>
         </div>
       </div>
-      <!-- EXPANDABLE GRID (Creative Services) -->
+      <!-- EXPANDABLE GRID -->
       <div id="agencyExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl">
           <h3 class="text-2xl font-serif-display mb-8 text-center">Creative Services</h3>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Event Video Production</div>
-            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Social Media Campaigns</div>
-            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Animation for SMMEs</div>
-            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Film Production</div>
-            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Behind-the-Scenes</div>
-            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Content Strategy</div>
-            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Event Photography</div>
-            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">Corporate Brand Content</div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Event Video Production</div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Social Media Campaigns</div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Animation for SMMEs</div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Film Production</div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Behind-the-Scenes</div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Content Strategy</div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Event Photography</div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Corporate Brand Content</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ORANGE CINEMATIC DIVIDER -->
+  <div class="flex items-center justify-center py-16 bg-white">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
+
   <!-- ========== SECTION 2 – FEMALE FILM TRAILBLAZERS ========== -->
   <section class="py-24 bg-[#f0f0f0] fade-up" id="trailblazers">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: text -->
+        <!-- left: text with orange accent -->
         <div>
-          <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Female Film Trailblazers</h2>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
+            <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
+            Female Film Trailblazers
+          </h2>
           <p class="text-lg text-gray-700 mb-4 leading-relaxed">
             Female Film Trailblazers is an initiative founded by filmmaker and creative producer Lesego Soke. The platform was created to bridge the gap in representation, industry knowledge, compliance and community within the film and television industry for women.
           </p>
           <p class="text-lg text-gray-700 mb-6 leading-relaxed">
             Through curated conversations, workshops, and industry events, the initiative creates a space where experienced professionals can share knowledge with emerging filmmakers while building a supportive community of women shaping the future of African storytelling.
           </p>
-          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-lg text-lg font-medium shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2" data-target="trailblazersExpand">
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="trailblazersExpand">
             Explore Initiative <span>↓</span>
           </button>
         </div>
-        <!-- right: slideshow with cinematic overlay -->
+        <!-- right: slideshow -->
         <div class="slideshow-container hover-lift" id="trailblazersSlideshow">
           <img src="images-trailblazers/film-trailblazzers-slideshow-1.JPG" class="slideshow-image active" alt="Trailblazers Event">
           <img src="images-trailblazers/film-trailblazers-slideshow-2.png" class="slideshow-image" alt="Trailblazers Panel">
           
-          <!-- VIDEO SLIDE - Podcast Interview -->
+          <!-- VIDEO SLIDE -->
           <div class="slideshow-image">
             <iframe width="100%" height="100%"
               src="https://www.youtube.com/embed/bps0YfMwSRU"
@@ -418,7 +450,7 @@
           </div>
         </div>
       </div>
-      <!-- EXPANDABLE: detailed content -->
+      <!-- EXPANDABLE -->
       <div id="trailblazersExpand" class="expand-panel">
         <div class="bg-white p-10 rounded-3xl space-y-10">
           <div>
@@ -442,10 +474,10 @@
           <div>
             <h4 class="text-xl font-semibold mb-2">2025 Event Format</h4>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <span class="bg-[#f0f0f0] px-4 py-2 rounded-full text-sm">Workshop in Soweto (100 pax)</span>
-              <span class="bg-[#f0f0f0] px-4 py-2 rounded-full text-sm">Digital magazine feature</span>
-              <span class="bg-[#f0f0f0] px-4 py-2 rounded-full text-sm">Podcast roundtable</span>
-              <span class="bg-[#f0f0f0] px-4 py-2 rounded-full text-sm">Networking brunch</span>
+              <span class="bg-[#f0f0f0] px-4 py-2 rounded-full text-sm hover:bg-orange-deep hover:text-white transition">Workshop in Soweto (100 pax)</span>
+              <span class="bg-[#f0f0f0] px-4 py-2 rounded-full text-sm hover:bg-orange-deep hover:text-white transition">Digital magazine feature</span>
+              <span class="bg-[#f0f0f0] px-4 py-2 rounded-full text-sm hover:bg-orange-deep hover:text-white transition">Podcast roundtable</span>
+              <span class="bg-[#f0f0f0] px-4 py-2 rounded-full text-sm hover:bg-orange-deep hover:text-white transition">Networking brunch</span>
             </div>
           </div>
         </div>
@@ -453,11 +485,18 @@
     </div>
   </section>
 
+  <!-- ORANGE CINEMATIC DIVIDER -->
+  <div class="flex items-center justify-center py-16 bg-[#f0f0f0]">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
+
   <!-- ========== SECTION 3 – LESEGO SAYS ========== -->
   <section class="py-24 bg-white fade-up" id="lesego">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: slideshow with cinematic overlay -->
+        <!-- left: slideshow -->
         <div class="slideshow-container hover-lift" id="lesegoSlideshow">
           <img src="lesego-says-images/lesego-soke-behind-the-scenes.png" class="slideshow-image active" alt="Behind the Scenes">
           <img src="lesego-says-images/lesego-soke-story-development.png" class="slideshow-image" alt="Story Development">
@@ -483,18 +522,21 @@
             </div>
           </div>
         </div>
-        <!-- right: text -->
+        <!-- right: text with orange accent -->
         <div>
-          <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Lesego Says</h2>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
+            <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
+            Lesego Says
+          </h2>
           <p class="text-lg text-gray-700 mb-6 leading-relaxed">
             “Lesego Says” is a creative insight platform where producer and storyteller Lesego Soke shares her experience in storytelling, creative producing, and narrative development. Through consulting, script editing, and story development, Lesego collaborates with filmmakers, brands, and production teams to strengthen narratives and bring powerful stories to life.
           </p>
-          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-lg text-lg font-medium shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2" data-target="lesegoExpand">
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="lesegoExpand">
             Explore Insights <span>↓</span>
           </button>
         </div>
       </div>
-      <!-- EXPANDABLE: Professional Highlights + Creative Services -->
+      <!-- EXPANDABLE -->
       <div id="lesegoExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl space-y-8">
           <!-- Professional Highlights -->
@@ -515,13 +557,13 @@
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">Creative Services</h3>
               <div class="grid grid-cols-2 gap-2">
-                <span class="bg-white px-3 py-2 rounded-lg text-center">Script Writing</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center">Script Editing</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center">Story Development</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center">Photography</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center">Social Media Content</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center">BTS Content</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center">Visual Campaigns</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Script Writing</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Script Editing</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Story Development</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Photography</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Social Media Content</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">BTS Content</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Visual Campaigns</span>
               </div>
             </div>
           </div>
@@ -531,18 +573,35 @@
     </div>
   </section>
 
+  <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
+  <div class="flex items-center justify-center py-16 bg-white">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
+
   <!-- CTA SECTION -->
   <section class="py-24 bg-[#f0f0f0] fade-up">
     <div class="max-w-4xl mx-auto text-center px-6">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">Let's Create Something Meaningful</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
+        <span class="block w-12 h-[3px] bg-orange-deep mb-4 mx-auto"></span>
+        Let's Create Something Meaningful
+      </h2>
       <p class="text-xl text-gray-700 mb-10 leading-relaxed">
         Moodboard Media collaborates with brands, organisations and filmmakers to bring creative visions to life through film, strategy and storytelling.
       </p>
-      <a href="contact.html" class="inline-block bg-orange-deep text-white px-10 py-4 rounded-lg text-lg font-medium shadow-md hover:shadow-xl transition-all hover:scale-105">
+      <a href="contact.html" class="inline-block bg-orange-deep text-white px-10 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300">
         Start a Conversation →
       </a>
     </div>
   </section>
+
+  <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
+  <div class="flex items-center justify-center py-16 bg-[#f0f0f0]">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="bg-[#111] text-white py-16">
@@ -564,7 +623,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS: slideshows + expand + navbar + dynamic overlay text -->
+  <!-- SCRIPTS -->
   <script>
     (function() {
       // ===== MOBILE SIDEBAR TOGGLE =====
@@ -615,7 +674,7 @@
       }, appearOptions);
       faders.forEach(fader => appearOnScroll.observe(fader));
 
-      // ===== MEDIA SLIDESHOW SYSTEM (Images + Videos) =====
+      // ===== MEDIA SLIDESHOW SYSTEM =====
       function startSlideshow(containerId, interval = 5000) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -633,17 +692,15 @@
             const iframe = slide.querySelector('iframe');
             if (iframe && i !== index) {
               const src = iframe.src;
-              iframe.src = src; // reset video when hidden
+              iframe.src = src;
             }
           });
 
           slides[index].classList.add('active');
         }
 
-        // Start slideshow
         showSlide(0);
         
-        // Auto-advance
         setInterval(() => {
           current = (current + 1) % slides.length;
           showSlide(current);
@@ -662,7 +719,6 @@
         
         if (!dotsContainer) return;
 
-        // Create dots
         dotsContainer.innerHTML = '';
         for (let i = 0; i < slides.length; i++) {
           const dot = document.createElement('span');
@@ -672,23 +728,20 @@
             e.stopPropagation();
             const idx = parseInt(e.target.dataset.index);
             
-            // Show selected slide
             slides.forEach((slide, i) => {
               slide.classList.remove('active');
               const iframe = slide.querySelector('iframe');
               if (iframe && i !== idx) {
                 const src = iframe.src;
-                iframe.src = src; // reset video
+                iframe.src = src;
               }
             });
             slides[idx].classList.add('active');
             
-            // Update dots
             dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
               d.classList.toggle('active', i === idx);
             });
             
-            // Update overlay text
             if (titleEl && slideData && slideData[idx]) {
               titleEl.innerText = slideData[idx].title;
               descEl.innerText = slideData[idx].desc;
@@ -698,7 +751,7 @@
         }
       }
 
-      // ===== SLIDE DATA FOR EACH SLIDESHOW =====
+      // ===== SLIDE DATA =====
       const agencySlides = [
         { title: 'Event Production', desc: 'Capturing moments that bring brands and communities together.' },
         { title: 'Event Content', desc: 'Dynamic coverage for conferences and brand activations.' },
@@ -724,13 +777,11 @@
         { title: 'Speaking Engagements', desc: 'Sharing insights on storytelling and creative producing.' }
       ];
 
-      // ===== INITIALIZE EVERYTHING =====
-      // Start automated slideshows with different intervals
+      // ===== INITIALIZE =====
       startSlideshow("agencySlideshow", 4500);
       startSlideshow("trailblazersSlideshow", 6000);
       startSlideshow("lesegoSlideshow", 5500);
 
-      // Initialize dot navigation
       initDotNavigation("agencySlideshow", "agencyDots", "agencySlideTitle", "agencySlideDesc", agencySlides);
       initDotNavigation("trailblazersSlideshow", "trailblazersDots", "trailblazersSlideTitle", "trailblazersSlideDesc", trailblazersSlides);
       initDotNavigation("lesegoSlideshow", "lesegoDots", "lesegoSlideTitle", "lesegoSlideDesc", lesegoSlides);
@@ -749,6 +800,5 @@
       });
     })();
   </script>
-  <!-- Fully upgraded: media-aware slideshows + mobile sidebar + premium video handling -->
 </body>
 </html>
