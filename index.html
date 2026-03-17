@@ -157,6 +157,37 @@
       z-index: 2;
     }
 
+    /* ===== UNMUTE BUTTON - Premium styling ===== */
+    .unmute-btn {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      padding: 10px 16px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      z-index: 30;
+      animation: subtlePulse 2s infinite;
+    }
+
+    .unmute-btn:hover {
+      background: rgba(0, 0, 0, 0.7);
+      border-color: rgba(208, 94, 0, 0.5);
+      transform: scale(1.05);
+    }
+
+    @keyframes subtlePulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.03); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+
     /* ===== MOBILE SIDEBAR ===== */
     .sidebar {
       position: fixed;
@@ -250,12 +281,17 @@
     </div>
   </nav>
 
-  <!-- ===== CINEMATIC HERO with intro video - NO TEXT OVERLAY ===== -->
+  <!-- ===== CINEMATIC HERO with intro video and UNMUTE BUTTON ===== -->
   <section class="hero">
-    <video autoplay muted loop playsinline>
+    <video id="introVideo" autoplay muted loop playsinline>
       <source src="video/web-introduction.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
+    
+    <!-- Premium Unmute Button -->
+    <button id="unmuteBtn" class="unmute-btn">
+      🔊 Sound On
+    </button>
   </section>
 
   <!-- ORANGE CINEMATIC DIVIDER -->
@@ -532,6 +568,26 @@
   <!-- SCRIPTS -->
   <script>
     (function() {
+      // ===== UNMUTE BUTTON FUNCTIONALITY =====
+      const video = document.getElementById('introVideo');
+      const unmuteBtn = document.getElementById('unmuteBtn');
+
+      if (video && unmuteBtn) {
+        unmuteBtn.addEventListener('click', function() {
+          if (video.muted) {
+            video.muted = false;
+            video.volume = 1.0;
+            video.play();
+            this.innerHTML = '🔇 Mute';
+            this.style.animation = 'none';
+          } else {
+            video.muted = true;
+            this.innerHTML = '🔊 Sound On';
+            this.style.animation = 'subtlePulse 2s infinite';
+          }
+        });
+      }
+
       // ===== MOBILE SIDEBAR TOGGLE =====
       const menuToggle = document.getElementById("menuToggle");
       const sidebar = document.getElementById("sidebar");
