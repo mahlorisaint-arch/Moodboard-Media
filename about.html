@@ -26,6 +26,11 @@
       box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15), 0 0 0 2px rgba(208,94,0,0.2);
     }
     
+    .contact-card:hover {
+      border-color: #d05e00;
+      box-shadow: 0 20px 40px -10px rgba(208,94,0,0.35);
+    }
+    
     .fade-up {
       opacity: 0;
       transform: translateY(30px);
@@ -40,7 +45,7 @@
     .hero-overlay {
       background: linear-gradient(135deg, rgba(17,17,17,0.7) 0%, rgba(208,94,0,0.3) 100%);
     }
-    /* subtle film grain simulation (premium texture) */
+    /* subtle film grain simulation */
     .grain::after {
       content: '';
       position: absolute;
@@ -111,12 +116,8 @@
     }
 
     @keyframes slowZoom {
-      0% {
-        transform: scale(1.08);
-      }
-      100% {
-        transform: scale(1.18);
-      }
+      0% { transform: scale(1.08); }
+      100% { transform: scale(1.18); }
     }
 
     /* hero title animation */
@@ -171,7 +172,7 @@
       transform: translateY(0);
     }
 
-    /* IMAGE CONTAINERS TO ENSURE VISIBILITY */
+    /* IMAGE CONTAINERS */
     .image-container {
       position: relative;
       width: 100%;
@@ -211,9 +212,40 @@
       display: inline-block;
       position: relative;
     }
+    
+    /* HOVER GLOW EFFECT */
+    .hover-glow {
+      transition: all 0.3s ease;
+    }
+    .hover-glow:hover {
+      border-color: #d05e00;
+      box-shadow: 0 20px 40px -10px rgba(208,94,0,0.35);
+    }
+    
+    /* CINEMATIC DIVIDER STYLES */
+    .cinematic-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cinematic-divider .line {
+      width: 80px;
+      height: 2px;
+      background-color: #d05e00;
+    }
+    .cinematic-divider .diamond {
+      width: 12px;
+      height: 12px;
+      background-color: #d05e00;
+      margin: 0 20px;
+      transform: rotate(45deg);
+    }
   </style>
 </head>
 <body class="antialiased text-[#111]">
+
+  <!-- Orange Top Border (Elite Touch) -->
+  <div class="w-full h-[2px] bg-orange-deep fixed top-0 z-[60]"></div>
 
   <!-- MOBILE MENU -->
   <div id="mobileMenu" class="mobile-menu hidden">
@@ -238,13 +270,16 @@
 
   <!-- ABOUT HERO – cinematic banner with orange overlay + film texture + cinematic zoom -->
   <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <!-- background image with cinematic zoom effect - USING THE CORRECT IMAGE -->
+    <!-- background image with cinematic zoom effect -->
     <div class="hero-bg absolute inset-0 bg-[url('lesego-says-images/behind-the-scenes.JPG')] bg-cover bg-center"></div>
     <div class="absolute inset-0 hero-overlay"></div>
-    <div class="grain absolute inset-0"></div> <!-- subtle grain -->
+    <div class="grain absolute inset-0"></div>
     
-    <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show"> <!-- show immediately -->
-      <h1 class="hero-title text-6xl md:text-7xl font-bold mb-6 font-serif-display tracking-tight">About Moodboard Media</h1>
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
+      <h1 class="hero-title text-6xl md:text-7xl font-bold mb-6 font-serif-display tracking-tight">
+        <span class="block w-20 h-[3px] bg-orange-deep mb-6 mx-auto"></span>
+        About Moodboard Media
+      </h1>
       <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
         A creative ecosystem for storytelling and visual experiences
       </p>
@@ -255,10 +290,17 @@
     </div>
   </section>
 
+  <!-- ORANGE CINEMATIC DIVIDER (after hero) -->
+  <div class="flex items-center justify-center py-16 bg-white">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
+
   <!-- COMPANY STORY – two column layout with image & text (cinematic reveal) -->
   <section class="py-32 bg-white fade-up section-transition" id="story">
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
-      <!-- left: image/film still (with hover lift) - USING THE CORRECT COMPANY STORY IMAGE -->
+      <!-- left: image/film still (with hover lift) -->
       <div class="image-container hover-lift group reveal-left hover-scale-image">
         <img src="lesego-says-images/lesego-says-photography.png" 
              alt="Moodboard Media team / film set" 
@@ -268,8 +310,10 @@
       <!-- right: story text - reveals from right -->
       <div class="reveal-right">
         <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR NARRATIVE</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-4 font-serif-display leading-tight">Company Story</h2>
-        <div class="section-divider"></div>
+        <h2 class="text-4xl md:text-5xl font-bold mt-4 font-serif-display leading-tight">
+          <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
+          Company Story
+        </h2>
         <div class="prose prose-lg text-gray-700 space-y-6">
           <p class="reveal-up" style="transition-delay: 0.1s;">
             Moodboard Media is a creative ecosystem built around storytelling, visual media, and industry empowerment. Founded with the belief that every brand and filmmaker has a unique story to tell, we bring together creative production, film education, and story development under one roof.
@@ -285,10 +329,17 @@
     </div>
   </section>
 
-  <!-- FOUNDER SECTION – Lesego Soke with correct image (NO CROPPING) -->
+  <!-- ORANGE CINEMATIC DIVIDER (between story sections) -->
+  <div class="flex items-center justify-center py-16 bg-white">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
+
+  <!-- FOUNDER SECTION – Lesego Soke with correct image -->
   <section class="py-32 bg-[#f7f7f7] fade-up section-transition">
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-      <!-- Founder Image - USING THE CORRECT FOUNDER IMAGE -->
+      <!-- Founder Image -->
       <div class="portrait-container hover-lift group reveal-left hover-scale-image">
         <img src="lesego-says-images/lesego-says-slideshow1.JPG" 
              alt="Lesego Soke - Founder and Creative Producer" 
@@ -299,8 +350,10 @@
       <!-- Founder Text - reveals from right -->
       <div class="reveal-right">
         <span class="text-orange-deep font-semibold tracking-widest text-sm">FOUNDER & CREATIVE PRODUCER</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-4 font-serif-display">Lesego Soke</h2>
-        <div class="section-divider"></div>
+        <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-4 font-serif-display">
+          <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
+          Lesego Soke
+        </h2>
         
         <p class="text-lg text-gray-700 leading-relaxed mb-6 reveal-up" style="transition-delay: 0.1s;">
           Lesego Soke is a South African filmmaker, creative producer, and story strategist with over a decade of experience across theatre, television, and film.
@@ -321,35 +374,50 @@
     </div>
   </section>
 
+  <!-- ORANGE CINEMATIC DIVIDER (before mission/vision) -->
+  <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
+
   <!-- MISSION & VISION – side by side cards with premium spacing -->
   <section class="py-32 bg-white fade-up section-transition">
     <div class="max-w-7xl mx-auto px-6">
       <!-- subtle heading -->
       <div class="text-center mb-16">
         <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR REASON</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-2 font-serif-display">Why we exist</h2>
-        <div class="section-divider mx-auto"></div>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 font-serif-display">
+          <span class="block w-12 h-[3px] bg-orange-deep mb-4 mx-auto"></span>
+          Why we exist
+        </h2>
       </div>
       
       <div class="grid md:grid-cols-2 gap-10">
-        <!-- MISSION CARD - stagger animation -->
+        <!-- MISSION CARD -->
         <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50 stagger-item hover-glow">
           <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
             <span class="text-3xl">🎯</span>
           </div>
-          <h3 class="text-3xl font-bold mb-6 font-serif-display">Mission</h3>
+          <h3 class="text-3xl font-bold mb-6 font-serif-display">
+            <span class="block w-8 h-[2px] bg-orange-deep mb-3"></span>
+            Mission
+          </h3>
           <p class="text-lg text-gray-700 leading-relaxed">
             To create meaningful visual stories while empowering emerging filmmakers and creative voices. We believe that great stories have the power to shift perspectives, and we're committed to producing work that resonates, inspires, and endures.
           </p>
           <div class="mt-8 w-12 h-1 bg-orange-deep rounded-full"></div>
         </div>
 
-        <!-- VISION CARD - stagger animation -->
+        <!-- VISION CARD -->
         <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50 stagger-item hover-glow">
           <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
             <span class="text-3xl">🌍</span>
           </div>
-          <h3 class="text-3xl font-bold mb-6 font-serif-display">Vision</h3>
+          <h3 class="text-3xl font-bold mb-6 font-serif-display">
+            <span class="block w-8 h-[2px] bg-orange-deep mb-3"></span>
+            Vision
+          </h3>
           <p class="text-lg text-gray-700 leading-relaxed">
             To build a global creative ecosystem where storytelling, innovation, and collaboration shape the future of film and media. A world where diverse voices have access to resources, mentorship, and platforms to share their unique perspectives.
           </p>
@@ -359,11 +427,20 @@
     </div>
   </section>
 
+  <!-- ORANGE CINEMATIC DIVIDER (before core values) -->
+  <div class="flex items-center justify-center py-16 bg-white">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
+
   <!-- CORE VALUES / PILLAR REMINDER – connects to homepage -->
   <section class="py-24 bg-[#f0f0f0] fade-up section-transition">
     <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif-display">Three pillars, one purpose</h2>
-      <div class="section-divider mx-auto"></div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif-display">
+        <span class="block w-12 h-[3px] bg-orange-deep mb-4 mx-auto"></span>
+        Three pillars, one purpose
+      </h2>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-16">Every part of our ecosystem works in harmony.</p>
       
       <div class="grid md:grid-cols-3 gap-8">
@@ -385,6 +462,13 @@
       </div>
     </div>
   </section>
+
+  <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
+  <div class="flex items-center justify-center py-16 bg-[#f0f0f0]">
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  </div>
 
   <!-- CINEMATIC TRANSITION ELEMENT -->
   <div class="h-32 bg-gradient-to-b from-[#f0f0f0] to-white"></div>
@@ -419,12 +503,12 @@
 
       function openMobileMenu() {
         mobileMenu.classList.remove("hidden");
-        document.body.style.overflow = "hidden"; // prevent scrolling
+        document.body.style.overflow = "hidden";
       }
 
       function closeMobileMenu() {
         mobileMenu.classList.add("hidden");
-        document.body.style.overflow = ""; // restore scrolling
+        document.body.style.overflow = "";
       }
 
       if (menuButton) {
@@ -435,12 +519,10 @@
         closeMenu.addEventListener("click", closeMobileMenu);
       }
 
-      // Close menu when clicking a link
       document.querySelectorAll('.mobile-menu a').forEach(link => {
         link.addEventListener('click', closeMobileMenu);
       });
 
-      // Close menu on escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
           closeMobileMenu();
@@ -534,20 +616,7 @@
       if (heroContent) {
         heroContent.classList.add('show');
       }
-
-      // ===== LOG ALL IMAGE PATHS FOR DEBUGGING =====
-      console.log('=== IMAGE PATHS ===');
-      console.log('Hero background:', 'lesego-says-images/behind-the-scenes.JPG');
-      console.log('Company story image:', 'lesego-says-images/lesego-says-photography.png');
-      console.log('Founder image:', 'lesego-says-images/lesego-says-slideshow1.JPG');
-      console.log('==================');
     })();
   </script>
-
-  <!-- IMAGE PATHS SUMMARY:
-       Hero: lesego-says-images/behind-the-scenes.JPG
-       Company Story: lesego-says-images/lesego-says-photography.png
-       Founder: lesego-says-images/lesego-says-slideshow1.JPG
-  -->
 </body>
 </html>
