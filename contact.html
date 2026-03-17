@@ -28,6 +28,13 @@ font-family:'Playfair Display',serif;
 
 .bg-orange-deep{background:#d05e00}
 .text-orange-deep{color:#d05e00}
+.border-orange-deep{border-color:#d05e00}
+
+/* contact card hover with orange glow */
+.contact-card:hover {
+  border-color: #d05e00;
+  box-shadow: 0 20px 40px -10px rgba(208,94,0,0.35);
+}
 
 /* navbar */
 
@@ -43,7 +50,7 @@ transition:transform .25s ease, box-shadow .3s ease;
 
 .hover-lift:hover{
 transform:translateY(-6px);
-box-shadow:0 20px 30px -10px rgba(0,0,0,.15);
+box-shadow:0 20px 30px -10px rgba(0,0,0,.15), 0 0 0 2px rgba(208,94,0,0.2);
 }
 
 /* fade reveal */
@@ -74,10 +81,6 @@ flex-direction:column;
 align-items:center;
 }
 
-.contact-card:hover{
-border-color:#d05e00;
-}
-
 .email-link{
 font-size:1.2rem;
 font-weight:500;
@@ -95,6 +98,8 @@ word-break:break-all;
 background:#d05e00;
 color:white;
 border-color:#d05e00;
+transform:scale(1.05);
+box-shadow:0 10px 20px -5px rgba(208,94,0,0.3);
 }
 
 /* cinematic divider spacing */
@@ -102,41 +107,108 @@ border-color:#d05e00;
     padding: 5rem 0;
 }
 
+/* orange top border */
+.orange-top-border {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #d05e00;
+  z-index: 60;
+}
+
+/* heading orange accent */
+.heading-accent {
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #d05e00;
+  margin-bottom: 1rem;
+}
+
+/* cinematic orange divider */
+.cinematic-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+}
+.cinematic-divider .line {
+  width: 80px;
+  height: 2px;
+  background-color: #d05e00;
+}
+.cinematic-divider .diamond {
+  width: 12px;
+  height: 12px;
+  background-color: #d05e00;
+  margin: 0 20px;
+  transform: rotate(45deg);
+}
+
+/* button styles */
+.btn-primary {
+  background-color: #d05e00;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 30px -10px rgba(208,94,0,0.4);
+}
+
+/* mobile menu */
+#mobileMenu {
+  transition: all 0.3s ease;
+}
+#mobileMenu a {
+  transition: color 0.2s ease;
+}
+#mobileMenu a:hover {
+  color: #d05e00;
+}
+
 </style>
 </head>
 
 <body class="antialiased">
 
-<!-- NAVBAR -->
+<!-- Orange Top Border (Elite Touch) -->
+<div class="orange-top-border"></div>
 
+<!-- NAVBAR -->
 <nav id="navbar" class="fixed w-full z-50 bg-white/90 navbar-blur shadow-sm transition-all">
 
 <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-<a href="index.html" class="text-xl font-serif-display font-semibold hover:text-orange-deep">
+<a href="index.html" class="text-xl font-serif-display font-semibold hover:text-orange-deep transition">
 Moodboard Media
 </a>
 
 <div class="hidden md:flex space-x-8 text-[15px] font-medium">
 
-<a href="index.html" class="hover:text-orange-deep">Home</a>
-<a href="about.html" class="hover:text-orange-deep">About</a>
+<a href="index.html" class="hover:text-orange-deep transition">Home</a>
+<a href="about.html" class="hover:text-orange-deep transition">About</a>
 <a href="contact.html" class="text-orange-deep">Contact</a>
 
 </div>
 
-<div id="menuBtn" class="md:hidden text-2xl cursor-pointer">☰</div>
+<div id="menuBtn" class="md:hidden text-2xl cursor-pointer hover:text-orange-deep transition">☰</div>
 
 </div>
 
 <!-- mobile menu -->
-
 <div id="mobileMenu" class="hidden bg-white border-t">
 
 <div class="flex flex-col px-6 py-6 space-y-4 text-lg">
 
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
+<a href="index.html" class="hover:text-orange-deep transition">Home</a>
+<a href="about.html" class="hover:text-orange-deep transition">About</a>
 <a href="contact.html" class="text-orange-deep">Contact</a>
 
 </div>
@@ -160,15 +232,16 @@ Moodboard Media
     playsinline
     poster="lesego-says-images/behind-the-scenes.JPG">
     <source src="videos/contact-hero.mp4" type="video/mp4">
-    <!-- fallback: if video not available, browser shows poster + optional static message -->
+    <!-- fallback: if video not available, browser shows poster -->
   </video>
 
-  <!-- cinematic overlay (darker for text contrast) -->
-  <div class="absolute inset-0 bg-black/60"></div>
+  <!-- cinematic overlay with orange gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-orange-deep/30"></div>
 
   <!-- hero text -->
   <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
     <h1 class="text-6xl md:text-7xl font-bold mb-6 font-serif-display tracking-tight">
+      <span class="heading-accent mx-auto"></span>
       Contact Moodboard Media
     </h1>
     <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
@@ -179,26 +252,32 @@ Moodboard Media
   <!-- scroll indicator (subtle) -->
   <div class="absolute bottom-6 left-0 right-0 text-center text-white/70 text-sm">
     <span>scroll</span>
-    <div class="text-orange-deep text-xl mt-1">↓</div>
+    <div class="text-orange-deep text-xl mt-1 animate-bounce">↓</div>
   </div>
 
 </section>
 
+<!-- ORANGE CINEMATIC DIVIDER (after hero) -->
+<div class="cinematic-divider">
+  <div class="line"></div>
+  <div class="diamond"></div>
+  <div class="line"></div>
+</div>
 
-<!-- INTRO (unchanged but kept elegant) -->
-
-<section class="pt-28 pb-10 text-center max-w-3xl mx-auto px-6 fade-up">
+<!-- INTRO -->
+<section class="pt-16 pb-10 text-center max-w-3xl mx-auto px-6 fade-up">
 
 <span class="text-orange-deep font-semibold tracking-widest text-sm">
 REACH THE RIGHT PILLAR
 </span>
 
 <h2 class="text-3xl md:text-4xl font-bold mt-4 font-serif-display">
-Direct inquiries for each division
+  <span class="heading-accent mx-auto"></span>
+  Direct inquiries for each division
 </h2>
 
 <p class="text-gray-600 text-lg mt-4">
-Select the email that matches your need — we’ll respond within 48 hours.
+Select the email that matches your need — we'll respond within 48 hours.
 </p>
 
 </section>
@@ -207,7 +286,7 @@ Select the email that matches your need — we’ll respond within 48 hours.
 <!-- ============================================ -->
 <!-- 2️⃣ CONTACT CARDS with real background images -->
 <!-- ============================================ -->
-<section class="pb-20 fade-up"> <!-- reduced pb to make room for divider -->
+<section class="pb-20 fade-up">
 
 <div class="max-w-7xl mx-auto px-6">
 
@@ -289,6 +368,13 @@ Select the email that matches your need — we’ll respond within 48 hours.
 
 </section>
 
+<!-- ORANGE CINEMATIC DIVIDER (after contact cards) -->
+<div class="cinematic-divider">
+  <div class="line"></div>
+  <div class="diamond"></div>
+  <div class="line"></div>
+</div>
+
 
 <!-- ============================================ -->
 <!-- 3️⃣ CINEMATIC DIVIDER (film-style breathing moment) -->
@@ -296,38 +382,44 @@ Select the email that matches your need — we’ll respond within 48 hours.
 <section class="divider-breath fade-up">
   <div class="max-w-6xl mx-auto px-6">
     <img src="lesego-says-images/behind-the-scenes-2.JPG"
-         class="w-full rounded-3xl shadow-xl object-cover max-h-[500px]"
+         class="w-full rounded-3xl shadow-xl object-cover max-h-[500px] hover-lift"
          alt="behind the scenes cinematic">
   </div>
 </section>
 
 
-<!-- EXTRA INFO / 48h response section (slightly adjusted margin) -->
+<!-- EXTRA INFO / 48h response section -->
 <section class="bg-white py-20 border-y fade-up">
 
 <div class="max-w-4xl mx-auto px-6 text-center">
 
 <h3 class="text-2xl font-serif-display mb-6">
-We reply within 48 hours
+  <span class="heading-accent mx-auto"></span>
+  We reply within 48 hours
 </h3>
 
 <p class="text-gray-600 text-lg mb-8">
-Whether you have a project in mind, want to collaborate, or simply want to say hello — we’re listening.
+Whether you have a project in mind, want to collaborate, or simply want to say hello — we're listening.
 </p>
 
 <div class="flex flex-wrap justify-center gap-6 text-sm">
 
-<span class="bg-gray-100 px-5 py-2 rounded-full">📁 Creative briefs welcome</span>
-
-<span class="bg-gray-100 px-5 py-2 rounded-full">🌍 Based in South Africa</span>
-
-<span class="bg-gray-100 px-5 py-2 rounded-full">⚡ Global collaborations</span>
+<span class="bg-gray-100 px-5 py-2 rounded-full hover:bg-orange-deep hover:text-white transition cursor-default">📁 Creative briefs welcome</span>
+<span class="bg-gray-100 px-5 py-2 rounded-full hover:bg-orange-deep hover:text-white transition cursor-default">🌍 Based in South Africa</span>
+<span class="bg-gray-100 px-5 py-2 rounded-full hover:bg-orange-deep hover:text-white transition cursor-default">⚡ Global collaborations</span>
 
 </div>
 
 </div>
 
 </section>
+
+<!-- ORANGE CINEMATIC DIVIDER (before founder section) -->
+<div class="cinematic-divider">
+  <div class="line"></div>
+  <div class="diamond"></div>
+  <div class="line"></div>
+</div>
 
 
 <!-- ============================================ -->
@@ -338,21 +430,22 @@ Whether you have a project in mind, want to collaborate, or simply want to say h
 <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
 
 <img src="lesego-says-images/lesego-says-slideshow1.JPG"
-     class="rounded-3xl shadow-xl object-cover w-full h-full max-h-[400px]"
+     class="rounded-3xl shadow-xl object-cover w-full h-full max-h-[400px] hover-lift"
      alt="Lesego Soke creative director">
 
 <div>
 
 <h2 class="text-4xl font-serif-display mb-6">
-Work directly with the creative mind behind Moodboard Media
+  <span class="heading-accent"></span>
+  Work directly with the creative mind behind Moodboard Media
 </h2>
 
 <p class="text-gray-600 text-lg mb-6">
-Lesego Soke leads the creative direction across Moodboard Media’s productions, initiatives, and storytelling projects.
+Lesego Soke leads the creative direction across Moodboard Media's productions, initiatives, and storytelling projects.
 </p>
 
 <a href="mailto:lesego@moodboardmedia.co.za"
-   class="inline-block bg-orange-deep text-white px-8 py-4 rounded-full hover:opacity-90 transition">
+   class="btn-primary">
    Contact Lesego
 </a>
 
@@ -362,8 +455,14 @@ Lesego Soke leads the creative direction across Moodboard Media’s productions,
 
 </section>
 
+<!-- ORANGE CINEMATIC DIVIDER (before social) -->
+<div class="cinematic-divider">
+  <div class="line"></div>
+  <div class="diamond"></div>
+  <div class="line"></div>
+</div>
 
-<!-- SOCIAL (unchanged) -->
+<!-- SOCIAL -->
 <section class="py-16 fade-up">
 
 <div class="max-w-7xl mx-auto px-6 text-center">
@@ -374,10 +473,10 @@ Follow the journey
 
 <div class="flex justify-center space-x-6 text-2xl text-gray-500">
 
-<span class="cursor-pointer hover:text-orange-deep">📷</span>
-<span class="cursor-pointer hover:text-orange-deep">🎥</span>
-<span class="cursor-pointer hover:text-orange-deep">🔗</span>
-<span class="cursor-pointer hover:text-orange-deep">🐦</span>
+<span class="cursor-pointer hover:text-orange-deep transition transform hover:scale-125">📷</span>
+<span class="cursor-pointer hover:text-orange-deep transition transform hover:scale-125">🎥</span>
+<span class="cursor-pointer hover:text-orange-deep transition transform hover:scale-125">🔗</span>
+<span class="cursor-pointer hover:text-orange-deep transition transform hover:scale-125">🐦</span>
 
 </div>
 
@@ -389,8 +488,14 @@ Follow the journey
 
 </section>
 
+<!-- ORANGE CINEMATIC DIVIDER (before footer) -->
+<div class="cinematic-divider">
+  <div class="line"></div>
+  <div class="diamond"></div>
+  <div class="line"></div>
+</div>
 
-<!-- FOOTER (unchanged) -->
+<!-- FOOTER -->
 <footer class="bg-[#111] text-white py-16">
 
 <div class="max-w-7xl mx-auto px-6">
@@ -411,9 +516,9 @@ Moodboard Media
 
 <div class="flex space-x-8 text-sm">
 
-<a href="index.html" class="hover:text-orange-deep">Home</a>
-<a href="about.html" class="hover:text-orange-deep">About</a>
-<a href="contact.html" class="hover:text-orange-deep">Contact</a>
+<a href="index.html" class="hover:text-orange-deep transition">Home</a>
+<a href="about.html" class="hover:text-orange-deep transition">About</a>
+<a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
 
 </div>
 
@@ -442,7 +547,7 @@ if(entry.isIntersecting){
 entry.target.classList.add('show');
 }
 });
-},{threshold:0.15});
+},{threshold:0.15, rootMargin: '0px 0px -40px 0px'});
 
 faders.forEach(el=>observer.observe(el));
 
@@ -453,9 +558,11 @@ const navbar=document.getElementById('navbar');
 
 window.addEventListener('scroll',()=>{
 if(window.scrollY>50){
-navbar.classList.add('shadow-md');
+navbar.classList.add('shadow-md', 'bg-white/95');
+navbar.classList.remove('bg-white/90');
 }else{
-navbar.classList.remove('shadow-md');
+navbar.classList.remove('shadow-md', 'bg-white/95');
+navbar.classList.add('bg-white/90');
 }
 });
 
@@ -465,9 +572,25 @@ navbar.classList.remove('shadow-md');
 const menuBtn=document.getElementById('menuBtn');
 const mobileMenu=document.getElementById('mobileMenu');
 
-menuBtn.addEventListener('click',()=>{
-mobileMenu.classList.toggle('hidden');
-});
+if (menuBtn && mobileMenu) {
+  menuBtn.addEventListener('click',()=>{
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when clicking a link
+  document.querySelectorAll('#mobileMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.add('hidden');
+    }
+  });
+}
 
 </script>
 
