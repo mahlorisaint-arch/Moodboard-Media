@@ -156,53 +156,6 @@
       pointer-events: none;
       z-index: 2;
     }
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      max-width: 900px;
-      padding: 0 1.5rem;
-    }
-    .hero-text {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: heroTextReveal 1.2s ease forwards;
-      animation-delay: 0.8s;
-    }
-    @keyframes heroTextReveal {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    /* scroll indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      color: white;
-      font-size: 0.9rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      animation: bounceSoft 2s infinite;
-      opacity: 0.8;
-    }
-    @keyframes bounceSoft { 0%,100%{transform:translateX(-50%) translateY(0);} 40%{transform:translateX(-50%) translateY(-8px);} 60%{transform:translateX(-50%) translateY(-4px);} }
-    
-    /* soundwave simulation */
-    .wave-lines span {
-      display: inline-block; width: 4px; height: 30px; margin: 0 3px; background: #d05e00;
-      animation: wave 1.2s infinite ease-in-out;
-    }
-    .wave-lines span:nth-child(2) { animation-delay: 0.1s; height: 45px; }
-    .wave-lines span:nth-child(3) { animation-delay: 0.2s; height: 25px; }
-    .wave-lines span:nth-child(4) { animation-delay: 0.3s; height: 55px; }
-    .wave-lines span:nth-child(5) { animation-delay: 0.4s; height: 35px; }
-    .wave-lines span:nth-child(6) { animation-delay: 0.5s; height: 50px; }
-    .wave-lines span:nth-child(7) { animation-delay: 0.6s; height: 20px; }
-    @keyframes wave {
-      0%,100% { transform: scaleY(0.6); opacity: 0.5; }
-      50% { transform: scaleY(1.2); opacity: 1; }
-    }
 
     /* ===== MOBILE SIDEBAR ===== */
     .sidebar {
@@ -297,34 +250,12 @@
     </div>
   </nav>
 
-  <!-- ===== CINEMATIC HERO with video background and orange gradient ===== -->
+  <!-- ===== CINEMATIC HERO with intro video - NO TEXT OVERLAY ===== -->
   <section class="hero">
-    <!-- HERO VIDEO PLACEHOLDER - Replace hero-video.mp4 when Lesego sends the file -->
     <video autoplay muted loop playsinline>
-      <source src="hero-video.mp4" type="video/mp4">
+      <source src="video/web-introduction.mp4" type="video/mp4">
     </video>
-    
     <div class="hero-overlay"></div>
-    
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 font-serif-display leading-tight">
-          <span class="block w-16 h-[3px] bg-orange-deep mb-6 mx-auto"></span>
-          Welcome to <br>Moodboard Media
-        </h1>
-        <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto">
-          Welcome to Moodboard Media — a creative ecosystem that adapts to your mood and invites you to explore stories, ideas, and experiences through film, media, and creative strategy.
-        </p>
-        <div class="flex flex-col items-center">
-          <p class="text-sm uppercase tracking-widest mb-2 opacity-70">scroll to explore</p>
-          <div class="bounce-slow text-orange-deep text-2xl">↓</div>
-        </div>
-      </div>
-    </div>
-    <!-- subtle soundwave hint -->
-    <div class="absolute bottom-20 left-0 right-0 text-center text-white/40 text-sm z-10">🎙️ "Hello … and welcome to Moodboard Media"</div>
-    <!-- scroll indicator -->
-    <div class="scroll-indicator">↓ Scroll</div>
   </section>
 
   <!-- ORANGE CINEMATIC DIVIDER -->
@@ -339,13 +270,13 @@
     <div class="max-w-7xl mx-auto px-6">
       <!-- main card / intro -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- slideshow - UPDATED WITH DIFFERENT CREATIVE AGENCY PHOTOS -->
+        <!-- slideshow - UPDATED WITH CLIENT'S EXACT IMAGES -->
         <div class="slideshow-container hover-lift" id="agencySlideshow">
-          <img src="creative-agency-images/event-production.jpg" class="slideshow-image active" alt="Event Production">
-          <img src="creative-agency-images/social-campaign.jpg" class="slideshow-image" alt="Social Media Campaign">
+          <img src="creative-agency-images/event-production.JPG" class="slideshow-image active" alt="Event Production">
+          <img src="creative-agency-images/social-campaign.JPG" class="slideshow-image" alt="Social Media Campaign">
           <img src="creative-agency-images/animation.jpg" class="slideshow-image" alt="Animation">
           <img src="creative-agency-images/film-production.jpg" class="slideshow-image" alt="Film Production">
-          <img src="creative-agency-images/bts-production.jpg" class="slideshow-image" alt="Behind the Scenes">
+          <img src="creative-agency-images/bts-production.JPG" class="slideshow-image" alt="Behind the Scenes">
           <img src="creative-agency-images/content-strategy.jpg" class="slideshow-image" alt="Content Strategy">
           <!-- cinematic overlay -->
           <div class="slideshow-overlay" id="agencyOverlay">
@@ -357,7 +288,7 @@
             </div>
           </div>
         </div>
-        <!-- text + button with orange accent heading - UPDATED WITH CLIENT'S BIO -->
+        <!-- text + button with orange accent heading -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
@@ -374,7 +305,7 @@
           </button>
         </div>
       </div>
-      <!-- EXPANDABLE GRID - UPDATED WITH CLIENT'S EXACT SERVICE LIST -->
+      <!-- EXPANDABLE GRID - CLIENT'S EXACT SERVICE LIST -->
       <div id="agencyExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl">
           <h3 class="text-2xl font-serif-display mb-8 text-center">Creative Services</h3>
@@ -403,7 +334,7 @@
   <section class="py-24 bg-[#f0f0f0] fade-up" id="trailblazers">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: text with orange accent - UPDATED WITH CLIENT'S BIO -->
+        <!-- left: text with orange accent - CLIENT'S EXACT BIO -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
@@ -449,7 +380,7 @@
           </div>
         </div>
       </div>
-      <!-- EXPANDABLE - UPDATED WITH ONLY THE EXACT SERVICE LINE -->
+      <!-- EXPANDABLE - EXACT SERVICE LINE ONLY -->
       <div id="trailblazersExpand" class="expand-panel">
         <div class="bg-white p-10 rounded-3xl">
           <p class="text-gray-700 text-center text-lg">
@@ -497,7 +428,7 @@
             </div>
           </div>
         </div>
-        <!-- right: text with orange accent - UPDATED WITH LESEGO_SAYS -->
+        <!-- right: text with orange accent - LESEGO_SAYS -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
@@ -511,7 +442,7 @@
           </button>
         </div>
       </div>
-      <!-- EXPANDABLE - UPDATED WITH LESEGO_SAYS THROUGHOUT -->
+      <!-- EXPANDABLE - LESEGO_SAYS THROUGHOUT -->
       <div id="lesegoExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl space-y-8">
           <!-- Professional Highlights -->
@@ -555,7 +486,7 @@
     <div class="w-16 h-[2px] bg-orange-deep"></div>
   </div>
 
-  <!-- CTA SECTION - UPDATED WITH NEW HERO TAGLINE -->
+  <!-- CTA SECTION - WITH UPDATED TAGLINE -->
   <section class="py-24 bg-[#f0f0f0] fade-up">
     <div class="max-w-4xl mx-auto text-center px-6">
       <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
@@ -726,7 +657,7 @@
         }
       }
 
-      // ===== SLIDE DATA - UPDATED FOR CREATIVE AGENCY =====
+      // ===== SLIDE DATA =====
       const agencySlides = [
         { title: 'Event Production', desc: 'Capturing moments that bring brands and communities together.' },
         { title: 'Social Media Campaigns', desc: 'Content designed for attention, engagement, and shareability.' },
