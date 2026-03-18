@@ -108,13 +108,21 @@
     /* ===== CINEMATIC HERO with orange gradient ===== */
     .hero {
       position: relative;
-      height: 100vh;
+      height: 100vh; /* Default for desktop */
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       overflow: hidden;
       background: black;
+    }
+
+    /* Mobile height adjustment (based on contact.html) */
+    @media (max-width: 768px) {
+      .hero {
+        height: 55vh;
+        min-height: 450px;
+      }
     }
 
     .hero video {
@@ -306,7 +314,7 @@
     <div class="max-w-7xl mx-auto px-6">
       <!-- main card / intro -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- slideshow - UPDATED: 5 slides, video first, reordered, titles/texts removed -->
+        <!-- slideshow - UPDATED: 4 slides (5th removed) -->
         <div class="slideshow-container hover-lift" id="agencySlideshow">
           <!-- Slide 1: New Video -->
           <div class="slideshow-image active">
@@ -324,8 +332,7 @@
           <img src="creative-agency-images/social-campaign.JPG" class="slideshow-image" alt="Social Media Campaign">
           <!-- Slide 4: Old Slide 5 -->
           <img src="creative-agency-images/bts-production.JPG" class="slideshow-image" alt="Behind the Scenes">
-          <!-- Slide 5: Old Slide 6 -->
-          <img src="creative-agency-images/content-strategy.jpg" class="slideshow-image" alt="Content Strategy">
+          <!-- Slide 5 (old slide 6) REMOVED per request -->
           
           <!-- cinematic overlay - titles/texts removed, dots kept -->
           <div class="slideshow-overlay" id="agencyOverlay">
@@ -741,8 +748,7 @@
         { title: '', desc: '' },
         { title: '', desc: '' },
         { title: '', desc: '' },
-        { title: '', desc: '' },
-        { title: '', desc: '' }
+        { title: '', desc: '' }  // Updated from 5 to 4 slides
       ];
 
       const trailblazersSlides = [
