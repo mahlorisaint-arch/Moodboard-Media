@@ -15,19 +15,12 @@
     .text-orange-deep { color: #d05e00; }
     .border-orange-deep { border-color: #d05e00; }
     
-    /* micro‑interactions */
     .hover-lift {
       transition: transform 0.25s ease, box-shadow 0.3s ease;
     }
     .hover-lift:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15), 0 0 0 2px rgba(208,94,0,0.2);
-    }
-    
-    /* contact card hover with orange glow */
-    .contact-card:hover {
-      border-color: #d05e00;
-      box-shadow: 0 20px 40px -10px rgba(208,94,0,0.35);
     }
     
     .fade-up {
@@ -37,7 +30,6 @@
     }
     .fade-up.show { opacity: 1; transform: translateY(0); }
     
-    /* expanded panel animation */
     .expand-panel {
       max-height: 0;
       opacity: 0;
@@ -50,7 +42,6 @@
       margin-top: 3rem;
     }
     
-    /* ===== CINEMATIC SLIDESHOW ===== */
     .slideshow-container {
       position: relative;
       width: 100%;
@@ -77,7 +68,6 @@
       border: 0;
       border-radius: 1rem;
     }
-    /* cinematic overlay with orange gradient — but titles/text removed for 3 sections (we keep overlay structure but empty) */
     .slideshow-overlay {
       position: absolute;
       bottom: 0;
@@ -105,7 +95,6 @@
     }
     .dot.active { background: #d05e00; transform: scale(1.3); }
     
-    /* ===== CINEMATIC HERO with orange gradient ===== */
     .hero {
       position: relative;
       height: 100vh;
@@ -116,7 +105,6 @@
       overflow: hidden;
       background: black;
     }
-
     .hero video {
       position: absolute;
       top: 0;
@@ -126,18 +114,12 @@
       object-fit: cover;
       z-index: 0;
     }
-
     .hero-overlay {
       position: absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
+      top:0; left:0; width:100%; height:100%;
       background: linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.4), rgba(208,94,0,0.3));
       z-index:1;
     }
-    
-    /* film grain overlay */
     .hero::after {
       content: '';
       position: absolute;
@@ -147,7 +129,6 @@
       pointer-events: none;
       z-index: 2;
     }
-    /* soft vignette */
     .hero::before {
       content: '';
       position: absolute;
@@ -156,8 +137,6 @@
       pointer-events: none;
       z-index: 2;
     }
-
-    /* ===== UNMUTE BUTTON - Premium styling ===== */
     .unmute-btn {
       position: absolute;
       bottom: 30px;
@@ -165,30 +144,14 @@
       padding: 10px 16px;
       background: rgba(0, 0, 0, 0.5);
       color: white;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 20px;
       font-size: 12px;
-      letter-spacing: 1px;
       cursor: pointer;
       backdrop-filter: blur(8px);
       transition: all 0.3s ease;
       z-index: 30;
-      animation: subtlePulse 2s infinite;
     }
-
-    .unmute-btn:hover {
-      background: rgba(0, 0, 0, 0.7);
-      border-color: rgba(208, 94, 0, 0.5);
-      transform: scale(1.05);
-    }
-
-    @keyframes subtlePulse {
-      0% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.03); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.8; }
-    }
-
-    /* ===== MOBILE SIDEBAR ===== */
     .sidebar {
       position: fixed;
       top: 0;
@@ -201,11 +164,7 @@
       padding: 2rem;
       box-shadow: 2px 0 10px rgba(0,0,0,0.1);
     }
-
-    .sidebar.active {
-      left: 0;
-    }
-
+    .sidebar.active { left: 0; }
     .menu-button {
       font-size: 28px;
       background: none;
@@ -214,48 +173,14 @@
       display: none;
       color: #111;
     }
-
     @media(max-width: 768px) {
-      .menu-button {
-        display: block;
-      }
-      .nav-links {
-        display: none;
-      }
-    }
-
-    .sidebar-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .sidebar-links a {
-      color: #111;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .sidebar-links a:hover {
-      color: #d05e00;
-    }
-
-    .sidebar-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 24px;
-      cursor: pointer;
-      color: #666;
+      .menu-button { display: block; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body class="antialiased text-[#111]">
 
-  <!-- Orange Top Border (Elite Touch) -->
   <div class="w-full h-[2px] bg-orange-deep fixed top-0 z-[60]"></div>
 
   <!-- MOBILE SIDEBAR -->
@@ -281,20 +206,16 @@
     </div>
   </nav>
 
-  <!-- ===== CINEMATIC HERO with intro video and UNMUTE BUTTON ===== -->
+  <!-- HERO -->
   <section class="hero">
     <video id="introVideo" autoplay muted loop playsinline>
       <source src="video/web-introduction.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
-    
-    <!-- Premium Unmute Button -->
-    <button id="unmuteBtn" class="unmute-btn">
-      🔊 Sound On
-    </button>
+    <button id="unmuteBtn" class="unmute-btn">🔊 Sound On</button>
   </section>
 
-  <!-- ORANGE CINEMATIC DIVIDER -->
+  <!-- DIVIDER -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
@@ -304,68 +225,57 @@
   <!-- ========== SECTION 1 – CREATIVE AGENCY ========== -->
   <section class="py-24 bg-[#f7f7f7] fade-up" id="agency">
     <div class="max-w-7xl mx-auto px-6">
-      <!-- main card / intro -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- slideshow - UPDATED: 5 slides, video slide1, rest shifted (old slide1→2, slide2→3, slide5→4, slide6→5) and overlay text removed -->
+        <!-- slideshow with EXACT image paths from your original -->
         <div class="slideshow-container hover-lift" id="agencySlideshow">
-          <!-- slide 1: NEW video from youtube -->
+          <!-- Slide 1: Video -->
           <div class="slideshow-image active">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/b5W6thxKe0M?si=cMmrBr8jcVlJi_vq" title="Creative Agency video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/b5W6thxKe0M?si=cMmrBr8jcVlJi_vq&autoplay=1&mute=1&loop=1&playlist=b5W6thxKe0M" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-          <!-- slide 2: was slide1 (event-production) -->
+          <!-- Slide 2: was slide1 -->
           <img src="creative-agency-images/event-production.JPG" class="slideshow-image" alt="Event Production">
-          <!-- slide 3: was slide2 (social-campaign) -->
+          <!-- Slide 3: was slide2 -->
           <img src="creative-agency-images/social-campaign.JPG" class="slideshow-image" alt="Social Media Campaign">
-          <!-- slide 4: was slide5 (bts-production) -->
+          <!-- Slide 4: was slide5 -->
           <img src="creative-agency-images/bts-production.JPG" class="slideshow-image" alt="Behind the Scenes">
-          <!-- slide 5: was slide6 (content-strategy) -->
+          <!-- Slide 5: was slide6 -->
           <img src="creative-agency-images/content-strategy.jpg" class="slideshow-image" alt="Content Strategy">
           
-          <!-- cinematic overlay – no titles/text (empty, just dots) -->
-          <div class="slideshow-overlay" id="agencyOverlay">
-            <!-- title & desc completely removed – only dots visible -->
+          <div class="slideshow-overlay">
             <div class="flex items-center justify-between w-full mt-2">
               <div class="slideshow-dots" id="agencyDots"></div>
             </div>
           </div>
         </div>
-        <!-- text + button with orange accent heading -->
+        <!-- text -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
             Creative Agency
           </h2>
-          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-            Moodboard Media is a creative agency dedicated to helping brands, organisations, and entrepreneurs translate ideas into powerful visual storytelling.
-          </p>
-          <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-            Our work blends strategic thinking with cinematic storytelling to deliver visuals that are both impactful and culturally relevant.
-          </p>
-          <!-- ✅ UPDATED BUTTON: Creative Services (was Explore Work) -->
-          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="agencyExpand">
-            Creative Services <span>↓</span>
-          </button>
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">Moodboard Media is a creative agency dedicated to helping brands, organisations, and entrepreneurs translate ideas into powerful visual storytelling.</p>
+          <p class="text-lg text-gray-700 mb-8 leading-relaxed">Our work blends strategic thinking with cinematic storytelling to deliver visuals that are both impactful and culturally relevant.</p>
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="agencyExpand">Creative Services <span>↓</span></button>
         </div>
       </div>
-      <!-- EXPANDABLE GRID - CLIENT'S EXACT SERVICE LIST -->
       <div id="agencyExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl">
           <h3 class="text-2xl font-serif-display mb-8 text-center">Creative Services</h3>
           <ul class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <li class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Event Video Content</li>
-            <li class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Social Media Campaign Content</li>
-            <li class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Animation for SMMEs</li>
-            <li class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Film Production</li>
-            <li class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Behind-the-Scenes Content</li>
-            <li class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Content Strategy</li>
-            <li class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md hover:border-orange-deep hover:border transition">Corporate Brand Content</li>
+            <li class="bg-white p-4 rounded-xl shadow-sm">Event Video Content</li>
+            <li class="bg-white p-4 rounded-xl shadow-sm">Social Media Campaign Content</li>
+            <li class="bg-white p-4 rounded-xl shadow-sm">Animation for SMMEs</li>
+            <li class="bg-white p-4 rounded-xl shadow-sm">Film Production</li>
+            <li class="bg-white p-4 rounded-xl shadow-sm">Behind-the-Scenes Content</li>
+            <li class="bg-white p-4 rounded-xl shadow-sm">Content Strategy</li>
+            <li class="bg-white p-4 rounded-xl shadow-sm">Corporate Brand Content</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ORANGE CINEMATIC DIVIDER -->
+  <!-- DIVIDER -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
@@ -376,58 +286,47 @@
   <section class="py-24 bg-[#f7f7f7] fade-up" id="trailblazers">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: text with orange accent - CLIENT'S EXACT BIO (now aligned: button at bottom on mobile) -->
+        <!-- left: text (button now at bottom like others) -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
             Female Film Trailblazers
           </h2>
-          <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-            Female Film Trailblazers is an initiative created to bridge the gap between emerging and experienced female filmmakers.
-          </p>
-          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-            This platform offers industry information, networking, and community within the film and television industry for women.
-          </p>
-          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="trailblazersExpand">
-            Explore Initiative <span>↓</span>
-          </button>
+          <p class="text-lg text-gray-700 mb-4 leading-relaxed">Female Film Trailblazers is an initiative created to bridge the gap between emerging and experienced female filmmakers.</p>
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">This platform offers industry information, networking, and community within the film and television industry for women.</p>
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="trailblazersExpand">Explore Initiative <span>↓</span></button>
         </div>
-        <!-- right: slideshow – updated: slide6 becomes slide1 (video) and all titles/text removed -->
+        <!-- right: slideshow with EXACT image paths -->
         <div class="slideshow-container hover-lift" id="trailblazersSlideshow">
-          <!-- slide 1: new video (was slide6) -->
+          <!-- Slide 1: Video (was slide6) -->
           <div class="slideshow-image active">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/hj-WzcgYJN0" title="Trailblazers video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/hj-WzcgYJN0?autoplay=1&mute=1&loop=1&playlist=hj-WzcgYJN0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-          <!-- slide 2: original slide1 -->
+          <!-- Slide 2: original slide1 -->
           <img src="images-trailblazers/film-trailblazzers-slideshow-1.JPG" class="slideshow-image" alt="Trailblazers Event">
-          <!-- slide 3: original slide2 -->
+          <!-- Slide 3: original slide2 -->
           <img src="images-trailblazers/film-trailblazers-slideshow-2.png" class="slideshow-image" alt="Trailblazers Panel">
-          <!-- slide 4: original slide4 (podcast sessions) -->
+          <!-- Slide 4: original slide4 -->
           <img src="images-trailblazers/film-trailblazzers-slideshow-4.png" class="slideshow-image" alt="Trailblazers Podcast">
-          <!-- slide 5: original slide5 (networking) -->
+          <!-- Slide 5: original slide5 -->
           <img src="images-trailblazers/film-trailblazzers-slideshow-5.jpg" class="slideshow-image" alt="Trailblazers Networking">
-          <!-- slide 6: we keep exactly 5? previous had 6, but client now wants 5? original had 6, we now have 5 (removed slide3? no we keep 5 exactly: video + slide1,2,4,5) That's 5 slides. -->
           
-          <div class="slideshow-overlay" id="trailblazersOverlay">
-            <!-- no text / titles -->
+          <div class="slideshow-overlay">
             <div class="flex items-center justify-between w-full mt-2">
               <div class="slideshow-dots" id="trailblazersDots"></div>
             </div>
           </div>
         </div>
       </div>
-      <!-- EXPANDABLE - EXACT SERVICE LINE ONLY -->
       <div id="trailblazersExpand" class="expand-panel">
         <div class="bg-white p-10 rounded-3xl">
-          <p class="text-gray-700 text-center text-lg">
-            Curated conversation experiences, webinars, and annual industry events.
-          </p>
+          <p class="text-gray-700 text-center text-lg">Curated conversation experiences, webinars, and annual industry events.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ORANGE CINEMATIC DIVIDER -->
+  <!-- DIVIDER -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
@@ -438,45 +337,38 @@
   <section class="py-24 bg-[#f7f7f7] fade-up" id="lesego">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: slideshow – updated: slide4 becomes slide1 (video) and no titles/text -->
+        <!-- left: slideshow with EXACT image paths -->
         <div class="slideshow-container hover-lift" id="lesegoSlideshow">
-          <!-- slide 1: new video (was slide4) -->
+          <!-- Slide 1: Video (was slide4) -->
           <div class="slideshow-image active">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Gq99Vq9uOW4" title="Lesego Says video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/Gq99Vq9uOW4?autoplay=1&mute=1&loop=1&playlist=Gq99Vq9uOW4" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-          <!-- slide 2: original slide1 -->
+          <!-- Slide 2: original slide1 -->
           <img src="lesego-says-images/lesego-soke-behind-the-scenes.png" class="slideshow-image" alt="Behind the Scenes">
-          <!-- slide 3: original slide2 -->
+          <!-- Slide 3: original slide2 -->
           <img src="lesego-says-images/lesego-soke-story-development.png" class="slideshow-image" alt="Story Development">
-          <!-- slide 4: original slide3 -->
+          <!-- Slide 4: original slide3 -->
           <img src="lesego-says-images/script-development-3.JPG" class="slideshow-image" alt="Script Development">
-          <!-- slide 5: we keep 4 total? we have 4 slides: video + 3 images – exactly 4 slides (consistent) -->
           
-          <div class="slideshow-overlay" id="lesegoOverlay">
-            <!-- no titles/text -->
+          <div class="slideshow-overlay">
             <div class="flex items-center justify-between w-full mt-2">
               <div class="slideshow-dots" id="lesegoDots"></div>
             </div>
           </div>
         </div>
-        <!-- right: text with orange accent - LESEGO_SAYS (UPDATED bullets) -->
+        <!-- right: text -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
             Lesego_Says
           </h2>
-          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-            “Lesego_Says” is a creative insight platform where producer and storyteller Lesego Soke shares her experience in storytelling, creative producing, and narrative development. Through consulting, script editing, and story development, Lesego collaborates with filmmakers, brands, and production teams to strengthen narratives and bring powerful stories to life.
-          </p>
-          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="lesegoExpand">
-            Explore Insights <span>↓</span>
-          </button>
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">“Lesego_Says” is a creative insight platform where producer and storyteller Lesego Soke shares her experience in storytelling, creative producing, and narrative development.</p>
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="lesegoExpand">Explore Insights <span>↓</span></button>
         </div>
       </div>
-      <!-- EXPANDABLE - LESEGO_SAYS (UPDATED: bullets changed) -->
+      <!-- EXPANDABLE with UPDATED BULLETS -->
       <div id="lesegoExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl space-y-8">
-          <!-- Professional Highlights with exact new bullets -->
           <div>
             <h3 class="text-2xl font-bold font-serif-display mb-3">Professional Highlights</h3>
             <ul class="text-gray-700 space-y-1 list-disc list-inside">
@@ -485,57 +377,49 @@
               <li>International production credit - Creative Producer — <strong>Mabaso Family Reunion</strong> (Netflix)</li>
             </ul>
           </div>
-          <!-- Bio + additional -->
           <div class="grid md:grid-cols-2 gap-8">
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">About Lesego Soke</h3>
-              <p class="text-gray-700 leading-relaxed mb-6">
-                Lesego Soke is a creative producer, storyteller, and founder of Moodboard Media. Her work focuses on developing meaningful narratives, shaping visual identities, and producing content that connects deeply with audiences across film, media, and brand storytelling.
-              </p>
+              <p class="text-gray-700 leading-relaxed">Lesego Soke is a creative producer, storyteller, and founder of Moodboard Media.</p>
             </div>
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">Creative Services</h3>
               <div class="grid grid-cols-2 gap-2">
-                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Script Writing</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Script Editing</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Story Development</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Photography</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Social Media Content</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">BTS Content</span>
-                <span class="bg-white px-3 py-2 rounded-lg text-center hover:border-orange-deep hover:border transition">Visual Campaigns</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center">Script Writing</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center">Script Editing</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center">Story Development</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center">Photography</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center">Social Media Content</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center">BTS Content</span>
+                <span class="bg-white px-3 py-2 rounded-lg text-center">Visual Campaigns</span>
               </div>
             </div>
           </div>
-          <p class="text-sm text-gray-500 border-t pt-4 italic">Consulting for filmmakers, brands, and production teams.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
+  <!-- DIVIDER -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
     <div class="w-16 h-[2px] bg-orange-deep"></div>
   </div>
 
-  <!-- CTA SECTION -->
+  <!-- CTA -->
   <section class="py-24 bg-[#f7f7f7] fade-up">
     <div class="max-w-4xl mx-auto text-center px-6">
       <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
         <span class="block w-12 h-[3px] bg-orange-deep mb-4 mx-auto"></span>
         What are you in the Mood for?
       </h2>
-      <p class="text-xl text-gray-700 mb-10 leading-relaxed">
-        Moodboard Media collaborates with brands, organisations and filmmakers to bring creative visions to life through film, strategy and storytelling.
-      </p>
-      <a href="contact.html" class="inline-block bg-orange-deep text-white px-10 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300">
-        Start a Conversation →
-      </a>
+      <p class="text-xl text-gray-700 mb-10 leading-relaxed">Moodboard Media collaborates with brands, organisations and filmmakers to bring creative visions to life through film, strategy and storytelling.</p>
+      <a href="contact.html" class="inline-block bg-orange-deep text-white px-10 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300">Start a Conversation →</a>
     </div>
   </section>
 
-  <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
+  <!-- DIVIDER -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
@@ -546,7 +430,7 @@
   <footer class="bg-[#111] text-white py-16">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-center md:text-left">
+        <div>
           <h3 class="text-2xl font-serif-display mb-2">Moodboard Media</h3>
           <p class="text-gray-400 text-sm">© 2026 Moodboard Media. All rights reserved.</p>
         </div>
@@ -556,126 +440,45 @@
           <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
         </div>
       </div>
-      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-xs">
-        cinematic storytelling · film ecosystem · creativity
-      </div>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script>
     (function() {
-      // ===== UNMUTE BUTTON FUNCTIONALITY =====
+      // Unmute button
       const video = document.getElementById('introVideo');
       const unmuteBtn = document.getElementById('unmuteBtn');
-
       if (video && unmuteBtn) {
         unmuteBtn.addEventListener('click', function() {
-          if (video.muted) {
-            video.muted = false;
-            video.volume = 1.0;
-            video.play();
-            this.innerHTML = '🔇 Mute';
-            this.style.animation = 'none';
-          } else {
-            video.muted = true;
-            this.innerHTML = '🔊 Sound On';
-            this.style.animation = 'subtlePulse 2s infinite';
-          }
+          video.muted = !video.muted;
+          this.innerHTML = video.muted ? '🔊 Sound On' : '🔇 Mute';
         });
       }
 
-      // ===== MOBILE SIDEBAR TOGGLE =====
+      // Mobile sidebar
       const menuToggle = document.getElementById("menuToggle");
       const sidebar = document.getElementById("sidebar");
       const sidebarClose = document.getElementById("sidebarClose");
-
       if (menuToggle && sidebar) {
-        menuToggle.addEventListener("click", () => {
-          sidebar.classList.toggle("active");
-        });
+        menuToggle.addEventListener("click", () => sidebar.classList.toggle("active"));
       }
-
       if (sidebarClose && sidebar) {
-        sidebarClose.addEventListener("click", () => {
-          sidebar.classList.remove("active");
-        });
+        sidebarClose.addEventListener("click", () => sidebar.classList.remove("active"));
       }
 
-      // Close sidebar when clicking a link
-      document.querySelectorAll('.sidebar-links a').forEach(link => {
-        link.addEventListener('click', () => {
-          sidebar.classList.remove('active');
-        });
-      });
-
-      // ===== NAVBAR SCROLL EFFECT =====
-      const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          navbar.classList.add('bg-[#f7f7f7]/95', 'shadow-md');
-          navbar.classList.remove('bg-[#f7f7f7]/90');
-        } else {
-          navbar.classList.remove('bg-[#f7f7f7]/95', 'shadow-md');
-          navbar.classList.add('bg-[#f7f7f7]/90');
-        }
-      });
-
-      // ===== FADE-UP OBSERVER =====
-      const faders = document.querySelectorAll('.fade-up');
-      const appearOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
-      const appearOnScroll = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        });
-      }, appearOptions);
-      faders.forEach(fader => appearOnScroll.observe(fader));
-
-      // ===== MEDIA SLIDESHOW SYSTEM =====
-      function startSlideshow(containerId, interval = 5000) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-
-        const slides = container.querySelectorAll('.slideshow-image');
-        if (slides.length === 0) return;
-        
-        let current = 0;
-
-        function showSlide(index) {
-          slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            
-            // Reset videos when hidden
-            const iframe = slide.querySelector('iframe');
-            if (iframe && i !== index) {
-              const src = iframe.src;
-              iframe.src = src;
-            }
-          });
-
-          slides[index].classList.add('active');
-        }
-
-        showSlide(0);
-        
-        setInterval(() => {
-          current = (current + 1) % slides.length;
-          showSlide(current);
-        }, interval);
-      }
-
-      // ===== DOT NAVIGATION SYSTEM – no titles update (titles removed) =====
-      function initDotNavigation(containerId, dotsId) {
+      // Slideshow functions
+      function initSlideshow(containerId, dotsId) {
         const container = document.getElementById(containerId);
         if (!container) return;
         
         const slides = container.querySelectorAll('.slideshow-image');
         const dotsContainer = document.getElementById(dotsId);
-        
-        if (!dotsContainer) return;
+        if (!dotsContainer || slides.length === 0) return;
 
+        let currentIndex = 0;
+        let interval;
+
+        // Create dots
         dotsContainer.innerHTML = '';
         for (let i = 0; i < slides.length; i++) {
           const dot = document.createElement('span');
@@ -684,37 +487,57 @@
           dot.addEventListener('click', (e) => {
             e.stopPropagation();
             const idx = parseInt(e.target.dataset.index);
-            
-            slides.forEach((slide, i) => {
-              slide.classList.remove('active');
-              const iframe = slide.querySelector('iframe');
-              if (iframe && i !== idx) {
-                const src = iframe.src;
-                iframe.src = src;
-              }
-            });
-            slides[idx].classList.add('active');
-            
-            dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
-              d.classList.toggle('active', i === idx);
-            });
-            
-            // No title/desc update – we removed those elements
+            showSlide(idx);
+            resetInterval();
           });
           dotsContainer.appendChild(dot);
         }
+
+        function showSlide(index) {
+          slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            // Reset iframe src to stop video when not active
+            const iframe = slide.querySelector('iframe');
+            if (iframe && i !== index) {
+              const src = iframe.src.split('?')[0];
+              iframe.src = src + '?autoplay=1&mute=1&loop=1&playlist=' + getYouTubeId(src);
+            }
+          });
+          slides[index].classList.add('active');
+          
+          // Update dots
+          dotsContainer.querySelectorAll('.dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+          });
+          
+          currentIndex = index;
+        }
+
+        function getYouTubeId(url) {
+          const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=))([^?&]+)/);
+          return match ? match[1] : '';
+        }
+
+        function nextSlide() {
+          currentIndex = (currentIndex + 1) % slides.length;
+          showSlide(currentIndex);
+        }
+
+        function resetInterval() {
+          if (interval) clearInterval(interval);
+          interval = setInterval(nextSlide, 5000);
+        }
+
+        showSlide(0);
+        resetInterval();
       }
 
-      // ===== INITIALIZE (no slide data needed) =====
-      startSlideshow("agencySlideshow", 4500);
-      startSlideshow("trailblazersSlideshow", 6000);
-      startSlideshow("lesegoSlideshow", 5500);
+      // Initialize all slideshows
+      initSlideshow('agencySlideshow', 'agencyDots');
+      initSlideshow('trailblazersSlideshow', 'trailblazersDots');
+      initSlideshow('lesegoSlideshow', 'lesegoDots');
 
-      initDotNavigation("agencySlideshow", "agencyDots");
-      initDotNavigation("trailblazersSlideshow", "trailblazersDots");
-      initDotNavigation("lesegoSlideshow", "lesegoDots");
-
-      // ===== EXPANDABLE PANELS =====
+      // Expandable panels
       document.querySelectorAll('.expand-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const targetId = btn.dataset.target;
@@ -726,6 +549,15 @@
           }
         });
       });
+
+      // Fade-up
+      const faders = document.querySelectorAll('.fade-up');
+      const appearOnScroll = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('show');
+        });
+      }, { threshold: 0.15 });
+      faders.forEach(fader => appearOnScroll.observe(fader));
     })();
   </script>
 </body>
