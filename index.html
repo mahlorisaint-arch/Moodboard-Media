@@ -15,12 +15,19 @@
     .text-orange-deep { color: #d05e00; }
     .border-orange-deep { border-color: #d05e00; }
     
+    /* micro‑interactions */
     .hover-lift {
       transition: transform 0.25s ease, box-shadow 0.3s ease;
     }
     .hover-lift:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15), 0 0 0 2px rgba(208,94,0,0.2);
+    }
+    
+    /* contact card hover with orange glow */
+    .contact-card:hover {
+      border-color: #d05e00;
+      box-shadow: 0 20px 40px -10px rgba(208,94,0,0.35);
     }
     
     .fade-up {
@@ -30,6 +37,7 @@
     }
     .fade-up.show { opacity: 1; transform: translateY(0); }
     
+    /* expanded panel animation */
     .expand-panel {
       max-height: 0;
       opacity: 0;
@@ -42,6 +50,7 @@
       margin-top: 3rem;
     }
     
+    /* ===== CINEMATIC SLIDESHOW ===== */
     .slideshow-container {
       position: relative;
       width: 100%;
@@ -68,6 +77,7 @@
       border: 0;
       border-radius: 1rem;
     }
+    /* cinematic overlay with orange gradient */
     .slideshow-overlay {
       position: absolute;
       bottom: 0;
@@ -95,6 +105,7 @@
     }
     .dot.active { background: #d05e00; transform: scale(1.3); }
     
+    /* ===== CINEMATIC HERO with orange gradient ===== */
     .hero {
       position: relative;
       height: 100vh;
@@ -105,6 +116,7 @@
       overflow: hidden;
       background: black;
     }
+
     .hero video {
       position: absolute;
       top: 0;
@@ -114,12 +126,18 @@
       object-fit: cover;
       z-index: 0;
     }
+
     .hero-overlay {
       position: absolute;
-      top:0; left:0; width:100%; height:100%;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
       background: linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.4), rgba(208,94,0,0.3));
       z-index:1;
     }
+    
+    /* film grain overlay */
     .hero::after {
       content: '';
       position: absolute;
@@ -129,6 +147,7 @@
       pointer-events: none;
       z-index: 2;
     }
+    /* soft vignette */
     .hero::before {
       content: '';
       position: absolute;
@@ -137,6 +156,8 @@
       pointer-events: none;
       z-index: 2;
     }
+
+    /* ===== UNMUTE BUTTON - Premium styling ===== */
     .unmute-btn {
       position: absolute;
       bottom: 30px;
@@ -144,7 +165,7 @@
       padding: 10px 16px;
       background: rgba(0, 0, 0, 0.5);
       color: white;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 20px;
       font-size: 12px;
       letter-spacing: 1px;
@@ -154,16 +175,20 @@
       z-index: 30;
       animation: subtlePulse 2s infinite;
     }
+
     .unmute-btn:hover {
       background: rgba(0, 0, 0, 0.7);
       border-color: rgba(208, 94, 0, 0.5);
       transform: scale(1.05);
     }
+
     @keyframes subtlePulse {
       0% { transform: scale(1); opacity: 0.8; }
       50% { transform: scale(1.03); opacity: 1; }
       100% { transform: scale(1); opacity: 0.8; }
     }
+
+    /* ===== MOBILE SIDEBAR ===== */
     .sidebar {
       position: fixed;
       top: 0;
@@ -176,7 +201,11 @@
       padding: 2rem;
       box-shadow: 2px 0 10px rgba(0,0,0,0.1);
     }
-    .sidebar.active { left: 0; }
+
+    .sidebar.active {
+      left: 0;
+    }
+
     .menu-button {
       font-size: 28px;
       background: none;
@@ -185,16 +214,23 @@
       display: none;
       color: #111;
     }
+
     @media(max-width: 768px) {
-      .menu-button { display: block; }
-      .nav-links { display: none; }
+      .menu-button {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+      }
     }
+
     .sidebar-links {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
       margin-top: 3rem;
     }
+
     .sidebar-links a {
       color: #111;
       text-decoration: none;
@@ -202,7 +238,11 @@
       font-weight: 500;
       transition: color 0.2s;
     }
-    .sidebar-links a:hover { color: #d05e00; }
+
+    .sidebar-links a:hover {
+      color: #d05e00;
+    }
+
     .sidebar-close {
       position: absolute;
       top: 1rem;
@@ -215,6 +255,7 @@
 </head>
 <body class="antialiased text-[#111]">
 
+  <!-- Orange Top Border (Elite Touch) -->
   <div class="w-full h-[2px] bg-orange-deep fixed top-0 z-[60]"></div>
 
   <!-- MOBILE SIDEBAR -->
@@ -240,16 +281,20 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- ===== CINEMATIC HERO with intro video and UNMUTE BUTTON ===== -->
   <section class="hero">
     <video id="introVideo" autoplay muted loop playsinline>
       <source src="video/web-introduction.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
-    <button id="unmuteBtn" class="unmute-btn">🔊 Sound On</button>
+    
+    <!-- Premium Unmute Button -->
+    <button id="unmuteBtn" class="unmute-btn">
+      🔊 Sound On
+    </button>
   </section>
 
-  <!-- DIVIDER -->
+  <!-- ORANGE CINEMATIC DIVIDER -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
@@ -259,38 +304,55 @@
   <!-- ========== SECTION 1 – CREATIVE AGENCY ========== -->
   <section class="py-24 bg-[#f7f7f7] fade-up" id="agency">
     <div class="max-w-7xl mx-auto px-6">
+      <!-- main card / intro -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- slideshow - NOW 4 SLIDES ONLY (removed slide 5) -->
+        <!-- slideshow - UPDATED: 5 slides, video first, reordered, titles/texts removed -->
         <div class="slideshow-container hover-lift" id="agencySlideshow">
-          <!-- Slide 1: Video -->
+          <!-- Slide 1: New Video -->
           <div class="slideshow-image active">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/b5W6thxKe0M?si=cMmrBr8jcVlJi_vq" title="Creative Agency video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="100%"
+              src="https://www.youtube.com/embed/b5W6thxKe0M"
+              title="Creative Agency Showcase"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <!-- Slide 2: was slide1 -->
+          <!-- Slide 2: Old Slide 1 -->
           <img src="creative-agency-images/event-production.JPG" class="slideshow-image" alt="Event Production">
-          <!-- Slide 3: was slide2 -->
+          <!-- Slide 3: Old Slide 2 -->
           <img src="creative-agency-images/social-campaign.JPG" class="slideshow-image" alt="Social Media Campaign">
-          <!-- Slide 4: was slide5 (bts-production) - this is now the LAST slide -->
+          <!-- Slide 4: Old Slide 5 -->
           <img src="creative-agency-images/bts-production.JPG" class="slideshow-image" alt="Behind the Scenes">
-          <!-- Slide 5 (content-strategy.jpg) REMOVED as requested -->
+          <!-- Slide 5: Old Slide 6 -->
+          <img src="creative-agency-images/content-strategy.jpg" class="slideshow-image" alt="Content Strategy">
           
-          <div class="slideshow-overlay">
+          <!-- cinematic overlay - titles/texts removed, dots kept -->
+          <div class="slideshow-overlay" id="agencyOverlay">
             <div class="flex items-center justify-between w-full mt-2">
               <div class="slideshow-dots" id="agencyDots"></div>
             </div>
           </div>
         </div>
-        <!-- text + button -->
+        <!-- text + button with orange accent heading -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
             Creative Agency
           </h2>
-          <p class="text-lg text-gray-700 mb-6 leading-relaxed">Moodboard Media is a creative agency dedicated to helping brands, organisations, and entrepreneurs translate ideas into powerful visual storytelling.</p>
-          <p class="text-lg text-gray-700 mb-8 leading-relaxed">Our work blends strategic thinking with cinematic storytelling to deliver visuals that are both impactful and culturally relevant.</p>
-          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="agencyExpand">Creative Services <span>↓</span></button>
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            Moodboard Media is a creative agency dedicated to helping brands, organisations, and entrepreneurs translate ideas into powerful visual storytelling.
+          </p>
+          <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+            Our work blends strategic thinking with cinematic storytelling to deliver visuals that are both impactful and culturally relevant.
+          </p>
+          <!-- ✅ UPDATED BUTTON: Creative Services (was Explore Work) -->
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="agencyExpand">
+            Creative Services <span>↓</span>
+          </button>
         </div>
       </div>
+      <!-- EXPANDABLE GRID - CLIENT'S EXACT SERVICE LIST -->
       <div id="agencyExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl">
           <h3 class="text-2xl font-serif-display mb-8 text-center">Creative Services</h3>
@@ -308,7 +370,7 @@
     </div>
   </section>
 
-  <!-- DIVIDER -->
+  <!-- ORANGE CINEMATIC DIVIDER -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
@@ -316,55 +378,77 @@
   </div>
 
   <!-- ========== SECTION 2 – FEMALE FILM TRAILBLAZERS ========== -->
+  <!-- ✅ LAYOUT FIXED: Slideshow first, text second (matches other sections for mobile button positioning) -->
   <section class="py-24 bg-[#f7f7f7] fade-up" id="trailblazers">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: text with button NOW AT BOTTOM exactly like other sections -->
-        <div class="flex flex-col h-full">
-          <div>
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
-              <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
-              Female Film Trailblazers
-            </h2>
-            <p class="text-lg text-gray-700 mb-4 leading-relaxed">Female Film Trailblazers is an initiative created to bridge the gap between emerging and experienced female filmmakers.</p>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">This platform offers industry information, networking, and community within the film and television industry for women.</p>
-          </div>
-          <!-- Button now at bottom of text column (like Creative Agency and Lesego_Says) -->
-          <div class="mt-auto">
-            <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="trailblazersExpand">Explore Initiative <span>↓</span></button>
-          </div>
-        </div>
-        <!-- right: slideshow -->
+        <!-- ✅ SLIDESHOW FIRST (was second) - fixes mobile button positioning -->
         <div class="slideshow-container hover-lift" id="trailblazersSlideshow">
-          <!-- Slide 1: Video (was slide6) -->
+          <!-- Slide 1: Old Slide 6 with NEW VIDEO (titles/texts removed) -->
           <div class="slideshow-image active">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/hj-WzcgYJN0" title="Trailblazers video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="100%"
+              src="https://www.youtube.com/embed/hj-WzcgYJN0"
+              title="Female Film Trailblazers Short"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <!-- Slide 2: original slide1 -->
+          <!-- Slide 2: Old Slide 1 -->
           <img src="images-trailblazers/film-trailblazzers-slideshow-1.JPG" class="slideshow-image" alt="Trailblazers Event">
-          <!-- Slide 3: original slide2 -->
+          <!-- Slide 3: Old Slide 2 -->
           <img src="images-trailblazers/film-trailblazers-slideshow-2.png" class="slideshow-image" alt="Trailblazers Panel">
-          <!-- Slide 4: original slide4 -->
+          <!-- Slide 4: Old Slide 3 (Video) -->
+          <div class="slideshow-image">
+            <iframe width="100%" height="100%"
+              src="https://www.youtube.com/embed/bps0YfMwSRU"
+              title="Podcast Interview"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <!-- Slide 5: Old Slide 4 -->
           <img src="images-trailblazers/film-trailblazzers-slideshow-4.png" class="slideshow-image" alt="Trailblazers Podcast">
-          <!-- Slide 5: original slide5 -->
+          <!-- Slide 6: Old Slide 5 -->
           <img src="images-trailblazers/film-trailblazzers-slideshow-5.jpg" class="slideshow-image" alt="Trailblazers Networking">
           
-          <div class="slideshow-overlay">
+          <!-- ✅ OVERLAY: titles/texts removed, dots kept -->
+          <div class="slideshow-overlay" id="trailblazersOverlay">
             <div class="flex items-center justify-between w-full mt-2">
               <div class="slideshow-dots" id="trailblazersDots"></div>
             </div>
           </div>
         </div>
+        <!-- ✅ TEXT SECOND (was first) - button now appears at bottom on mobile -->
+        <div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
+            <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
+            Female Film Trailblazers
+          </h2>
+          <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Female Film Trailblazers is an initiative created to bridge the gap between emerging and experienced female filmmakers.
+          </p>
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            This platform offers industry information, networking, and community within the film and television industry for women.
+          </p>
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="trailblazersExpand">
+            Explore Initiative <span>↓</span>
+          </button>
+        </div>
       </div>
+      <!-- EXPANDABLE - EXACT SERVICE LINE ONLY -->
       <div id="trailblazersExpand" class="expand-panel">
         <div class="bg-white p-10 rounded-3xl">
-          <p class="text-gray-700 text-center text-lg">Curated conversation experiences, webinars, and annual industry events.</p>
+          <p class="text-gray-700 text-center text-lg">
+            Curated conversation experiences, webinars, and annual industry events.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DIVIDER -->
+  <!-- ORANGE CINEMATIC DIVIDER -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
@@ -375,38 +459,50 @@
   <section class="py-24 bg-[#f7f7f7] fade-up" id="lesego">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: slideshow -->
+        <!-- left: slideshow - UPDATED: reordered, new video first, titles/texts removed -->
         <div class="slideshow-container hover-lift" id="lesegoSlideshow">
-          <!-- Slide 1: Video (was slide4) -->
+          <!-- Slide 1: Old Slide 4 with NEW VIDEO -->
           <div class="slideshow-image active">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Gq99Vq9uOW4" title="Lesego Says video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="100%"
+              src="https://www.youtube.com/embed/Gq99Vq9uOW4"
+              title="Lesego Says Short"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <!-- Slide 2: original slide1 -->
+          <!-- Slide 2: Old Slide 1 -->
           <img src="lesego-says-images/lesego-soke-behind-the-scenes.png" class="slideshow-image" alt="Behind the Scenes">
-          <!-- Slide 3: original slide2 -->
+          <!-- Slide 3: Old Slide 2 -->
           <img src="lesego-says-images/lesego-soke-story-development.png" class="slideshow-image" alt="Story Development">
-          <!-- Slide 4: original slide3 -->
+          <!-- Slide 4: Old Slide 3 -->
           <img src="lesego-says-images/script-development-3.JPG" class="slideshow-image" alt="Script Development">
           
-          <div class="slideshow-overlay">
+          <!-- ✅ OVERLAY: titles/texts removed, dots kept -->
+          <div class="slideshow-overlay" id="lesegoOverlay">
             <div class="flex items-center justify-between w-full mt-2">
               <div class="slideshow-dots" id="lesegoDots"></div>
             </div>
           </div>
         </div>
-        <!-- right: text -->
+        <!-- right: text with orange accent - LESEGO_SAYS -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
             Lesego_Says
           </h2>
-          <p class="text-lg text-gray-700 mb-6 leading-relaxed">“Lesego_Says” is a creative insight platform where producer and storyteller Lesego Soke shares her experience in storytelling, creative producing, and narrative development. Through consulting, script editing, and story development, Lesego collaborates with filmmakers, brands, and production teams to strengthen narratives and bring powerful stories to life.</p>
-          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="lesegoExpand">Explore Insights <span>↓</span></button>
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            "Lesego_Says" is a creative insight platform where producer and storyteller Lesego Soke shares her experience in storytelling, creative producing, and narrative development. Through consulting, script editing, and story development, Lesego collaborates with filmmakers, brands, and production teams to strengthen narratives and bring powerful stories to life.
+          </p>
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="lesegoExpand">
+            Explore Insights <span>↓</span>
+          </button>
         </div>
       </div>
-      <!-- EXPANDABLE with UPDATED BULLETS -->
+      <!-- EXPANDABLE - LESEGO_SAYS (UPDATED bullets) -->
       <div id="lesegoExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl space-y-8">
+          <!-- Professional Highlights - ✅ UPDATED LAST TWO BULLETS -->
           <div>
             <h3 class="text-2xl font-bold font-serif-display mb-3">Professional Highlights</h3>
             <ul class="text-gray-700 space-y-1 list-disc list-inside">
@@ -415,10 +511,13 @@
               <li>International production credit - Creative Producer — <strong>Mabaso Family Reunion</strong> (Netflix)</li>
             </ul>
           </div>
+          <!-- Bio + additional -->
           <div class="grid md:grid-cols-2 gap-8">
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">About Lesego Soke</h3>
-              <p class="text-gray-700 leading-relaxed mb-6">Lesego Soke is a creative producer, storyteller, and founder of Moodboard Media. Her work focuses on developing meaningful narratives, shaping visual identities, and producing content that connects deeply with audiences across film, media, and brand storytelling.</p>
+              <p class="text-gray-700 leading-relaxed mb-6">
+                Lesego Soke is a creative producer, storyteller, and founder of Moodboard Media. Her work focuses on developing meaningful narratives, shaping visual identities, and producing content that connects deeply with audiences across film, media, and brand storytelling.
+              </p>
             </div>
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">Creative Services</h3>
@@ -439,26 +538,30 @@
     </div>
   </section>
 
-  <!-- DIVIDER -->
+  <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
     <div class="w-16 h-[2px] bg-orange-deep"></div>
   </div>
 
-  <!-- CTA -->
+  <!-- CTA SECTION - WITH UPDATED TAGLINE -->
   <section class="py-24 bg-[#f7f7f7] fade-up">
     <div class="max-w-4xl mx-auto text-center px-6">
       <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
         <span class="block w-12 h-[3px] bg-orange-deep mb-4 mx-auto"></span>
         What are you in the Mood for?
       </h2>
-      <p class="text-xl text-gray-700 mb-10 leading-relaxed">Moodboard Media collaborates with brands, organisations and filmmakers to bring creative visions to life through film, strategy and storytelling.</p>
-      <a href="contact.html" class="inline-block bg-orange-deep text-white px-10 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300">Start a Conversation →</a>
+      <p class="text-xl text-gray-700 mb-10 leading-relaxed">
+        Moodboard Media collaborates with brands, organisations and filmmakers to bring creative visions to life through film, strategy and storytelling.
+      </p>
+      <a href="contact.html" class="inline-block bg-orange-deep text-white px-10 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300">
+        Start a Conversation →
+      </a>
     </div>
   </section>
 
-  <!-- DIVIDER -->
+  <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
@@ -479,15 +582,19 @@
           <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
         </div>
       </div>
-      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-xs">cinematic storytelling · film ecosystem · creativity</div>
+      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-xs">
+        cinematic storytelling · film ecosystem · creativity
+      </div>
     </div>
   </footer>
 
+  <!-- SCRIPTS -->
   <script>
     (function() {
-      // Unmute button
+      // ===== UNMUTE BUTTON FUNCTIONALITY =====
       const video = document.getElementById('introVideo');
       const unmuteBtn = document.getElementById('unmuteBtn');
+
       if (video && unmuteBtn) {
         unmuteBtn.addEventListener('click', function() {
           if (video.muted) {
@@ -504,21 +611,31 @@
         });
       }
 
-      // Mobile sidebar
+      // ===== MOBILE SIDEBAR TOGGLE =====
       const menuToggle = document.getElementById("menuToggle");
       const sidebar = document.getElementById("sidebar");
       const sidebarClose = document.getElementById("sidebarClose");
+
       if (menuToggle && sidebar) {
-        menuToggle.addEventListener("click", () => sidebar.classList.toggle("active"));
+        menuToggle.addEventListener("click", () => {
+          sidebar.classList.toggle("active");
+        });
       }
+
       if (sidebarClose && sidebar) {
-        sidebarClose.addEventListener("click", () => sidebar.classList.remove("active"));
+        sidebarClose.addEventListener("click", () => {
+          sidebar.classList.remove("active");
+        });
       }
+
+      // Close sidebar when clicking a link
       document.querySelectorAll('.sidebar-links a').forEach(link => {
-        link.addEventListener('click', () => sidebar.classList.remove('active'));
+        link.addEventListener('click', () => {
+          sidebar.classList.remove('active');
+        });
       });
 
-      // Navbar scroll
+      // ===== NAVBAR SCROLL EFFECT =====
       const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -530,7 +647,7 @@
         }
       });
 
-      // Fade-up
+      // ===== FADE-UP OBSERVER =====
       const faders = document.querySelectorAll('.fade-up');
       const appearOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
       const appearOnScroll = new IntersectionObserver((entries, observer) => {
@@ -542,37 +659,51 @@
       }, appearOptions);
       faders.forEach(fader => appearOnScroll.observe(fader));
 
-      // Slideshow functions
+      // ===== MEDIA SLIDESHOW SYSTEM =====
       function startSlideshow(containerId, interval = 5000) {
         const container = document.getElementById(containerId);
         if (!container) return;
+
         const slides = container.querySelectorAll('.slideshow-image');
         if (slides.length === 0) return;
+        
         let current = 0;
+
         function showSlide(index) {
           slides.forEach((slide, i) => {
             slide.classList.remove('active');
+            
+            // Reset videos when hidden
             const iframe = slide.querySelector('iframe');
             if (iframe && i !== index) {
               const src = iframe.src;
               iframe.src = src;
             }
           });
+
           slides[index].classList.add('active');
         }
+
         showSlide(0);
+        
         setInterval(() => {
           current = (current + 1) % slides.length;
           showSlide(current);
         }, interval);
       }
 
-      function initDotNavigation(containerId, dotsId) {
+      // ===== DOT NAVIGATION SYSTEM =====
+      function initDotNavigation(containerId, dotsId, overlayTitleId, overlayDescId, slideData) {
         const container = document.getElementById(containerId);
         if (!container) return;
+        
         const slides = container.querySelectorAll('.slideshow-image');
         const dotsContainer = document.getElementById(dotsId);
+        const titleEl = document.getElementById(overlayTitleId);
+        const descEl = document.getElementById(overlayDescId);
+        
         if (!dotsContainer) return;
+
         dotsContainer.innerHTML = '';
         for (let i = 0; i < slides.length; i++) {
           const dot = document.createElement('span');
@@ -581,6 +712,7 @@
           dot.addEventListener('click', (e) => {
             e.stopPropagation();
             const idx = parseInt(e.target.dataset.index);
+            
             slides.forEach((slide, i) => {
               slide.classList.remove('active');
               const iframe = slide.querySelector('iframe');
@@ -590,23 +722,55 @@
               }
             });
             slides[idx].classList.add('active');
+            
             dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
               d.classList.toggle('active', i === idx);
             });
+            
+            if (titleEl && slideData && slideData[idx]) {
+              titleEl.innerText = slideData[idx].title;
+              descEl.innerText = slideData[idx].desc;
+            }
           });
           dotsContainer.appendChild(dot);
         }
       }
 
-      // Initialize
+      // ===== SLIDE DATA - UPDATED FOR NEW SLIDE ORDERS/COUNTS =====
+      const agencySlides = [
+        { title: '', desc: '' },
+        { title: '', desc: '' },
+        { title: '', desc: '' },
+        { title: '', desc: '' },
+        { title: '', desc: '' }
+      ];
+
+      const trailblazersSlides = [
+        { title: '', desc: '' },
+        { title: '', desc: '' },
+        { title: '', desc: '' },
+        { title: '', desc: '' },
+        { title: '', desc: '' },
+        { title: '', desc: '' }
+      ];
+
+      const lesegoSlides = [
+        { title: '', desc: '' },
+        { title: '', desc: '' },
+        { title: '', desc: '' },
+        { title: '', desc: '' }
+      ];
+
+      // ===== INITIALIZE =====
       startSlideshow("agencySlideshow", 4500);
       startSlideshow("trailblazersSlideshow", 6000);
       startSlideshow("lesegoSlideshow", 5500);
-      initDotNavigation("agencySlideshow", "agencyDots");
-      initDotNavigation("trailblazersSlideshow", "trailblazersDots");
-      initDotNavigation("lesegoSlideshow", "lesegoDots");
 
-      // Expandable panels
+      initDotNavigation("agencySlideshow", "agencyDots", "agencySlideTitle", "agencySlideDesc", agencySlides);
+      initDotNavigation("trailblazersSlideshow", "trailblazersDots", "trailblazersSlideTitle", "trailblazersSlideDesc", trailblazersSlides);
+      initDotNavigation("lesegoSlideshow", "lesegoDots", "lesegoSlideTitle", "lesegoSlideDesc", lesegoSlides);
+
+      // ===== EXPANDABLE PANELS =====
       document.querySelectorAll('.expand-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const targetId = btn.dataset.target;
