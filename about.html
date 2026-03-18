@@ -1,622 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moodboard Media — About</title>
-  <!-- Tailwind + fonts + base styles (same as index) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
-    h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
-    .bg-orange-deep { background-color: #d05e00; }
-    .text-orange-deep { color: #d05e00; }
-    .border-orange-deep { border-color: #d05e00; }
-    .hover\:bg-orange-deep:hover { background-color: #d05e00; }
-    .hover\:text-orange-deep:hover { color: #d05e00; }
-    
-    /* micro‑interactions & cinematic reveal */
-    .hover-lift {
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
-    }
-    .hover-lift:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15), 0 0 0 2px rgba(208,94,0,0.2);
-    }
-    
-    .contact-card:hover {
-      border-color: #d05e00;
-      box-shadow: 0 20px 40px -10px rgba(208,94,0,0.35);
-    }
-    
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
-    }
-    .fade-up.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* hero overlay & parallax hint */
-    .hero-overlay {
-      background: linear-gradient(135deg, rgba(17,17,17,0.7) 0%, rgba(208,94,0,0.3) 100%);
-    }
-    /* subtle film grain simulation */
-    .grain::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wNCIgLz48L3N2Zz4=');
-      pointer-events: none;
-      opacity: 0.15;
-      mix-blend-mode: multiply;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moodboard Media — About</title>
+<!-- Preload Fonts for Performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
+.bg-orange-deep { background-color: #d05e00; }
+.text-orange-deep { color: #d05e00; }
+.border-orange-deep { border-color: #d05e00; }
 
-    /* section divider animation */
-    .section-divider {
-      width: 60px;
-      height: 4px;
-      background: #d05e00;
-      border-radius: 3px;
-      margin-top: 12px;
-      margin-bottom: 24px;
-    }
+/* Micro-interactions */
+.hover-lift { transition: transform 0.25s ease, box-shadow 0.3s ease; }
+.hover-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15), 0 0 0 2px rgba(208,94,0,0.2); }
+.hover-glow { transition: all 0.3s ease; }
+.hover-glow:hover { border-color: #d05e00; box-shadow: 0 20px 40px -10px rgba(208,94,0,0.35); }
 
-    /* mobile menu styles */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: white;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      transition: opacity 0.3s ease;
-    }
+/* Animations */
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s ease; }
+.fade-up.show { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-60px); transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+.reveal-right { opacity: 0; transform: translateX(60px); transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+.reveal-up { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+.reveal-visible { opacity: 1; transform: translate(0,0); }
+.stagger-item { opacity: 0; transform: translateY(40px); transition: all 0.7s ease; }
+.stagger-item.visible { opacity: 1; transform: translateY(0); }
 
-    .mobile-menu.hidden {
-      display: none;
-    }
+/* Hero & Background */
+.hero-bg { transform: scale(1.1); animation: slowZoom 20s ease-in-out infinite alternate; will-change: transform; }
+@keyframes slowZoom { 0% { transform: scale(1.08); } 100% { transform: scale(1.18); } }
+.hero-overlay { background: linear-gradient(135deg, rgba(17,17,17,0.7) 0%, rgba(208,94,0,0.3) 100%); }
+.grain::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wNCIgLz48L3N2Zz4='); pointer-events: none; opacity: 0.15; mix-blend-mode: multiply; }
 
-    .mobile-menu a {
-      font-size: 1.5rem;
-      color: #111;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
+/* Sidebar (Unified with Index) */
+.sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100vh; background: white; transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; padding: 2rem; box-shadow: 4px 0 24px rgba(0,0,0,0.12); }
+.sidebar.active { left: 0; }
+.sidebar-close { position: absolute; top: 1.25rem; right: 1.25rem; font-size: 1.5rem; cursor: pointer; color: #666; padding: 0.25rem; }
+.sidebar-links { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3rem; }
+.sidebar-links a { color: #111; text-decoration: none; font-size: 1.2rem; font-weight: 500; transition: color 0.2s; }
+.sidebar-links a:hover { color: #d05e00; }
+.menu-button { font-size: 28px; background: none; border: none; cursor: pointer; display: none; color: #111; }
+@media(max-width: 768px) { .menu-button { display: block; } .nav-links { display: none; } }
 
-    .mobile-menu a:hover {
-      color: #d05e00;
-    }
-
-    .mobile-menu-close {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      font-size: 2rem;
-      cursor: pointer;
-      color: #666;
-    }
-
-    /* CINEMATIC HERO BACKGROUND */
-    .hero-bg {
-      transform: scale(1.1);
-      animation: slowZoom 20s ease-in-out infinite alternate;
-      will-change: transform;
-    }
-
-    @keyframes slowZoom {
-      0% { transform: scale(1.08); }
-      100% { transform: scale(1.18); }
-    }
-
-    /* hero title animation */
-    .hero-title {
-      animation: heroFade 1.2s ease forwards;
-    }
-
-    @keyframes heroFade {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* CINEMATIC SCROLL ANIMATIONS */
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-60px);
-      transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
-    }
-
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(60px);
-      transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
-    }
-
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
-    }
-
-    .reveal-visible {
-      opacity: 1;
-      transform: translate(0,0);
-    }
-
-    /* STAGGER CARD ANIMATION */
-    .stagger-item {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.7s ease;
-    }
-
-    .stagger-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* IMAGE CONTAINERS */
-    .image-container {
-      position: relative;
-      width: 100%;
-      min-height: 400px;
-      overflow: hidden;
-      border-radius: 1rem;
-      background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
-    }
-
-    .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .portrait-container {
-      position: relative;
-      width: 100%;
-      min-height: 500px;
-      overflow: hidden;
-      border-radius: 1rem;
-      background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
-    }
-
-    .portrait-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* MAGNETIC HOVER BUTTONS */
-    .magnetic-btn {
-      transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      will-change: transform;
-      display: inline-block;
-      position: relative;
-    }
-    
-    /* HOVER GLOW EFFECT */
-    .hover-glow {
-      transition: all 0.3s ease;
-    }
-    .hover-glow:hover {
-      border-color: #d05e00;
-      box-shadow: 0 20px 40px -10px rgba(208,94,0,0.35);
-    }
-    
-    /* CINEMATIC DIVIDER STYLES */
-    .cinematic-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .cinematic-divider .line {
-      width: 80px;
-      height: 2px;
-      background-color: #d05e00;
-    }
-    .cinematic-divider .diamond {
-      width: 12px;
-      height: 12px;
-      background-color: #d05e00;
-      margin: 0 20px;
-      transform: rotate(45deg);
-    }
-  </style>
+/* Containers */
+.image-container, .portrait-container { position: relative; width: 100%; min-height: 400px; overflow: hidden; border-radius: 1rem; background: linear-gradient(45deg, #1a1a1a, #2c2c2c); }
+.image-container img, .portrait-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media(max-width: 768px) { .image-container, .portrait-container { min-height: 300px; } }
+</style>
 </head>
 <body class="antialiased text-[#111]">
+<!-- Orange Top Border -->
+<div class="w-full h-[2px] bg-orange-deep fixed top-0 z-[60]"></div>
 
-  <!-- Orange Top Border (Elite Touch) -->
-  <div class="w-full h-[2px] bg-orange-deep fixed top-0 z-[60]"></div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="mobile-menu hidden">
-    <div class="mobile-menu-close" id="closeMenu">✕</div>
+<!-- UNIFIED MOBILE SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-close" id="sidebarClose" aria-label="Close menu">✕</div>
+  <div class="sidebar-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
+</div>
 
-  <!-- STICKY NAVBAR (identical to index) -->
-  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-semibold tracking-tight font-serif-display text-[#111] hover:text-orange-deep magnetic-btn">Moodboard Media</a>
-      <div class="hidden md:flex space-x-8 text-[15px] font-medium">
-        <a href="index.html" class="hover:text-orange-deep transition magnetic-btn">Home</a>
-        <a href="about.html" class="hover:text-orange-deep transition text-orange-deep magnetic-btn">About</a>
-        <a href="contact.html" class="hover:text-orange-deep transition magnetic-btn">Contact</a>
-      </div>
-      <div id="menuButton" class="md:hidden text-2xl cursor-pointer magnetic-btn">☰</div>
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-semibold tracking-tight font-serif-display text-[#111] hover:text-orange-deep">Moodboard Media</a>
+    <div class="nav-links hidden md:flex space-x-8 text-[15px] font-medium">
+      <a href="index.html" class="hover:text-orange-deep transition">Home</a>
+      <a href="about.html" class="hover:text-orange-deep transition text-orange-deep">About</a>
+      <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
     </div>
-  </nav>
-
-  <!-- ABOUT HERO – cinematic banner with orange overlay + film texture + cinematic zoom -->
-  <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <!-- background image with cinematic zoom effect -->
-    <div class="hero-bg absolute inset-0 bg-[url('lesego-says-images/behind-the-scenes.JPG')] bg-cover bg-center"></div>
-    <div class="absolute inset-0 hero-overlay"></div>
-    <div class="grain absolute inset-0"></div>
-    
-    <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
-      <h1 class="hero-title text-6xl md:text-7xl font-bold mb-6 font-serif-display tracking-tight">
-        <span class="block w-20 h-[3px] bg-orange-deep mb-6 mx-auto"></span>
-        About Moodboard Media
-      </h1>
-      <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-        A creative ecosystem for storytelling and visual experiences
-      </p>
-    </div>
-    <!-- scroll hint -->
-    <div class="absolute bottom-6 left-0 right-0 text-center text-white/60 text-sm flex justify-center items-center gap-2">
-      <span>our story</span> <span class="text-orange-deep text-lg animate-bounce">↓</span>
-    </div>
-  </section>
-
-  <!-- ORANGE CINEMATIC DIVIDER (after hero) -->
-  <div class="flex items-center justify-center py-16 bg-white">
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
-    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
+    <button id="menuToggle" class="menu-button" aria-label="Toggle navigation">☰</button>
   </div>
+</nav>
 
-  <!-- COMPANY STORY – two column layout with image & text (cinematic reveal) -->
-  <section class="py-32 bg-white fade-up section-transition" id="story">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
-      <!-- left: image/film still (with hover lift) -->
-      <div class="image-container hover-lift group reveal-left hover-scale-image">
-        <img src="lesego-says-images/lesego-says-photography.png" 
-             alt="Moodboard Media team / film set" 
-             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-      </div>
-      <!-- right: story text - reveals from right -->
-      <div class="reveal-right">
-        <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR NARRATIVE</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-4 font-serif-display leading-tight">
-          <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
-          Company Story
-        </h2>
-        <div class="prose prose-lg text-gray-700 space-y-6">
-          <p class="reveal-up" style="transition-delay: 0.1s;">
-            Moodboard Media is a creative ecosystem built around storytelling, visual media, and industry empowerment. Founded with the belief that every brand and filmmaker has a unique story to tell, we bring together creative production, film education, and story development under one roof.
-          </p>
-          <p class="reveal-up" style="transition-delay: 0.2s;">
-            What started as a small collective of filmmakers has grown into a platform that supports both commercial brands and independent storytellers. We don't just produce content — we cultivate ideas, nurture voices, and build bridges between emerging talent and the industry.
-          </p>
-          <p class="reveal-up" style="transition-delay: 0.3s;">
-            Today, Moodboard Media operates through three core pillars: a full-service creative agency, an initiative dedicated to women in film, and a personal consultancy for narrative development. Each arm shares the same DNA: cinematic quality, human connection, and the power of visual language.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ORANGE CINEMATIC DIVIDER (between story sections) -->
-  <div class="flex items-center justify-center py-16 bg-white">
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
-    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
+<!-- ABOUT HERO -->
+<section class="relative h-[60vh] min-h-[450px] flex items-center justify-center overflow-hidden">
+  <div class="hero-bg absolute inset-0 bg-[url('lesego-says-images/behind-the-scenes.JPG')] bg-cover bg-center"></div>
+  <div class="absolute inset-0 hero-overlay"></div>
+  <div class="grain absolute inset-0"></div>
+  <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-serif-display tracking-tight">
+      <span class="block w-20 h-[3px] bg-orange-deep mb-6 mx-auto"></span>
+      About Moodboard Media
+    </h1>
+    <p class="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+      A creative ecosystem for storytelling and visual experiences
+    </p>
   </div>
-
-  <!-- FOUNDER SECTION – Lesego Soke with correct image -->
-  <section class="py-32 bg-[#f7f7f7] fade-up section-transition">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-      <!-- Founder Image -->
-      <div class="portrait-container hover-lift group reveal-left hover-scale-image">
-        <img src="lesego-says-images/lesego-says-slideshow1.JPG" 
-             alt="Lesego Soke - Founder and Creative Producer" 
-             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-      </div>
-      
-      <!-- Founder Text - reveals from right -->
-      <div class="reveal-right">
-        <span class="text-orange-deep font-semibold tracking-widest text-sm">FOUNDER & CREATIVE PRODUCER</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-4 font-serif-display">
-          <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
-          Lesego Soke
-        </h2>
-        
-        <p class="text-lg text-gray-700 leading-relaxed mb-6 reveal-up" style="transition-delay: 0.1s;">
-          Lesego Soke is a South African filmmaker, creative producer, and story strategist with over a decade of experience across theatre, television, and film.
-        </p>
-        
-        <p class="text-lg text-gray-700 leading-relaxed mb-6 reveal-up" style="transition-delay: 0.2s;">
-          Her journey began in theatre, with her debut production staged at Johannesburg's Joburg Theatre Fringe Festival before traveling to the National Arts Festival in Grahamstown.
-        </p>
-        
-        <p class="text-lg text-gray-700 leading-relaxed mb-6 reveal-up" style="transition-delay: 0.3s;">
-          She later trained in documentary filmmaking and went on to work in advertising and corporate television before spending seven years in long-form television as a script supervisor.
-        </p>
-        
-        <p class="text-lg text-gray-700 leading-relaxed reveal-up" style="transition-delay: 0.4s;">
-          Today she works as a creative producer and consultant, developing projects that sit at the intersection of storytelling, culture, and strategy.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ORANGE CINEMATIC DIVIDER (before mission/vision) -->
-  <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
-    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
+  <div class="absolute bottom-6 left-0 right-0 text-center text-white/60 text-sm flex justify-center items-center gap-2">
+    <span>our story</span> <span class="text-orange-deep text-lg animate-bounce">↓</span>
   </div>
+</section>
 
-  <!-- MISSION & VISION – side by side cards with premium spacing -->
-  <section class="py-32 bg-white fade-up section-transition">
-    <div class="max-w-7xl mx-auto px-6">
-      <!-- subtle heading -->
-      <div class="text-center mb-16">
-        <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR REASON</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-2 font-serif-display">
-          <span class="block w-12 h-[3px] bg-orange-deep mb-4 mx-auto"></span>
-          Why we exist
-        </h2>
-      </div>
-      
-      <div class="grid md:grid-cols-2 gap-10">
-        <!-- MISSION CARD -->
-        <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50 stagger-item hover-glow">
-          <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
-            <span class="text-3xl">🎯</span>
-          </div>
-          <h3 class="text-3xl font-bold mb-6 font-serif-display">
-            <span class="block w-8 h-[2px] bg-orange-deep mb-3"></span>
-            Mission
-          </h3>
-          <p class="text-lg text-gray-700 leading-relaxed">
-            To create meaningful visual stories while empowering emerging filmmakers and creative voices. We believe that great stories have the power to shift perspectives, and we're committed to producing work that resonates, inspires, and endures.
-          </p>
-          <div class="mt-8 w-12 h-1 bg-orange-deep rounded-full"></div>
-        </div>
+<!-- CINEMATIC DIVIDER -->
+<div class="flex items-center justify-center py-16 bg-white">
+  <div class="w-16 h-[2px] bg-orange-deep"></div>
+  <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
+  <div class="w-16 h-[2px] bg-orange-deep"></div>
+</div>
 
-        <!-- VISION CARD -->
-        <div class="bg-[#f7f7f7] p-10 rounded-3xl shadow-xl hover-lift border border-white/50 stagger-item hover-glow">
-          <div class="w-16 h-16 rounded-full bg-orange-deep/10 flex items-center justify-center mb-8">
-            <span class="text-3xl">🌍</span>
-          </div>
-          <h3 class="text-3xl font-bold mb-6 font-serif-display">
-            <span class="block w-8 h-[2px] bg-orange-deep mb-3"></span>
-            Vision
-          </h3>
-          <p class="text-lg text-gray-700 leading-relaxed">
-            To build a global creative ecosystem where storytelling, innovation, and collaboration shape the future of film and media. A world where diverse voices have access to resources, mentorship, and platforms to share their unique perspectives.
-          </p>
-          <div class="mt-8 w-12 h-1 bg-orange-deep rounded-full"></div>
-        </div>
-      </div>
+<!-- COMPANY STORY -->
+<section class="py-24 md:py-32 bg-white fade-up" id="story">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 px-6 items-center">
+    <div class="image-container hover-lift group reveal-left">
+      <img src="lesego-says-images/lesego-says-photography.png" alt="Moodboard Media team" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
     </div>
-  </section>
-
-  <!-- ORANGE CINEMATIC DIVIDER (before core values) -->
-  <div class="flex items-center justify-center py-16 bg-white">
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
-    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
-  </div>
-
-  <!-- CORE VALUES / PILLAR REMINDER – connects to homepage -->
-  <section class="py-24 bg-[#f0f0f0] fade-up section-transition">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif-display">
-        <span class="block w-12 h-[3px] bg-orange-deep mb-4 mx-auto"></span>
-        Three pillars, one purpose
+    <div class="reveal-right">
+      <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR NARRATIVE</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 font-serif-display leading-tight">
+        <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
+        Company Story
       </h2>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-16">Every part of our ecosystem works in harmony.</p>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift stagger-item hover-glow">
-          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">🎬</div>
-          <h3 class="text-2xl font-bold mb-3 font-serif-display">Creative Agency</h3>
-          <p class="text-gray-600">Production, strategy, and storytelling for brands and artists.</p>
-        </div>
-        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift stagger-item hover-glow">
-          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">🎞️</div>
-          <h3 class="text-2xl font-bold mb-3 font-serif-display">Female Film Trailblazers</h3>
-          <p class="text-gray-600">Empowering women through education, networking, and visibility.</p>
-        </div>
-        <div class="p-6 bg-white rounded-2xl shadow-lg hover-lift stagger-item hover-glow">
-          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-deep/10 flex items-center justify-center text-3xl">✍️</div>
-          <h3 class="text-2xl font-bold mb-3 font-serif-display">Lesego_Says</h3>
-          <p class="text-gray-600">Script development, creative consulting, and story editing.</p>
-        </div>
+      <div class="prose prose-lg text-gray-700 space-y-6">
+        <p class="reveal-up" style="transition-delay: 0.1s;">Moodboard Media is a creative ecosystem built around storytelling, visual media, and industry empowerment.</p>
+        <p class="reveal-up" style="transition-delay: 0.2s;">What started as a small collective of filmmakers has grown into a platform that supports both commercial brands and independent storytellers.</p>
+        <p class="reveal-up" style="transition-delay: 0.3s;">Today, Moodboard Media operates through three core pillars: a full-service creative agency, an initiative dedicated to women in film, and a personal consultancy for narrative development.</p>
       </div>
     </div>
-  </section>
-
-  <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
-  <div class="flex items-center justify-center py-16 bg-[#f0f0f0]">
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
-    <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
-    <div class="w-16 h-[2px] bg-orange-deep"></div>
   </div>
+</section>
 
-  <!-- CINEMATIC TRANSITION ELEMENT -->
-  <div class="h-32 bg-gradient-to-b from-[#f0f0f0] to-white"></div>
+<!-- FOUNDER SECTION -->
+<section class="py-24 md:py-32 bg-[#f7f7f7] fade-up">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+    <div class="portrait-container hover-lift group reveal-left">
+      <img src="lesego-says-images/lesego-says-slideshow1.JPG" alt="Lesego Soke" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+    </div>
+    <div class="reveal-right">
+      <span class="text-orange-deep font-semibold tracking-widest text-sm">FOUNDER & CREATIVE PRODUCER</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-4 font-serif-display">
+        <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
+        Lesego Soke
+      </h2>
+      <p class="text-lg text-gray-700 leading-relaxed mb-6 reveal-up" style="transition-delay: 0.1s;">Lesego Soke is a South African filmmaker, creative producer, and story strategist with over a decade of experience.</p>
+      <p class="text-lg text-gray-700 leading-relaxed reveal-up" style="transition-delay: 0.2s;">Today she works as a creative producer and consultant, developing projects that sit at the intersection of storytelling, culture, and strategy.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- FOOTER (identical to homepage) -->
-  <footer class="bg-[#111] text-white py-16">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-center md:text-left">
-          <h3 class="text-2xl font-serif-display mb-2">Moodboard Media</h3>
-          <p class="text-gray-400 text-sm">© 2026 Moodboard Media. All rights reserved.</p>
-        </div>
-        <div class="flex space-x-8 text-sm">
-          <a href="index.html" class="hover:text-orange-deep transition magnetic-btn">Home</a>
-          <a href="about.html" class="hover:text-orange-deep transition magnetic-btn">About</a>
-          <a href="contact.html" class="hover:text-orange-deep transition magnetic-btn">Contact</a>
-        </div>
+<!-- MISSION & VISION -->
+<section class="py-24 md:py-32 bg-white fade-up">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="text-orange-deep font-semibold tracking-widest text-sm">OUR REASON</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 font-serif-display">
+        <span class="block w-12 h-[3px] bg-orange-deep mb-4 mx-auto"></span>
+        Why we exist
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+      <div class="bg-[#f7f7f7] p-8 md:p-10 rounded-3xl shadow-xl hover-lift border border-white/50 stagger-item hover-glow">
+        <h3 class="text-2xl md:text-3xl font-bold mb-6 font-serif-display"><span class="block w-8 h-[2px] bg-orange-deep mb-3"></span>Mission</h3>
+        <p class="text-lg text-gray-700 leading-relaxed">To create meaningful visual stories while empowering emerging filmmakers and creative voices.</p>
       </div>
-      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-xs">
-        cinematic storytelling · film ecosystem · creativity
+      <div class="bg-[#f7f7f7] p-8 md:p-10 rounded-3xl shadow-xl hover-lift border border-white/50 stagger-item hover-glow">
+        <h3 class="text-2xl md:text-3xl font-bold mb-6 font-serif-display"><span class="block w-8 h-[2px] bg-orange-deep mb-3"></span>Vision</h3>
+        <p class="text-lg text-gray-700 leading-relaxed">To build a global creative ecosystem where storytelling, innovation, and collaboration shape the future of film.</p>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- SCROLL REVEAL + NAVBAR SCROLL EFFECT + MOBILE MENU + PARALLAX + MAGNETIC HOVER -->
-  <script>
-    (function() {
-      // ===== MOBILE MENU TOGGLE =====
-      const menuButton = document.getElementById("menuButton");
-      const mobileMenu = document.getElementById("mobileMenu");
-      const closeMenu = document.getElementById("closeMenu");
+<!-- FOOTER -->
+<footer class="bg-[#111] text-white py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-center md:text-left">
+        <h3 class="text-2xl font-serif-display mb-2">Moodboard Media</h3>
+        <p class="text-gray-400 text-sm">© 2026 Moodboard Media. All rights reserved.</p>
+      </div>
+      <div class="flex space-x-8 text-sm">
+        <a href="index.html" class="hover:text-orange-deep transition">Home</a>
+        <a href="about.html" class="hover:text-orange-deep transition">About</a>
+        <a href="contact.html" class="hover:text-orange-deep transition">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-      function openMobileMenu() {
-        mobileMenu.classList.remove("hidden");
-        document.body.style.overflow = "hidden";
+<!-- SCRIPTS -->
+<script>
+(function() {
+  // Mobile Sidebar Logic (Unified)
+  const menuToggle = document.getElementById("menuToggle");
+  const sidebar = document.getElementById("sidebar");
+  const sidebarClose = document.getElementById("sidebarClose");
+
+  if (menuToggle && sidebar) {
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.add("active");
+      document.body.style.overflow = "hidden"; // Prevent scroll
+    });
+  }
+  if (sidebarClose && sidebar) {
+    sidebarClose.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+  }
+  document.querySelectorAll('.sidebar-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      document.body.style.overflow = "";
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebar?.classList.contains('active')) {
+      sidebar.classList.remove('active');
+      document.body.style.overflow = "";
+    }
+  });
+
+  // Scroll Effects
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('bg-white/95', 'shadow-md');
+      navbar.classList.remove('bg-white/90');
+    } else {
+      navbar.classList.remove('bg-white/95', 'shadow-md');
+      navbar.classList.add('bg-white/90');
+    }
+  });
+
+  // Parallax
+  const heroBg = document.querySelector(".hero-bg");
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.pageYOffset;
+    if (heroBg) heroBg.style.transform = `scale(1.1) translateY(${scrollPosition * 0.2}px)`;
+  });
+
+  // Intersections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show', 'reveal-visible', 'visible');
+        if(entry.target.classList.contains('fade-up')) observer.unobserve(entry.target);
       }
+    });
+  }, { threshold: 0.15 });
 
-      function closeMobileMenu() {
-        mobileMenu.classList.add("hidden");
-        document.body.style.overflow = "";
-      }
-
-      if (menuButton) {
-        menuButton.addEventListener("click", openMobileMenu);
-      }
-
-      if (closeMenu) {
-        closeMenu.addEventListener("click", closeMobileMenu);
-      }
-
-      document.querySelectorAll('.mobile-menu a').forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
-          closeMobileMenu();
-        }
-      });
-
-      // ===== FADE-UP OBSERVER =====
-      const faders = document.querySelectorAll('.fade-up');
-      const appearOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
-      const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        });
-      }, appearOptions);
-      faders.forEach(fader => appearOnScroll.observe(fader));
-
-      // ===== NAVBAR TRANSITION =====
-      const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          navbar.classList.add('bg-white/95', 'shadow-md');
-          navbar.classList.remove('bg-white/90');
-        } else {
-          navbar.classList.remove('bg-white/95', 'shadow-md');
-          navbar.classList.add('bg-white/90');
-        }
-      });
-
-      // ===== HERO PARALLAX EFFECT =====
-      const heroBg = document.querySelector(".hero-bg");
-      
-      window.addEventListener("scroll", () => {
-        const scrollPosition = window.pageYOffset;
-        if (heroBg) {
-          heroBg.style.transform = `scale(1.1) translateY(${scrollPosition * 0.2}px)`;
-        }
-      });
-
-      // ===== CINEMATIC SCROLL REVEAL =====
-      const revealElements = document.querySelectorAll(".reveal-left, .reveal-right, .reveal-up");
-      
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-visible");
-          }
-        });
-      }, { threshold: 0.2 });
-
-      revealElements.forEach(el => revealObserver.observe(el));
-
-      // ===== STAGGER EFFECT =====
-      const staggerObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const items = entry.target.querySelectorAll(".stagger-item");
-            items.forEach((item, index) => {
-              setTimeout(() => {
-                item.classList.add("visible");
-              }, index * 150);
-            });
-          }
-        });
-      }, { threshold: 0.2 });
-
-      document.querySelectorAll("section").forEach(section => {
-        staggerObserver.observe(section);
-      });
-
-      // ===== MAGNETIC HOVER BUTTONS =====
-      const magneticBtns = document.querySelectorAll('.magnetic-btn');
-      
-      magneticBtns.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-          const rect = btn.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          
-          btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-        });
-        
-        btn.addEventListener('mouseleave', () => {
-          btn.style.transform = 'translate(0, 0)';
-        });
-      });
-
-      // Force hero content to be visible
-      const heroContent = document.querySelector('.hero-content');
-      if (heroContent) {
-        heroContent.classList.add('show');
-      }
-    })();
-  </script>
+  document.querySelectorAll('.fade-up, .reveal-left, .reveal-right, .reveal-up, .stagger-item').forEach(el => observer.observe(el));
+})();
+</script>
 </body>
 </html>
