@@ -269,7 +269,7 @@
   </div>
 
   <!-- NAVBAR -->
-  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-[#f7f7f7]/90 backdrop-blur-sm shadow-sm">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="index.html" class="text-xl font-semibold tracking-tight font-serif-display text-[#111] hover:text-orange-deep">Moodboard Media</a>
       <div class="nav-links hidden md:flex space-x-8 text-[15px] font-medium">
@@ -295,14 +295,14 @@
   </section>
 
   <!-- ORANGE CINEMATIC DIVIDER -->
-  <div class="flex items-center justify-center py-16 bg-white">
+  <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
     <div class="w-16 h-[2px] bg-orange-deep"></div>
   </div>
 
   <!-- ========== SECTION 1 – CREATIVE AGENCY ========== -->
-  <section class="py-24 bg-white fade-up" id="agency">
+  <section class="py-24 bg-[#f7f7f7] fade-up" id="agency">
     <div class="max-w-7xl mx-auto px-6">
       <!-- main card / intro -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -336,8 +336,9 @@
           <p class="text-lg text-gray-700 mb-8 leading-relaxed">
             Our work blends strategic thinking with cinematic storytelling to deliver visuals that are both impactful and culturally relevant.
           </p>
-          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full text-lg font-medium shadow-md hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="agencyExpand">
-            Explore Work <span>↓</span>
+          <!-- ✅ UPDATED BUTTON: Creative Services (was Explore Work) -->
+          <button class="expand-btn bg-orange-deep text-white px-8 py-4 rounded-full hover:scale-105 hover:shadow-lg transition duration-300 flex items-center gap-2" data-target="agencyExpand">
+            Creative Services <span>↓</span>
           </button>
         </div>
       </div>
@@ -360,14 +361,14 @@
   </section>
 
   <!-- ORANGE CINEMATIC DIVIDER -->
-  <div class="flex items-center justify-center py-16 bg-white">
+  <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
     <div class="w-16 h-[2px] bg-orange-deep"></div>
   </div>
 
   <!-- ========== SECTION 2 – FEMALE FILM TRAILBLAZERS ========== -->
-  <section class="py-24 bg-[#f0f0f0] fade-up" id="trailblazers">
+  <section class="py-24 bg-[#f7f7f7] fade-up" id="trailblazers">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <!-- left: text with orange accent - CLIENT'S EXACT BIO -->
@@ -428,14 +429,14 @@
   </section>
 
   <!-- ORANGE CINEMATIC DIVIDER -->
-  <div class="flex items-center justify-center py-16 bg-[#f0f0f0]">
+  <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
     <div class="w-16 h-[2px] bg-orange-deep"></div>
   </div>
 
   <!-- ========== SECTION 3 – LESEGO_SAYS ========== -->
-  <section class="py-24 bg-white fade-up" id="lesego">
+  <section class="py-24 bg-[#f7f7f7] fade-up" id="lesego">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <!-- left: slideshow -->
@@ -464,7 +465,7 @@
             </div>
           </div>
         </div>
-        <!-- right: text with orange accent - LESEGO_SAYS -->
+        <!-- right: text with orange accent - LESEGO_SAYS (UPDATED: removed Stained Glass, refined bio) -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
@@ -478,7 +479,7 @@
           </button>
         </div>
       </div>
-      <!-- EXPANDABLE - LESEGO_SAYS THROUGHOUT -->
+      <!-- EXPANDABLE - LESEGO_SAYS (UPDATED: removed Stained Glass, refined about text) -->
       <div id="lesegoExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl space-y-8">
           <!-- Professional Highlights -->
@@ -490,11 +491,14 @@
               <li>International production credit — <strong>Mabaso Family Reunion</strong> (Netflix)</li>
             </ul>
           </div>
-          <!-- Bio + additional -->
+          <!-- Bio + additional (Stained Glass reference completely removed) -->
           <div class="grid md:grid-cols-2 gap-8">
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">About Lesego Soke</h3>
-              <p class="text-gray-700 mb-4">Independent story consulting and development for independent filmmakers, production companies, and industry partners such as Stained Glass Productions. Her first independent short film is currently in post-production after being self-funded through an innovative IP-sharing model with cast and crew.</p>
+              <!-- ✅ REPLACED with clean personal positioning -->
+              <p class="text-gray-700 leading-relaxed mb-6">
+                Lesego Soke is a creative producer, storyteller, and founder of Moodboard Media. Her work focuses on developing meaningful narratives, shaping visual identities, and producing content that connects deeply with audiences across film, media, and brand storytelling.
+              </p>
             </div>
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">Creative Services</h3>
@@ -516,14 +520,14 @@
   </section>
 
   <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
-  <div class="flex items-center justify-center py-16 bg-white">
+  <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
     <div class="w-16 h-[2px] bg-orange-deep"></div>
   </div>
 
   <!-- CTA SECTION - WITH UPDATED TAGLINE -->
-  <section class="py-24 bg-[#f0f0f0] fade-up">
+  <section class="py-24 bg-[#f7f7f7] fade-up">
     <div class="max-w-4xl mx-auto text-center px-6">
       <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
         <span class="block w-12 h-[3px] bg-orange-deep mb-4 mx-auto"></span>
@@ -539,7 +543,7 @@
   </section>
 
   <!-- ORANGE CINEMATIC DIVIDER (before footer) -->
-  <div class="flex items-center justify-center py-16 bg-[#f0f0f0]">
+  <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
     <div class="w-16 h-[2px] bg-orange-deep"></div>
@@ -616,11 +620,11 @@
       const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-          navbar.classList.add('bg-white/95', 'shadow-md');
-          navbar.classList.remove('bg-white/90');
+          navbar.classList.add('bg-[#f7f7f7]/95', 'shadow-md');
+          navbar.classList.remove('bg-[#f7f7f7]/90');
         } else {
-          navbar.classList.remove('bg-white/95', 'shadow-md');
-          navbar.classList.add('bg-white/90');
+          navbar.classList.remove('bg-[#f7f7f7]/95', 'shadow-md');
+          navbar.classList.add('bg-[#f7f7f7]/90');
         }
       });
 
