@@ -77,7 +77,7 @@
       border: 0;
       border-radius: 1rem;
     }
-    /* cinematic overlay with orange gradient */
+    /* cinematic overlay with orange gradient — but titles/text removed for 3 sections (we keep overlay structure but empty) */
     .slideshow-overlay {
       position: absolute;
       bottom: 0;
@@ -306,19 +306,24 @@
     <div class="max-w-7xl mx-auto px-6">
       <!-- main card / intro -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- slideshow - UPDATED WITH CLIENT'S EXACT IMAGES -->
+        <!-- slideshow - UPDATED: 5 slides, video slide1, rest shifted (old slide1→2, slide2→3, slide5→4, slide6→5) and overlay text removed -->
         <div class="slideshow-container hover-lift" id="agencySlideshow">
-          <img src="creative-agency-images/event-production.JPG" class="slideshow-image active" alt="Event Production">
+          <!-- slide 1: NEW video from youtube -->
+          <div class="slideshow-image active">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/b5W6thxKe0M?si=cMmrBr8jcVlJi_vq" title="Creative Agency video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <!-- slide 2: was slide1 (event-production) -->
+          <img src="creative-agency-images/event-production.JPG" class="slideshow-image" alt="Event Production">
+          <!-- slide 3: was slide2 (social-campaign) -->
           <img src="creative-agency-images/social-campaign.JPG" class="slideshow-image" alt="Social Media Campaign">
-          <img src="creative-agency-images/animation.jpg" class="slideshow-image" alt="Animation">
-          <img src="creative-agency-images/film-production.jpg" class="slideshow-image" alt="Film Production">
+          <!-- slide 4: was slide5 (bts-production) -->
           <img src="creative-agency-images/bts-production.JPG" class="slideshow-image" alt="Behind the Scenes">
+          <!-- slide 5: was slide6 (content-strategy) -->
           <img src="creative-agency-images/content-strategy.jpg" class="slideshow-image" alt="Content Strategy">
-          <!-- cinematic overlay -->
+          
+          <!-- cinematic overlay – no titles/text (empty, just dots) -->
           <div class="slideshow-overlay" id="agencyOverlay">
-            <span class="text-xs uppercase tracking-widest text-white/60">Selected Work</span>
-            <h3 class="text-xl font-semibold" id="agencySlideTitle">Event Production</h3>
-            <p class="text-sm text-white/80 max-w-sm" id="agencySlideDesc">Capturing moments that bring brands and communities together.</p>
+            <!-- title & desc completely removed – only dots visible -->
             <div class="flex items-center justify-between w-full mt-2">
               <div class="slideshow-dots" id="agencyDots"></div>
             </div>
@@ -371,7 +376,7 @@
   <section class="py-24 bg-[#f7f7f7] fade-up" id="trailblazers">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: text with orange accent - CLIENT'S EXACT BIO -->
+        <!-- left: text with orange accent - CLIENT'S EXACT BIO (now aligned: button at bottom on mobile) -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
@@ -387,30 +392,24 @@
             Explore Initiative <span>↓</span>
           </button>
         </div>
-        <!-- right: slideshow -->
+        <!-- right: slideshow – updated: slide6 becomes slide1 (video) and all titles/text removed -->
         <div class="slideshow-container hover-lift" id="trailblazersSlideshow">
-          <img src="images-trailblazers/film-trailblazzers-slideshow-1.JPG" class="slideshow-image active" alt="Trailblazers Event">
-          <img src="images-trailblazers/film-trailblazers-slideshow-2.png" class="slideshow-image" alt="Trailblazers Panel">
-          
-          <!-- VIDEO SLIDE -->
-          <div class="slideshow-image">
-            <iframe width="100%" height="100%"
-              src="https://www.youtube.com/embed/bps0YfMwSRU"
-              title="Podcast Interview"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
+          <!-- slide 1: new video (was slide6) -->
+          <div class="slideshow-image active">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/hj-WzcgYJN0" title="Trailblazers video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
-          
+          <!-- slide 2: original slide1 -->
+          <img src="images-trailblazers/film-trailblazzers-slideshow-1.JPG" class="slideshow-image" alt="Trailblazers Event">
+          <!-- slide 3: original slide2 -->
+          <img src="images-trailblazers/film-trailblazers-slideshow-2.png" class="slideshow-image" alt="Trailblazers Panel">
+          <!-- slide 4: original slide4 (podcast sessions) -->
           <img src="images-trailblazers/film-trailblazzers-slideshow-4.png" class="slideshow-image" alt="Trailblazers Podcast">
+          <!-- slide 5: original slide5 (networking) -->
           <img src="images-trailblazers/film-trailblazzers-slideshow-5.jpg" class="slideshow-image" alt="Trailblazers Networking">
-          <img src="lesego-says-images/female-film-trailblazers-2025-slideshow-1.png" class="slideshow-image" alt="Trailblazers Workshop">
+          <!-- slide 6: we keep exactly 5? previous had 6, but client now wants 5? original had 6, we now have 5 (removed slide3? no we keep 5 exactly: video + slide1,2,4,5) That's 5 slides. -->
           
           <div class="slideshow-overlay" id="trailblazersOverlay">
-            <span class="text-xs uppercase tracking-widest text-white/60">Impact in Action</span>
-            <h3 class="text-xl font-semibold" id="trailblazersSlideTitle">Trailblazers 2024</h3>
-            <p class="text-sm text-white/80 max-w-sm" id="trailblazersSlideDesc">Gatekeeping: opening conversations around access and opportunity.</p>
+            <!-- no text / titles -->
             <div class="flex items-center justify-between w-full mt-2">
               <div class="slideshow-dots" id="trailblazersDots"></div>
             </div>
@@ -439,33 +438,28 @@
   <section class="py-24 bg-[#f7f7f7] fade-up" id="lesego">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- left: slideshow -->
+        <!-- left: slideshow – updated: slide4 becomes slide1 (video) and no titles/text -->
         <div class="slideshow-container hover-lift" id="lesegoSlideshow">
-          <img src="lesego-says-images/lesego-soke-behind-the-scenes.png" class="slideshow-image active" alt="Behind the Scenes">
-          <img src="lesego-says-images/lesego-soke-story-development.png" class="slideshow-image" alt="Story Development">
-          <img src="lesego-says-images/script-development-3.JPG" class="slideshow-image" alt="Script Development">
-          
-          <!-- SPEAKING ENGAGEMENT VIDEO -->
-          <div class="slideshow-image">
-            <iframe width="100%" height="100%"
-              src="https://www.youtube.com/embed/ROSVnq_TmCo"
-              title="Speaking Engagement"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
+          <!-- slide 1: new video (was slide4) -->
+          <div class="slideshow-image active">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Gq99Vq9uOW4" title="Lesego Says video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
+          <!-- slide 2: original slide1 -->
+          <img src="lesego-says-images/lesego-soke-behind-the-scenes.png" class="slideshow-image" alt="Behind the Scenes">
+          <!-- slide 3: original slide2 -->
+          <img src="lesego-says-images/lesego-soke-story-development.png" class="slideshow-image" alt="Story Development">
+          <!-- slide 4: original slide3 -->
+          <img src="lesego-says-images/script-development-3.JPG" class="slideshow-image" alt="Script Development">
+          <!-- slide 5: we keep 4 total? we have 4 slides: video + 3 images – exactly 4 slides (consistent) -->
           
           <div class="slideshow-overlay" id="lesegoOverlay">
-            <span class="text-xs uppercase tracking-widest text-white/60">Creative Insight</span>
-            <h3 class="text-xl font-semibold" id="lesegoSlideTitle">Behind the Scenes</h3>
-            <p class="text-sm text-white/80 max-w-sm" id="lesegoSlideDesc">Directing with intention — crafting stories from the inside out.</p>
+            <!-- no titles/text -->
             <div class="flex items-center justify-between w-full mt-2">
               <div class="slideshow-dots" id="lesegoDots"></div>
             </div>
           </div>
         </div>
-        <!-- right: text with orange accent - LESEGO_SAYS (UPDATED: removed Stained Glass, refined bio) -->
+        <!-- right: text with orange accent - LESEGO_SAYS (UPDATED bullets) -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
             <span class="block w-12 h-[3px] bg-orange-deep mb-4"></span>
@@ -479,23 +473,22 @@
           </button>
         </div>
       </div>
-      <!-- EXPANDABLE - LESEGO_SAYS (UPDATED: removed Stained Glass, refined about text) -->
+      <!-- EXPANDABLE - LESEGO_SAYS (UPDATED: bullets changed) -->
       <div id="lesegoExpand" class="expand-panel">
         <div class="bg-[#f7f7f7] p-10 rounded-3xl space-y-8">
-          <!-- Professional Highlights -->
+          <!-- Professional Highlights with exact new bullets -->
           <div>
             <h3 class="text-2xl font-bold font-serif-display mb-3">Professional Highlights</h3>
             <ul class="text-gray-700 space-y-1 list-disc list-inside">
               <li>Creative Producer — <strong>DiepCity</strong> (Mzansi Magic)</li>
-              <li>Producer — <strong>The Black Door</strong> (e.tv)</li>
-              <li>International production credit — <strong>Mabaso Family Reunion</strong> (Netflix)</li>
+              <li>Creative Producer — <strong>The Black Door</strong> (e.tv)</li>
+              <li>International production credit - Creative Producer — <strong>Mabaso Family Reunion</strong> (Netflix)</li>
             </ul>
           </div>
-          <!-- Bio + additional (Stained Glass reference completely removed) -->
+          <!-- Bio + additional -->
           <div class="grid md:grid-cols-2 gap-8">
             <div>
               <h3 class="text-2xl font-bold font-serif-display mb-3">About Lesego Soke</h3>
-              <!-- ✅ REPLACED with clean personal positioning -->
               <p class="text-gray-700 leading-relaxed mb-6">
                 Lesego Soke is a creative producer, storyteller, and founder of Moodboard Media. Her work focuses on developing meaningful narratives, shaping visual identities, and producing content that connects deeply with audiences across film, media, and brand storytelling.
               </p>
@@ -526,7 +519,7 @@
     <div class="w-16 h-[2px] bg-orange-deep"></div>
   </div>
 
-  <!-- CTA SECTION - WITH UPDATED TAGLINE -->
+  <!-- CTA SECTION -->
   <section class="py-24 bg-[#f7f7f7] fade-up">
     <div class="max-w-4xl mx-auto text-center px-6">
       <h2 class="text-4xl md:text-5xl font-bold mb-6 font-serif-display">
@@ -673,15 +666,13 @@
         }, interval);
       }
 
-      // ===== DOT NAVIGATION SYSTEM =====
-      function initDotNavigation(containerId, dotsId, overlayTitleId, overlayDescId, slideData) {
+      // ===== DOT NAVIGATION SYSTEM – no titles update (titles removed) =====
+      function initDotNavigation(containerId, dotsId) {
         const container = document.getElementById(containerId);
         if (!container) return;
         
         const slides = container.querySelectorAll('.slideshow-image');
         const dotsContainer = document.getElementById(dotsId);
-        const titleEl = document.getElementById(overlayTitleId);
-        const descEl = document.getElementById(overlayDescId);
         
         if (!dotsContainer) return;
 
@@ -708,49 +699,20 @@
               d.classList.toggle('active', i === idx);
             });
             
-            if (titleEl && slideData && slideData[idx]) {
-              titleEl.innerText = slideData[idx].title;
-              descEl.innerText = slideData[idx].desc;
-            }
+            // No title/desc update – we removed those elements
           });
           dotsContainer.appendChild(dot);
         }
       }
 
-      // ===== SLIDE DATA =====
-      const agencySlides = [
-        { title: 'Event Production', desc: 'Capturing moments that bring brands and communities together.' },
-        { title: 'Social Media Campaigns', desc: 'Content designed for attention, engagement, and shareability.' },
-        { title: 'Animation for SMMEs', desc: 'Bringing ideas to life through motion and creativity.' },
-        { title: 'Film Production', desc: 'Cinematic storytelling crafted with creative precision.' },
-        { title: 'Behind the Scenes', desc: 'The process behind the stories we bring to life.' },
-        { title: 'Content Strategy', desc: 'Shaping narratives that align creativity with business goals.' }
-      ];
-
-      const trailblazersSlides = [
-        { title: 'Trailblazers 2024', desc: 'Gatekeeping: opening conversations around access and opportunity.' },
-        { title: 'Panel Discussion', desc: 'Industry leaders share insights on representation and compliance.' },
-        { title: 'Podcast Interview', desc: 'In-depth conversations with emerging and established filmmakers.' },
-        { title: 'Podcast Sessions', desc: 'Recording intimate conversations about the film industry.' },
-        { title: 'Networking Moments', desc: 'Building community and connections over brunch.' },
-        { title: 'Workshop Sessions', desc: 'Practical skills for creative entrepreneurship.' }
-      ];
-
-      const lesegoSlides = [
-        { title: 'Behind the Scenes', desc: 'Directing with intention — crafting stories from the inside out.' },
-        { title: 'Story Development', desc: 'Collaborative development of narratives and characters.' },
-        { title: 'Script Development', desc: 'Working with writers to strengthen narrative structure.' },
-        { title: 'Speaking Engagements', desc: 'Sharing insights on storytelling and creative producing.' }
-      ];
-
-      // ===== INITIALIZE =====
+      // ===== INITIALIZE (no slide data needed) =====
       startSlideshow("agencySlideshow", 4500);
       startSlideshow("trailblazersSlideshow", 6000);
       startSlideshow("lesegoSlideshow", 5500);
 
-      initDotNavigation("agencySlideshow", "agencyDots", "agencySlideTitle", "agencySlideDesc", agencySlides);
-      initDotNavigation("trailblazersSlideshow", "trailblazersDots", "trailblazersSlideTitle", "trailblazersSlideDesc", trailblazersSlides);
-      initDotNavigation("lesegoSlideshow", "lesegoDots", "lesegoSlideTitle", "lesegoSlideDesc", lesegoSlides);
+      initDotNavigation("agencySlideshow", "agencyDots");
+      initDotNavigation("trailblazersSlideshow", "trailblazersDots");
+      initDotNavigation("lesegoSlideshow", "lesegoDots");
 
       // ===== EXPANDABLE PANELS =====
       document.querySelectorAll('.expand-btn').forEach(btn => {
