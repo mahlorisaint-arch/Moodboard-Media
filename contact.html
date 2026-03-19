@@ -45,11 +45,13 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
 .cinematic-divider .line { width: 80px; height: 2px; background-color: #d05e00; }
 .cinematic-divider .diamond { width: 12px; height: 12px; background-color: #d05e00; margin: 0 20px; transform: rotate(45deg); }
 
-/* Hero background image */
+/* Hero background image – UPDATED to contain + no repeat */
 .hero-bg-image {
   background-image: url('logo/contactpage.jpg');
-  background-size: cover;
-  background-position: center;
+  background-size: contain;        /* ensures whole image fits without cropping */
+  background-position: center; 
+  background-repeat: no-repeat;     /* prevents tiling if image is smaller */
+  background-color: #1a1a1a;        /* fallback fills empty areas with dark tone */
 }
 </style>
 </head>
@@ -80,7 +82,7 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   </div>
 </nav>
 
-<!-- HERO SECTION WITH NEW IMAGE (contactpage.jpg) -->
+<!-- HERO SECTION – UPDATED: background-size contain, faces fully visible -->
 <section class="relative h-[55vh] min-h-[450px] flex items-center justify-center overflow-hidden hero-bg-image">
   <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-orange-deep/30"></div>
   <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
