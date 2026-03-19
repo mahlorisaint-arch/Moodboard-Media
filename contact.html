@@ -44,6 +44,13 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
 .cinematic-divider { display: flex; align-items: center; justify-content: center; padding: 4rem 0; }
 .cinematic-divider .line { width: 80px; height: 2px; background-color: #d05e00; }
 .cinematic-divider .diamond { width: 12px; height: 12px; background-color: #d05e00; margin: 0 20px; transform: rotate(45deg); }
+
+/* Hero background image */
+.hero-bg-image {
+  background-image: url('logo/contactpage.jpg');
+  background-size: cover;
+  background-position: center;
+}
 </style>
 </head>
 <body class="antialiased">
@@ -73,11 +80,8 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   </div>
 </nav>
 
-<!-- VIDEO HERO -->
-<section class="relative h-[55vh] min-h-[450px] flex items-center justify-center overflow-hidden">
-  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline poster="lesego-says-images/behind-the-scenes.JPG">
-    <source src="videos/contact-hero.mp4" type="video/mp4">
-  </video>
+<!-- HERO SECTION WITH NEW IMAGE (contactpage.jpg) -->
+<section class="relative h-[55vh] min-h-[450px] flex items-center justify-center overflow-hidden hero-bg-image">
   <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-orange-deep/30"></div>
   <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-serif-display tracking-tight">
