@@ -165,35 +165,36 @@
       z-index: 2;
     }
 
-    /* ===== UNMUTE BUTTON - Premium styling ===== */
+    /* ===== UNMUTE/MUTE BUTTON - Updated to orange brand color ===== */
     .unmute-btn {
       position: absolute;
       bottom: 30px;
       right: 30px;
       padding: 10px 16px;
-      background: rgba(0, 0, 0, 0.5);
+      background: #d05e00; /* solid orange */
       color: white;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      font-size: 12px;
-      letter-spacing: 1px;
+      border: none;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
       cursor: pointer;
-      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(208,94,0,0.4);
       transition: all 0.3s ease;
       z-index: 30;
       animation: subtlePulse 2s infinite;
     }
 
     .unmute-btn:hover {
-      background: rgba(0, 0, 0, 0.7);
-      border-color: rgba(208, 94, 0, 0.5);
+      background: #b34f00; /* darker orange */
       transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(208,94,0,0.6);
     }
 
     @keyframes subtlePulse {
-      0% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.03); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.8; }
+      0% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.9; }
     }
 
     /* ===== MOBILE SIDEBAR ===== */
@@ -289,20 +290,57 @@
     </div>
   </nav>
 
-  <!-- ===== CINEMATIC HERO with intro video and UNMUTE BUTTON ===== -->
+  <!-- ===== CINEMATIC HERO with intro video and ORANGE UNMUTE/MUTE BUTTON ===== -->
   <section class="hero">
     <video id="introVideo" autoplay muted loop playsinline>
       <source src="video/web-introduction.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
     
-    <!-- Premium Unmute Button -->
+    <!-- Premium Unmute/Mute Button (orange, toggles text) -->
     <button id="unmuteBtn" class="unmute-btn">
-      🔊 Sound On
+      🔊 Unmute
     </button>
   </section>
 
-  <!-- ORANGE CINEMATIC DIVIDER -->
+  <!-- ========== TRUSTED BY / CLIENT LOGOS (CINEMATIC STRIP) ========== -->
+  <!-- Inserted right after hero, before any dividers or sections -->
+  <section class="py-16 bg-[#f7f7f7]">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+
+      <!-- subtle heading -->
+      <p class="text-xs tracking-[0.25em] uppercase text-gray-500 mb-10">
+        Trusted by brands & collaborators
+      </p>
+
+      <!-- logos container -->
+      <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-60">
+
+        <!-- LOGO ITEM 1: breakout.png -->
+        <img src="logo/breakout.png" alt="Breakout logo"
+          class="h-8 md:h-10 object-contain grayscale hover:grayscale-0 hover:opacity-100 transition duration-300">
+
+        <!-- LOGO ITEM 2: fetola.png -->
+        <img src="logo/fetola.png" alt="Fetola logo"
+          class="h-8 md:h-10 object-contain grayscale hover:grayscale-0 hover:opacity-100 transition duration-300">
+
+        <!-- LOGO ITEM 3: mmela-logo.png -->
+        <img src="logo/mmela-logo.png" alt="Mmela logo"
+          class="h-8 md:h-10 object-contain grayscale hover:grayscale-0 hover:opacity-100 transition duration-300">
+
+        <!-- LOGO ITEM 4: sab-foundation.jpg -->
+        <img src="logo/sab-foundation.jpg" alt="SAB Foundation logo"
+          class="h-8 md:h-10 object-contain grayscale hover:grayscale-0 hover:opacity-100 transition duration-300">
+
+        <!-- LOGO ITEM 5: vuhosi.png -->
+        <img src="logo/vuhosi.png" alt="Vuhosi logo"
+          class="h-8 md:h-10 object-contain grayscale hover:grayscale-0 hover:opacity-100 transition duration-300">
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ORANGE CINEMATIC DIVIDER (first divider after logo strip) -->
   <div class="flex items-center justify-center py-16 bg-[#f7f7f7]">
     <div class="w-16 h-[2px] bg-orange-deep"></div>
     <div class="w-2 h-2 bg-orange-deep mx-3 rotate-45"></div>
@@ -568,7 +606,7 @@
   <!-- SCRIPTS -->
   <script>
     (function() {
-      // ===== UNMUTE BUTTON FUNCTIONALITY =====
+      // ===== UNMUTE BUTTON FUNCTIONALITY (updated to toggle Unmute/Mute) =====
       const video = document.getElementById('introVideo');
       const unmuteBtn = document.getElementById('unmuteBtn');
 
@@ -582,7 +620,7 @@
             this.style.animation = 'none';
           } else {
             video.muted = true;
-            this.innerHTML = '🔊 Sound On';
+            this.innerHTML = '🔊 Unmute';
             this.style.animation = 'subtlePulse 2s infinite';
           }
         });
