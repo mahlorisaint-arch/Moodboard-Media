@@ -45,13 +45,50 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
 .cinematic-divider .line { width: 80px; height: 2px; background-color: #d05e00; }
 .cinematic-divider .diamond { width: 12px; height: 12px; background-color: #d05e00; margin: 0 20px; transform: rotate(45deg); }
 
-/* Hero background image – UPDATED to contain + no repeat */
-.hero-bg-image {
-  background-image: url('logo/contactpage.jpg');
-  background-size: contain;        /* ensures whole image fits without cropping */
-  background-position: center; 
-  background-repeat: no-repeat;     /* prevents tiling if image is smaller */
-  background-color: #1a1a1a;        /* fallback fills empty areas with dark tone */
+/* Hero section - COMPLETELY REDESIGNED to show full image without cropping */
+.hero-section {
+  position: relative;
+  height: 55vh;
+  min-height: 450px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Image as img tag instead of background - ensures NO CROPPING */
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* Shows ENTIRE image, no cropping */
+  object-position: center;
+  background-color: #1a1a1a; /* Dark background for empty space */
+}
+
+/* Minimal overlay for text readability only - won't affect image */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Text container */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: white;
+  padding: 0 1.5rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 </style>
 </head>
@@ -82,17 +119,25 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   </div>
 </nav>
 
-<!-- HERO SECTION – UPDATED: background-size contain, faces fully visible -->
-<section class="relative h-[55vh] min-h-[450px] flex items-center justify-center overflow-hidden hero-bg-image">
-  <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-orange-deep/30"></div>
-  <div class="relative z-10 text-center text-white px-6 max-w-4xl fade-up show">
+<!-- HERO SECTION - REDESIGNED with img tag to prevent ANY cropping -->
+<section class="hero-section">
+  <!-- Image as img tag - NO CROPPING, shows ENTIRE image -->
+  <img src="logo/contactpage.jpg" alt="Moodboard Media team" class="hero-image">
+  
+  <!-- Minimal overlay for text readability only -->
+  <div class="hero-overlay"></div>
+  
+  <!-- Text content -->
+  <div class="hero-content">
     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-serif-display tracking-tight">
       <span class="block w-20 h-[3px] bg-orange-deep mb-6 mx-auto"></span>
       Contact Moodboard Media
     </h1>
     <p class="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">Let's create something meaningful together</p>
   </div>
-  <div class="absolute bottom-6 left-0 right-0 text-center text-white/70 text-sm">
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-0 right-0 text-center text-white/70 text-sm z-10">
     <span>scroll</span>
     <div class="text-orange-deep text-xl mt-1 animate-bounce">↓</div>
   </div>
@@ -134,8 +179,6 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
     </div>
   </div>
 </section>
-
-<!-- REMOVED: Founder / "Work directly with the creative mind" section per request -->
 
 <!-- FOOTER -->
 <footer class="bg-[#111] text-white py-16">
