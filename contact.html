@@ -10,7 +10,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: #f7f7f7; color: #111; }
+body { font-family: 'Inter', sans-serif; background: #f7f7f7; color: #111; margin: 0; padding: 0; }
 h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
 .bg-orange-deep { background: #d05e00; }
 .text-orange-deep { color: #d05e00; }
@@ -45,50 +45,95 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
 .cinematic-divider .line { width: 80px; height: 2px; background-color: #d05e00; }
 .cinematic-divider .diamond { width: 12px; height: 12px; background-color: #d05e00; margin: 0 20px; transform: rotate(45deg); }
 
-/* Hero section - COMPLETELY REDESIGNED to show full image without cropping */
+/* Hero section - FIXED to account for navbar */
 .hero-section {
   position: relative;
+  width: 100%;
   height: 55vh;
   min-height: 450px;
-  width: 100%;
-  overflow: hidden;
-  background-color: #000;
+  background-color: #1a1a1a;
+  margin-top: 0;
+  /* Add padding-top to account for fixed navbar */
+  padding-top: 80px; /* This creates space for the navbar */
+  box-sizing: border-box;
 }
 
-/* Image as img tag instead of background - ensures NO CROPPING */
-.hero-image {
+/* Image container to handle the image properly */
+.hero-image-container {
   position: absolute;
-  top: 0;
+  top: 80px; /* Start below navbar */
   left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: contain;  /* Shows ENTIRE image, no cropping */
-  object-position: center;
-  background-color: #1a1a1a; /* Dark background for empty space */
+  height: calc(55vh - 80px);
+  min-height: calc(450px - 80px);
+  overflow: hidden;
 }
 
-/* Minimal overlay for text readability only - won't affect image */
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* Overlay for text readability */
 .hero-overlay {
   position: absolute;
-  inset: 0;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: calc(55vh - 80px);
+  min-height: calc(450px - 80px);
   background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
   pointer-events: none;
   z-index: 5;
 }
 
-/* Text container */
+/* Text content - positioned correctly */
 .hero-content {
   position: relative;
   z-index: 10;
+  height: calc(55vh - 80px);
+  min-height: calc(450px - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: white;
   padding: 0 1.5rem;
   max-width: 64rem;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white/70;
+  z-index: 10;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 70px;
+  }
+  .hero-image-container {
+    top: 70px;
+    height: calc(55vh - 70px);
+  }
+  .hero-overlay {
+    top: 70px;
+    height: calc(55vh - 70px);
+  }
+  .hero-content {
+    height: calc(55vh - 70px);
+  }
 }
 </style>
 </head>
@@ -106,8 +151,8 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   </div>
 </div>
 
-<!-- NAVBAR -->
-<nav id="navbar" class="fixed w-full z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all">
+<!-- NAVBAR - Fixed at top -->
+<nav id="navbar" class="fixed w-full z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all" style="top: 2px;"> <!-- 2px offset for orange border -->
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <a href="index.html" class="text-xl font-serif-display font-semibold hover:text-orange-deep transition">Moodboard Media</a>
     <div class="nav-links hidden md:flex space-x-8 text-[15px] font-medium">
@@ -119,12 +164,14 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   </div>
 </nav>
 
-<!-- HERO SECTION - REDESIGNED with img tag to prevent ANY cropping -->
+<!-- HERO SECTION - COMPLETELY FIXED for navbar overlap -->
 <section class="hero-section">
-  <!-- Image as img tag - NO CROPPING, shows ENTIRE image -->
-  <img src="logo/contactpage.jpg" alt="Moodboard Media team" class="hero-image">
+  <!-- Image container positioned below navbar -->
+  <div class="hero-image-container">
+    <img src="logo/contactpage.jpg" alt="Moodboard Media team" class="hero-image">
+  </div>
   
-  <!-- Minimal overlay for text readability only -->
+  <!-- Overlay for text readability -->
   <div class="hero-overlay"></div>
   
   <!-- Text content -->
@@ -137,8 +184,8 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   </div>
   
   <!-- Scroll indicator -->
-  <div class="absolute bottom-6 left-0 right-0 text-center text-white/70 text-sm z-10">
-    <span>scroll</span>
+  <div class="hero-scroll">
+    <span class="text-white/70 text-sm">scroll</span>
     <div class="text-orange-deep text-xl mt-1 animate-bounce">↓</div>
   </div>
 </section>
