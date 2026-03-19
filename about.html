@@ -11,7 +11,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; margin: 0; padding: 0; }
 h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
 .bg-orange-deep { background-color: #d05e00; }
 .text-orange-deep { color: #d05e00; }
@@ -33,21 +33,79 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
 .stagger-item { opacity: 0; transform: translateY(40px); transition: all 0.7s ease; }
 .stagger-item.visible { opacity: 1; transform: translateY(0); }
 
-/* Hero & Background – UPDATED: contain + no overlay */
-.hero-bg { 
-  background-image: url('logo/moodboard-media.png');
-  background-size: contain;        /* changed from cover to contain */
-  background-position: center; 
-  background-repeat: no-repeat;     /* prevent tiling */
-  transform: scale(1.1); 
-  animation: slowZoom 20s ease-in-out infinite alternate; 
-  will-change: transform; 
+/* Hero Section – redesigned to prevent navbar cropping */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 450px;
+  background-color: #1a1a1a; /* fallback */
+  /* Add padding-top equal to navbar height (including orange border offset) */
+  padding-top: 82px; /* 80px navbar + 2px orange border */
+  box-sizing: border-box;
 }
-@keyframes slowZoom { 0% { transform: scale(1.08); } 100% { transform: scale(1.18); } }
-/* overlay completely removed – hero-overlay class still present but empty */
-.hero-overlay { background: transparent; }  /* no tint */
 
-.grain::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wNCIgLz48L3N2Zz4='); pointer-events: none; opacity: 0.15; mix-blend-mode: multiply; }
+/* Container for the logo image – positioned below navbar */
+.hero-image-container {
+  position: absolute;
+  top: 82px; /* matches padding-top */
+  left: 0;
+  width: 100%;
+  height: calc(60vh - 82px);
+  min-height: calc(450px - 82px);
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;    /* shows entire logo, no cropping */
+  object-position: center;
+  display: block;
+  transform: scale(1.1);
+  animation: slowZoom 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes slowZoom { 
+  0% { transform: scale(1.08); } 
+  100% { transform: scale(1.18); } 
+}
+
+/* Grain texture overlay (preserved) */
+.grain::after {
+  content: '';
+  position: absolute;
+  top: 82px; /* start below navbar */
+  left: 0;
+  width: 100%;
+  height: calc(60vh - 82px);
+  min-height: calc(450px - 82px);
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wNCIgLz48L3N2Zz4=');
+  pointer-events: none;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+  z-index: 5;
+}
+
+/* Scroll hint – positioned at bottom of visible area */
+.hero-scroll {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  z-index: 10;
+  font-size: 0.875rem;
+}
+.hero-scroll span { opacity: 0.7; }
+.hero-scroll .arrow {
+  color: #d05e00;
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+  animation: bounce 1s infinite;
+}
 
 /* Video container for company story */
 .video-container {
@@ -82,6 +140,13 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
 .image-container, .portrait-container { position: relative; width: 100%; min-height: 400px; overflow: hidden; border-radius: 1rem; background: linear-gradient(45deg, #1a1a1a, #2c2c2c); }
 .image-container img, .portrait-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media(max-width: 768px) { .image-container, .portrait-container { min-height: 300px; } }
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .hero-section { padding-top: 72px; } /* slightly smaller on mobile */
+  .hero-image-container { top: 72px; height: calc(60vh - 72px); }
+  .grain::after { top: 72px; height: calc(60vh - 72px); }
+}
 </style>
 </head>
 <body class="antialiased text-[#111]">
@@ -98,8 +163,8 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   </div>
 </div>
 
-<!-- NAVBAR -->
-<nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+<!-- NAVBAR - Fixed at top (2px below orange border) -->
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm" style="top: 2px;">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <a href="index.html" class="text-xl font-semibold tracking-tight font-serif-display text-[#111] hover:text-orange-deep">Moodboard Media</a>
     <div class="nav-links hidden md:flex space-x-8 text-[15px] font-medium">
@@ -111,15 +176,20 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   </div>
 </nav>
 
-<!-- ABOUT HERO – UPDATED: overlay removed, logo fully visible -->
-<section class="relative h-[60vh] min-h-[450px] flex items-center justify-center overflow-hidden">
-  <div class="hero-bg absolute inset-0 bg-cover bg-center"></div>
-  <!-- overlay div kept but now transparent (see style update) -->
-  <div class="absolute inset-0 hero-overlay"></div>
-  <div class="grain absolute inset-0"></div>
-  <!-- scroll hint remains -->
-  <div class="absolute bottom-6 left-0 right-0 text-center text-white/60 text-sm flex justify-center items-center gap-2">
-    <span>our story</span> <span class="text-orange-deep text-lg animate-bounce">↓</span>
+<!-- ABOUT HERO – REDESIGNED: navbar no longer crops the logo -->
+<section class="hero-section">
+  <!-- Logo image as img tag for perfect fitting -->
+  <div class="hero-image-container">
+    <img src="logo/moodboard-media.png" alt="Moodboard Media Logo" class="hero-image">
+  </div>
+  
+  <!-- Grain overlay (positioned to avoid navbar) -->
+  <div class="grain absolute inset-0 pointer-events-none"></div>
+  
+  <!-- Scroll hint -->
+  <div class="hero-scroll">
+    <span>our story</span>
+    <div class="arrow animate-bounce">↓</div>
   </div>
 </section>
 
@@ -272,11 +342,14 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
     }
   });
 
-  // Parallax for hero background (kept but works with contain)
-  const heroBg = document.querySelector(".hero-bg");
+  // Parallax for hero image (gentle movement)
+  const heroImage = document.querySelector(".hero-image");
   window.addEventListener("scroll", () => {
     const scrollPosition = window.pageYOffset;
-    if (heroBg) heroBg.style.transform = `scale(1.1) translateY(${scrollPosition * 0.2}px)`;
+    if (heroImage) {
+      // subtle parallax, but keep within container
+      heroImage.style.transform = `scale(1.1) translateY(${scrollPosition * 0.1}px)`;
+    }
   });
 
   // Intersections
