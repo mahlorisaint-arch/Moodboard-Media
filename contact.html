@@ -90,7 +90,7 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   z-index: 5;
 }
 
-/* Text content - positioned correctly */
+/* Text content - positioned correctly with LOWERED position to avoid covering faces */
 .hero-content {
   position: relative;
   z-index: 10;
@@ -98,11 +98,11 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   min-height: calc(450px - 80px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   text-align: center;
   color: white;
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 3rem 1.5rem;
   max-width: 64rem;
   margin: 0 auto;
 }
@@ -133,6 +133,7 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   }
   .hero-content {
     height: calc(55vh - 70px);
+    padding: 0 1.5rem 2rem 1.5rem;
   }
 }
 </style>
@@ -164,7 +165,7 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   </div>
 </nav>
 
-<!-- HERO SECTION - ORANGE DASH REMOVED FROM HEADING (covering eyes issue fixed) -->
+<!-- HERO SECTION - Text lowered to bottom of hero to avoid covering faces -->
 <section class="hero-section">
   <!-- Image container positioned below navbar -->
   <div class="hero-image-container">
@@ -174,10 +175,9 @@ h1, h2, h3, .font-serif-display { font-family: 'Playfair Display', serif; }
   <!-- Overlay for text readability -->
   <div class="hero-overlay"></div>
   
-  <!-- Text content - orange dash removed to prevent covering eyes -->
+  <!-- Text content - positioned at bottom (flex-end) so it doesn't cover faces -->
   <div class="hero-content">
-    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-serif-display tracking-tight">
-      <!-- Removed: <span class="block w-20 h-[3px] bg-orange-deep mb-6 mx-auto"></span> - this orange dash was covering someone's eyes -->
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 font-serif-display tracking-tight">
       Contact Moodboard Media
     </h1>
     <p class="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">Let's create something meaningful together</p>
